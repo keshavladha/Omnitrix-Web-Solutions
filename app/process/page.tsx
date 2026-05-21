@@ -6,8 +6,8 @@ import { processSteps, values } from "@/lib/data";
 import { ArrowRight, GitBranch, MessageSquare, Rocket, Target } from "lucide-react";
 
 export const metadata = {
-  title: "Our Process",
-  description: "How Omnitrix Web Solutions delivers premium digital products through a battle-tested 5-phase process.",
+  title: "Our Process - How We Build Websites in Hisar",
+  description: "Simple 5-step process for launching your Hisar business website. From discovery to go-live in under 2 weeks.",
 };
 
 export default function ProcessPage() {
@@ -31,7 +31,7 @@ export default function ProcessPage() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-2xl text-lg text-slate-300">
-              A battle-tested 5-phase approach that transforms ideas into production-ready products.
+              Our simple 5-step process for launching fast, professional websites that drive customers and inquiries.
             </p>
           </Reveal>
 
@@ -197,8 +197,8 @@ export default function ProcessPage() {
             <div className="grid gap-6 sm:grid-cols-3">
               {[
                 { type: "Landing Page", duration: "1-2 weeks", complexity: "Low" },
-                { type: "Marketing Site", duration: "2-4 weeks", complexity: "Medium" },
-                { type: "SaaS Platform", duration: "6-12 weeks", complexity: "High" },
+                { type: "Business Website", duration: "2-4 weeks", complexity: "Medium" },
+                { type: "WhatsApp Marketing Site", duration: "4-6 weeks", complexity: "Medium" },
               ].map((timeline, index) => (
                 <Reveal key={timeline.type} delay={0.1 * index}>
                   <div className="glass rounded-xl p-6 text-center">

@@ -103,7 +103,7 @@ export default function ContactPage() {
                       </label>
                       <select className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white focus:border-cyan-200/30 focus:outline-none">
                         <option value="" className="bg-[#02040a]">Select project type</option>
-                        <option value="saas" className="bg-[#02040a]">SaaS Platform</option>
+                        <option value="business" className="bg-[#02040a]">Business Website</option>
                         <option value="website" className="bg-[#02040a]">Website / Landing Page</option>
                         <option value="ecommerce" className="bg-[#02040a]">E-commerce</option>
                         <option value="app" className="bg-[#02040a]">Web Application</option>

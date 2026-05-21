@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Our Work",
-  description: "Explore our portfolio of web applications, SaaS platforms, and digital products built for ambitious startups.",
+  description: "See the websites and marketing sites we've built for local businesses, clinics, restaurants, boutiques, and service providers.",
 };
 
 export default function WorkPage() {
@@ -32,7 +32,7 @@ export default function WorkPage() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-2xl text-lg text-slate-300">
-              A selection of projects we've delivered for startups, enterprises, and everything in between.
+              A selection of websites and marketing builds for local shops, clinics, restaurants, and small brands.
             </p>
           </Reveal>
 
@@ -43,7 +43,7 @@ export default function WorkPage() {
                 <Grid3X3 className="h-4 w-4" />
                 Filter:
               </span>
-              {["All", "SaaS", "E-commerce", "Healthcare", "Fintech", "Enterprise"].map((filter) => (
+              {["All", "Business", "Restaurant", "Healthcare", "Retail", "Services"].map((filter) => (
                 <button
                   key={filter}
                   className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-200/30 hover:text-white"

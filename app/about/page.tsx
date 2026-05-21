@@ -31,7 +31,7 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-2xl text-lg text-slate-300">
-              Omnitrix Web Solutions was founded on a simple belief: startups deserve agency-quality work without agency-level bureaucracy.
+              Omnitrix Web Solutions was founded to help local businesses in Hisar and Haryana get online fast with affordable, high-quality websites and marketing support.
             </p>
           </Reveal>
 
@@ -77,17 +77,17 @@ export default function AboutPage() {
               <Reveal delay={0.2}>
                 <div>
                   <h2 className="font-display text-3xl font-semibold text-white mb-6">
-                    From Side Projects to Scaling Startups
+                    From Side Projects to Local Business Growth
                   </h2>
                   <div className="space-y-4 text-slate-300 leading-relaxed">
                     <p>
-                      I started Omnitrix while still in my BCA program, building websites for local businesses to pay for my education. What started as a side hustle quickly became an obsession with creating digital experiences that actually move the needle.
+                      I started Omnitrix while still in my BCA program, building websites for local businesses to pay for my education. What began as a small service for friends and neighbors quickly became a mission to help shops, clinics, and service brands get online fast.
                     </p>
                     <p>
-                      After working with dozens of startups, I noticed a pattern: they all wanted the polish of a funded SaaS company, but couldn't afford the $50K+ retainers of traditional agencies. They needed someone who understood both the technical architecture and the business goals.
+                      After working with many local businesses, I noticed a pattern: they needed a professional website, easy customer contact, and an affordable partner who understood how to attract walk-in customers and online leads.
                     </p>
                     <p>
-                      That's what Omnitrix became. Not just a web development shop, but a technical partner that treats your product like our own. We've since helped launch 50+ startups, from MVPs that raised seed rounds to enterprise platforms processing millions in transactions.
+                      That's what Omnitrix became. Not just a web builder, but a business growth partner that treats every website as a sales tool. We've helped dozens of local businesses launch high-performing sites and WhatsApp-enabled contact systems.
                     </p>
                     <p className="text-cyan-200">
                       — Keshav Ladha, Founder
@@ -150,7 +150,7 @@ export default function AboutPage() {
                   Awards & Recognition
                 </h2>
                 <p className="mt-4 text-slate-300">
-                  Recognition from the design and startup community.
+                  Recognition from the local business and web design community.
                 </p>
               </div>
             </Reveal>

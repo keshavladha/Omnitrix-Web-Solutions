@@ -7,8 +7,8 @@ import { ArrowRight, Check, Sparkles, Zap } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Services",
-  description: "Full-stack web development, SaaS platforms, UI/UX design, and digital solutions for startups and enterprises.",
+  title: "Services - Website Design, SEO & Digital Marketing in Hisar",
+  description: "Complete web services in Hisar: business websites, SEO, Google My Business, domain hosting, WhatsApp integration, e-commerce, and website maintenance.",
 };
 
 export default function ServicesPage() {
@@ -27,12 +27,12 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal delay={0.08}>
             <h1 className="font-display max-w-4xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Everything You Need to <span className="shimmer">Launch & Scale.</span>
+              Websites, SEO, Hosting & <span className="shimmer">Digital Marketing.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-2xl text-lg text-slate-300">
-              From pixel-perfect interfaces to scalable backend architecture. One team, end-to-end delivery.
+              Complete web solutions for Hisar businesses: professional websites, local SEO, domain & hosting, WhatsApp integration, and ongoing support — all under one roof.
             </p>
           </Reveal>
         </section>
@@ -116,7 +116,7 @@ export default function ServicesPage() {
                     Built with Modern Technology
                   </h2>
                   <p className="text-slate-300 leading-relaxed mb-6">
-                    We don't compromise on tech stack. Every project uses battle-tested, production-ready tools that scale with your business.
+                    We don't compromise on tech stack. Every project uses reliable, fast tools that help local businesses get online and start selling.
                   </p>
                   <MagneticButton href="/#stack">
                     See Full Tech Stack

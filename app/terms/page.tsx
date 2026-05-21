@@ -101,7 +101,7 @@ export default function TermsPage() {
 
                   <h2 className="font-display text-xl font-semibold text-white mt-8 mb-4">10. Contact</h2>
                   <p className="text-slate-400">
-                    Questions about these terms? Contact us at hello@omnitrixwebsolutions.com
+                    Questions about these terms? Contact us at keshavladha24@gmail.com
                   </p>
                 </div>
               </div>

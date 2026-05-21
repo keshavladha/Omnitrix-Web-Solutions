@@ -1,5 +1,5 @@
 import { mainNavItems, socials } from "@/lib/data";
-import { Aperture, ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { Aperture, ArrowUpRight, Github, Linkedin, Mail, MessageSquare, Phone } from "lucide-react";
 import Link from "next/link";
 
 const footerLinks = {
@@ -10,10 +10,10 @@ const footerLinks = {
     { label: "Contact", href: "/contact" },
   ],
   services: [
-    { label: "Web Development", href: "/services" },
-    { label: "SaaS Platforms", href: "/services" },
-    { label: "UI/UX Design", href: "/services" },
-    { label: "API Development", href: "/services" },
+    { label: "Business Websites", href: "/services" },
+    { label: "WhatsApp Integration", href: "/services" },
+    { label: "SEO Services", href: "/services" },
+    { label: "Hosting & Support", href: "/services" },
   ],
   resources: [
     { label: "Case Studies", href: "/case-studies" },
@@ -24,7 +24,9 @@ const footerLinks = {
 };
 
 const contactInfo = [
-  { label: "hello@omnitrixwebsolutions.com", href: "mailto:hello@omnitrixwebsolutions.com", icon: Mail },
+  { label: "keshavladha24@gmail.com", href: "mailto:keshavladha24@gmail.com", icon: Mail },
+  { label: "+91 70273 40360", href: "tel:+917027340360", icon: Phone },
+  { label: "WhatsApp chat", href: "https://api.whatsapp.com/send?phone=+917027340360&text=Hi,%20I%20need%20a%20business%20website%20quote.", icon: MessageSquare },
   { label: "github.com/omnitrix", href: "https://github.com", icon: Github },
   { label: "linkedin.com/in/omnitrix", href: "https://linkedin.com", icon: Linkedin },
 ];
@@ -46,7 +48,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="max-w-xs text-sm text-slate-400 leading-relaxed">
-              Building premium digital experiences for ambitious startups. Full-stack solutions that scale.
+              Building business websites, local marketing, and WhatsApp-friendly growth systems for shops, clinics, and service brands.
             </p>
             <div className="flex gap-3">
               {socials.slice(0, 4).map((social) => (

@@ -8,7 +8,7 @@ import { ArrowUpRight, BarChart3, Clock, Users } from "lucide-react";
 
 export const metadata = {
   title: "Case Studies",
-  description: "Deep dives into how Omnitrix builds scalable digital products for ambitious startups.",
+  description: "Stories of local businesses that grew with Omnitrix websites, WhatsApp ordering, and marketing support.",
 };
 
 export default function CaseStudiesPage() {
@@ -31,7 +31,7 @@ export default function CaseStudiesPage() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-2xl text-lg text-slate-300">
-              Deep dives into the architecture, decisions, and outcomes behind our most impactful builds.
+              Real results from websites built for restaurants, clinics, retail stores, and local service providers.
             </p>
           </Reveal>
 
@@ -109,7 +109,7 @@ export default function CaseStudiesPage() {
                   { stat: "40%", label: "Avg. conversion increase" },
                   { stat: "2.1s", label: "Average load time" },
                   { stat: "99.9%", label: "Uptime delivered" },
-                  { stat: "15+", label: "Startups launched" },
+                  { stat: "15+", label: "Business websites launched" },
                 ].map((item) => (
                   <div
                     key={item.label}

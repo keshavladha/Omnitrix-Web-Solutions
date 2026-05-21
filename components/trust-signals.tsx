@@ -11,7 +11,7 @@ export function TrustSignalsSection() {
       <div className="container">
         <Reveal>
           <p className="mb-8 text-center text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
-            Trusted by innovative teams across industries
+            Trusted by local businesses and service brands
           </p>
         </Reveal>
 
@@ -65,13 +65,13 @@ export function WhyOmnitrixSection() {
       competitor: "Traditional agencies still using legacy CMS",
     },
     {
-      title: "Startup Speed",
-      description: "1-2 weeks for landing pages, 4-6 for full products. We move at startup pace, not agency speed.",
-      competitor: "3-6 month project timelines",
+      title: "Fast Local Launches",
+      description: "1-2 weeks for landing pages, 4-6 for full business websites. We move faster than traditional agencies.",
+      competitor: "Slow agency timelines",
     },
     {
-      title: "Founder Mindset",
-      description: "We think like product owners, not just developers. Your success metrics become our goals.",
+      title: "Business Mindset",
+      description: "We think about customer experience, conversions, and revenue—not just code.",
       competitor: "Ticket-based task execution",
     },
     {
@@ -86,7 +86,7 @@ export function WhyOmnitrixSection() {
     },
     {
       title: "Direct Communication",
-      description: "Talk directly to your engineer on Slack. No account managers, no delays.",
+      description: "Connect directly over WhatsApp or email. No account managers, no delays.",
       competitor: "Multiple layers of account management",
     },
   ];

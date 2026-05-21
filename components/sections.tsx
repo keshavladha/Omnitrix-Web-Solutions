@@ -1,7 +1,7 @@
 import { Reveal, TiltCard } from "@/components/motion";
 import { SectionHeading } from "@/components/section-heading";
 import { projects, reasons, services, socials, techStack, testimonials } from "@/lib/data";
-import { ArrowUpRight, Mail, Send, ShieldCheck, Smartphone, Zap } from "lucide-react";
+import { ArrowUpRight, Mail, MessageSquare, Phone, Send, ShieldCheck, Smartphone, Zap } from "lucide-react";
 import Link from "next/link";
 
 export function AboutSection() {
@@ -11,7 +11,7 @@ export function AboutSection() {
         <Reveal>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">About</p>
           <h2 className="font-display text-4xl font-semibold text-white sm:text-5xl">
-            A young studio with a senior product instinct.
+            A business website studio with local growth in mind.
           </h2>
           <Link 
             href="/about" 
@@ -24,10 +24,10 @@ export function AboutSection() {
         <Reveal delay={0.08}>
           <div className="glass rounded-2xl p-6 sm:p-8">
             <p className="text-lg leading-9 text-slate-300">
-              Omnitrix Web Solutions is shaped by Keshav Ladha, a BCA student and full-stack builder focused on turning startup ideas into fast, scalable, visually premium digital products.
+              Omnitrix Web Solutions builds websites, SEO-friendly marketing funnels, and WhatsApp ordering systems for small businesses, shops, clinics, and local brands.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {["Product clarity", "Frontend craft", "Backend discipline"].map((item) => (
+              {["Local focus", "Sales-ready design", "Affordable support"].map((item) => (
                 <div key={item} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
                   <div className="mb-4 h-px w-12 bg-cyan-200/70" />
                   <p className="font-display text-lg font-semibold text-white">{item}</p>
@@ -49,10 +49,10 @@ export function ServicesSection() {
           <div className="max-w-3xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">Services</p>
             <h2 className="font-display text-4xl font-semibold text-white sm:text-5xl">
-              Full-stack execution for ambitious digital products.
+              Web design, marketing, and support for growing businesses.
             </h2>
             <p className="mt-4 max-w-2xl text-slate-400">
-              Every service is designed around modern startup needs: premium interfaces, clean architecture, fast delivery, and systems that can grow.
+              We deliver affordable business websites, local SEO, WhatsApp contact systems, domain & hosting setup, and ongoing maintenance so you can focus on customers.
             </p>
           </div>
           <Link 
@@ -172,10 +172,10 @@ export function ProjectsSection() {
           <div className="max-w-3xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">Projects</p>
             <h2 className="font-display text-4xl font-semibold text-white sm:text-5xl">
-              Cinematic product surfaces built for credibility.
+              Business websites built for local trust.
             </h2>
             <p className="mt-4 max-w-2xl text-slate-400">
-              Representative builds that show the Omnitrix approach across SaaS, launch websites, and internal platforms.
+              Representative builds that show our approach across shops, clinics, restaurants, and small brands.
             </p>
           </div>
           <Link 
@@ -238,8 +238,8 @@ export function WhySection() {
       <div className="container">
         <SectionHeading
           eyebrow="Why choose us"
-          title="A premium build standard without enterprise drag."
-          copy="Lean execution, sharp visual taste, and engineering decisions made for actual startup momentum."
+          title="A premium build standard without agency drag."
+          copy="Lean execution, sharp local branding, and practical decisions made for businesses that need customers now."
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {reasons.map((reason, index) => (
@@ -293,10 +293,10 @@ export function ContactSection() {
         <Reveal>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">Contact</p>
           <h2 className="font-display text-4xl font-semibold text-white sm:text-5xl">
-            Let's build something that feels inevitable.
+            Let's launch your business website and digital growth plan.
           </h2>
           <p className="mt-6 text-lg leading-8 text-slate-300">
-            Share the product, website, or platform you want to launch. Omnitrix will respond with a clear direction and build path.
+            Send us your business details and we’ll return a clear quote with website, SEO, WhatsApp, and deployment options.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             {socials.map((social) => (
@@ -309,6 +309,16 @@ export function ContactSection() {
                 <social.icon className="h-4 w-4" aria-hidden />
               </Link>
             ))}
+          </div>
+          <div className="mt-6 flex flex-wrap gap-4 text-sm text-slate-400">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
+              <Phone className="h-4 w-4 text-cyan-200" aria-hidden />
+              <span>+91 98966 66220</span>
+            </div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2">
+              <MessageSquare className="h-4 w-4 text-cyan-200" aria-hidden />
+              <span>WhatsApp support</span>
+            </div>
           </div>
           <Link 
             href="/contact" 
@@ -343,7 +353,7 @@ export function ContactSection() {
             </button>
             <p className="mt-4 flex items-center gap-2 text-sm text-slate-400">
               <Mail className="h-4 w-4 text-cyan-200" aria-hidden />
-              hello@omnitrixwebsolutions.com
+              keshavladha24@gmail.com
             </p>
           </form>
         </Reveal>

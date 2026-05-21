@@ -96,7 +96,7 @@ export default function PrivacyPage() {
                     If you have questions about this Privacy Policy, please contact us at:
                   </p>
                   <p className="text-slate-300 mt-2">
-                    Email: hello@omnitrixwebsolutions.com
+                    Email: keshavladha24@gmail.com
                   </p>
                 </div>
               </div>

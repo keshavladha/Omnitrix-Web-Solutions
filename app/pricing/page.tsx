@@ -6,8 +6,8 @@ import { pricingPlans, addOns } from "@/lib/data";
 import { Check, Crown, HelpCircle, Sparkles, Zap } from "lucide-react";
 
 export const metadata = {
-  title: "Pricing",
-  description: "Transparent pricing for startups building premium digital products with Omnitrix Web Solutions.",
+  title: "Pricing - Website Design in Hisar, Haryana",
+  description: "Affordable website pricing for Hisar businesses. Business websites from ₹5,000. SEO, hosting, and maintenance packages available.",
 };
 
 export default function PricingPage() {
@@ -25,12 +25,12 @@ export default function PricingPage() {
           </Reveal>
           <Reveal delay={0.08}>
             <h1 className="font-display max-w-4xl text-4xl font-semibold leading-tight text-white sm:text-5xl lg:text-6xl">
-              Invest in <span className="shimmer">Quality.</span>
+              Affordable Websites in <span className="shimmer">Hisar.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-2xl text-lg text-slate-300">
-              No hidden fees. No scope creep surprises. Just premium execution at startup-friendly rates.
+              Clear pricing for Hisar businesses. No hidden fees. Get online fast with a professional website that brings customers.
             </p>
           </Reveal>
 
@@ -137,20 +137,20 @@ export default function PricingPage() {
             <div className="mt-12 mx-auto max-w-3xl space-y-4">
               {[
                 {
-                  q: "What's included in the base price?",
-                  a: "Design, development, testing, and deployment. Each package has defined deliverables with clear scope boundaries."
+                  q: "What's included in the website price?",
+                  a: "Design, development, testing, and deployment. Each package lists exactly what you get — no surprises. Domain and hosting sold separately or bundled."
                 },
                 {
-                  q: "How do revisions work?",
-                  a: "All plans include revision rounds. Starter: 2 rounds, Growth: 3 rounds, Scale: Unlimited during the engagement period."
+                  q: "How many revisions do I get?",
+                  a: "Basic: 1 round, Business: 2 rounds, Premium: 3 rounds. Need more? Extra revisions available at ₹500 each."
                 },
                 {
-                  q: "Can I upgrade my plan mid-project?",
-                  a: "Absolutely. You can upgrade at any time and we'll prorate the difference toward enhanced deliverables."
+                  q: "Can I upgrade my package later?",
+                  a: "Yes. Start with Basic and upgrade anytime. You only pay the difference between packages."
                 },
                 {
-                  q: "What payment terms do you offer?",
-                  a: "50% upfront to begin, 50% upon completion. For larger projects, we can arrange milestone-based payments."
+                  q: "What are the payment terms?",
+                  a: "50% advance to start, 50% on completion. We accept UPI, bank transfer, and cash in Hisar. GST invoice provided."
                 },
               ].map((faq, index) => (
                 <Reveal key={index} delay={0.05 * index}>

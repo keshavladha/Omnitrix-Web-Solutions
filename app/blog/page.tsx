@@ -7,7 +7,7 @@ import { ArrowUpRight, BookOpen, Clock, Tag, TrendingUp } from "lucide-react";
 
 export const metadata = {
   title: "Blog & Insights",
-  description: "Technical deep dives, product thinking, and startup engineering wisdom from Omnitrix Web Solutions.",
+  description: "Advice and ideas for building business websites, marketing funnels, and local online growth.",
 };
 
 export default function BlogPage() {
@@ -23,7 +23,7 @@ export default function BlogPage() {
           <Reveal>
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-100/16 bg-white/5 px-4 py-2 text-sm text-cyan-100 backdrop-blur">
               <BookOpen className="h-4 w-4" aria-hidden />
-              Engineering Blog
+              Growth Blog
             </div>
           </Reveal>
           <Reveal delay={0.08}>
@@ -33,7 +33,7 @@ export default function BlogPage() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-2xl text-lg text-slate-300">
-              Technical deep dives, product thinking, and startup engineering wisdom from our team.
+              Tips on business websites, local marketing, WhatsApp sales, and growing your small business online.
             </p>
           </Reveal>
 
@@ -149,7 +149,7 @@ export default function BlogPage() {
                   Stay Ahead of the Curve
                 </h2>
                 <p className="mt-4 text-slate-300">
-                  Get weekly insights on modern web development, startup engineering, and product design.
+                  Get weekly insights on websites, local marketing, WhatsApp selling, and small business growth.
                 </p>
               </Reveal>
               <Reveal delay={0.1}>

@@ -113,7 +113,7 @@ export default function FAQPage() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <a
-                      href="mailto:hello@omnitrixwebsolutions.com"
+                      href="mailto:keshavladha24@gmail.com"
                       className="glass flex items-center gap-4 rounded-xl p-4 transition hover:border-cyan-200/30"
                     >
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5">
@@ -121,7 +121,7 @@ export default function FAQPage() {
                       </div>
                       <div>
                         <div className="font-semibold text-white">Email Us</div>
-                        <div className="text-sm text-slate-400">hello@omnitrixwebsolutions.com</div>
+                        <div className="text-sm text-slate-400">keshavladha24@gmail.com</div>
                       </div>
                     </a>
                     <a
@@ -160,7 +160,7 @@ export default function FAQPage() {
                 { title: "Our Process", href: "/process", desc: "How we build" },
                 { title: "Pricing", href: "/pricing", desc: "Transparent rates" },
                 { title: "Case Studies", href: "/case-studies", desc: "Proven results" },
-                { title: "Blog", href: "/blog", desc: "Engineering insights" },
+                { title: "Blog", href: "/blog", desc: "Business growth tips" },
               ].map((link) => (
                 <a
                   key={link.title}

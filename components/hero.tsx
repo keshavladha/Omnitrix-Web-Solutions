@@ -12,33 +12,33 @@ export function Hero() {
           <Reveal>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-100/16 bg-white/5 px-4 py-2 text-sm text-cyan-100 backdrop-blur">
               <Sparkles className="h-4 w-4" aria-hidden />
-              Vision Beyond Code
+              Business Growth Online
             </div>
           </Reveal>
           <Reveal delay={0.08}>
             <h1 className="font-display max-w-5xl text-5xl font-semibold leading-[1.02] text-white sm:text-7xl lg:text-8xl">
-              Engineering Modern <span className="shimmer">Digital Experiences.</span>
+              Website Design & Digital Marketing in <span className="shimmer">Hisar.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
-              Omnitrix Web Solutions builds scalable full-stack websites, SaaS platforms, APIs, and cinematic product interfaces for startups that want to look inevitable.
+              Professional websites, SEO, and digital marketing for local businesses in Hisar and Haryana. Get found online, attract more customers, and grow your business.
             </p>
           </Reveal>
           <Reveal delay={0.24} className="mt-9 flex flex-col gap-4 sm:flex-row">
             <Link href="/contact">
-              <MagneticButton href="/contact">Build your product</MagneticButton>
+              <MagneticButton href="/contact">Request a quote</MagneticButton>
             </Link>
             <Link href="/work">
-              <MagneticButton href="/work" variant="secondary">View showcase</MagneticButton>
+              <MagneticButton href="/work" variant="secondary">See our work</MagneticButton>
             </Link>
           </Reveal>
           <Reveal delay={0.32}>
             <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3 text-center">
               {[
-                ["99", "Performance intent"],
-                ["7+", "Core technologies"],
-                ["24/7", "Startup mindset"],
+                ["150+", "Local businesses served"],
+                ["100%", "Mobile responsive"],
+                ["WhatsApp", "Ready for orders"],
               ].map(([value, label]) => (
                 <div key={label} className="glass rounded-lg px-3 py-4">
                   <div className="font-display text-2xl font-semibold text-white">{value}</div>

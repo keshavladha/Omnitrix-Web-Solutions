@@ -7,7 +7,7 @@ import { ArrowUpRight, Building2, Globe, Sparkles } from "lucide-react";
 
 export const metadata = {
   title: "Industries We Serve",
-  description: "Specialized digital solutions for fintech, healthcare, e-commerce, SaaS, and enterprise clients.",
+  description: "Web design and marketing websites for restaurants, clinics, retailers, saloons, and local service businesses.",
 };
 
 export default function IndustriesPage() {
@@ -30,7 +30,7 @@ export default function IndustriesPage() {
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-2xl text-lg text-slate-300">
-              Deep domain expertise across fintech, healthcare, e-commerce, and enterprise SaaS. We speak your language.
+              We build business websites for restaurants, clinics, retail shops, coaching centers, real estate brokers, and service brands.
             </p>
           </Reveal>
 
@@ -146,10 +146,10 @@ export default function IndustriesPage() {
               <div className="absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-cyan-400/20 blur-3xl" />
               <Globe className="mx-auto mb-4 h-10 w-10 text-cyan-200" />
               <h2 className="font-display text-3xl font-semibold text-white lg:text-4xl">
-                Serving Clients Worldwide
+                Serving Local Businesses with Impact
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-slate-300">
-                From startups in Bangalore to enterprises in San Francisco, we deliver premium digital experiences globally.
+                From Hisar to Haryana and beyond, we deliver modern business websites and marketing systems that help local businesses grow.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <MagneticButton href="/#contact">Start Your Project</MagneticButton>
