@@ -10,7 +10,12 @@ Add these in Vercel Project Settings > Environment Variables:
 MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/?retryWrites=true&w=majority
 MONGODB_DB=omnitrix
 MONGODB_CONTACT_COLLECTION=contact_submissions
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+NEXT_PUBLIC_RAZORPAY_KEY_ID=your_razorpay_key_id
 ```
+
+For local development, copy `.env.example` to `.env.local` and fill in your Razorpay keys.
 
 Redeploy the Vercel project after adding or changing environment variables.
 

@@ -2,9 +2,9 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
-const { RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET } = process.env;
-
 function getAuthorizationHeader() {
+  const { RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET } = process.env;
+
   if (!RAZORPAY_KEY_ID || !RAZORPAY_KEY_SECRET) {
     throw new Error("Missing Razorpay API keys. Set RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in environment variables.");
   }
@@ -48,7 +48,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true, order: data }, { status: 201 });
   } catch (error) {
-    console.error("Razorpay order route error", error);
-    return NextResponse.json({ ok: false, error: "Unexpected Razorpay order error." }, { status: 500 });
+    const message = error instanceof Error ? error.message : "Unexpected Razorpay order error.";
+    console.error("Razorpay order route error", message);
+    return NextResponse.json({ ok: false, error: message }, { status: 500 });
   }
 }
