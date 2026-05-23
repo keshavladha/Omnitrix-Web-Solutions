@@ -82,10 +82,10 @@ export default function PricingPage() {
                   </ul>
                   <div className="w-full">
                     <MagneticButton
-                      href="/contact"
+                      href={plan.price === "Custom" ? "/contact" : "/payments"}
                       variant={plan.popular ? "primary" : "secondary"}
                     >
-                      {plan.cta}
+                      {plan.cta === "Contact Us" ? plan.cta : "Pay & Get Started"}
                     </MagneticButton>
                   </div>
                 </div>
@@ -195,7 +195,7 @@ export default function PricingPage() {
                 Let's discuss your project. We'll provide a detailed proposal within 24 hours.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <MagneticButton href="/contact">Get Custom Quote</MagneticButton>
+                <MagneticButton href="/payments">Pay & Get Started</MagneticButton>
                 <MagneticButton href="/case-studies" variant="secondary">
                   View Our Work
                 </MagneticButton>

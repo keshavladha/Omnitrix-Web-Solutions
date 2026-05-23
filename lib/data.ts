@@ -468,6 +468,7 @@ export const mainNavItems = [
   { label: "Industries", href: "/industries" },
   { label: "Process", href: "/process" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Payments", href: "/payments" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
