@@ -1,46 +1,48 @@
-import { getMongoClient } from "@/lib/mongodb";
+import {
+  parseContactForm,
+  saveContactSubmission,
+  validateContactSubmission,
+} from "@/lib/contact-submissions";
 import { NextResponse } from "next/server";
 
-type ContactPayload = {
-  name: string;
-  email: string;
-  projectType?: string;
-  message: string;
-};
+export const runtime = "nodejs";
 
-function isValidEmail(email: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+function contactRedirect(request: Request, status: "queued" | "sent") {
+  const referer = request.headers.get("referer");
+  const redirectUrl = new URL(referer ?? "/", request.url);
+  redirectUrl.searchParams.set("contact", status);
+
+  if (redirectUrl.pathname === "/") {
+    redirectUrl.hash = "contact";
+  }
+
+  return NextResponse.redirect(redirectUrl, { status: 303 });
 }
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const payload: ContactPayload = {
-    name: String(formData.get("name") ?? "").trim(),
-    email: String(formData.get("email") ?? "").trim(),
-    projectType: String(formData.get("projectType") ?? "").trim(),
-    message: String(formData.get("message") ?? "").trim(),
-  };
+  const payload = parseContactForm(formData, request);
+  const errors = validateContactSubmission(payload);
 
-  if (!payload.name || !payload.email || !payload.message || !isValidEmail(payload.email)) {
-    return NextResponse.json({ ok: false, error: "Invalid contact payload." }, { status: 400 });
+  if (errors.length > 0) {
+    return NextResponse.json({ ok: false, errors }, { status: 400 });
   }
 
   if (!process.env.MONGODB_URI) {
-    return NextResponse.redirect(new URL("/?contact=queued#contact", request.url), { status: 303 });
+    return contactRedirect(request, "queued");
   }
 
   try {
-    const client = await getMongoClient();
-    const db = client.db(process.env.MONGODB_DB ?? "omnitrix");
+    const { id } = await saveContactSubmission(payload);
+    const acceptsJson = request.headers.get("accept")?.includes("application/json");
 
-    await db.collection("contact_submissions").insertOne({
-      ...payload,
-      source: "website",
-      createdAt: new Date(),
-    });
-  } catch {
+    if (acceptsJson) {
+      return NextResponse.json({ ok: true, id }, { status: 201 });
+    }
+
+    return contactRedirect(request, "sent");
+  } catch (error) {
+    console.error("Contact submission save failed", error);
     return NextResponse.json({ ok: false, error: "Unable to save submission." }, { status: 503 });
   }
-
-  return NextResponse.redirect(new URL("/?contact=sent#contact", request.url), { status: 303 });
 }

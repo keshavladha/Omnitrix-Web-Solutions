@@ -41,8 +41,8 @@ export function MagneticButton({
       href={href}
       className={
         variant === "primary"
-          ? "inline-flex min-h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-slate-950 shadow-[0_0_36px_rgba(64,232,255,0.28)] transition hover:bg-cyan-100"
-          : "inline-flex min-h-12 items-center justify-center rounded-full border border-cyan-200/20 bg-white/5 px-6 text-sm font-semibold text-white backdrop-blur transition hover:border-cyan-200/45 hover:bg-white/10"
+          ? "inline-flex min-h-12 items-center justify-center rounded-full bg-blue-600 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 cursor-pointer"
+          : "inline-flex min-h-12 items-center justify-center rounded-full border border-slate-300 bg-white/40 px-6 text-sm font-semibold text-slate-700 backdrop-blur transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900 cursor-pointer"
       }
       style={{ x: springX, y: springY }}
       onMouseMove={(event) => {

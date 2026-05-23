@@ -102,7 +102,7 @@ export const testimonials = [
   {
     quote: "Omnitrix created a professional website for my clinic that brings in 3x more patients. The WhatsApp integration makes booking appointments so easy for my patients.",
     name: "Dr. Rakesh Sharma",
-    role: "Dental Surgeon, Hisar",
+    role: "Dental Surgeon, Sirsa",
   },
   {
     quote: "My restaurant now gets online orders through WhatsApp thanks to the website. The menu looks beautiful and customers love the photo gallery.",
@@ -112,7 +112,7 @@ export const testimonials = [
   {
     quote: "As a boutique owner, I needed a simple way to showcase my products. The WhatsApp ordering feature has increased my sales by 40%. Excellent work at affordable price!",
     name: "Priya Gupta",
-    role: "Owner, Priya Fashion Boutique, Hisar",
+    role: "Owner, Priya Fashion Boutique, Ellenabad, Sirsa",
   },
 ];
 
@@ -129,7 +129,7 @@ export const caseStudies = [
   {
     title: "Sharma Dental Clinic",
     category: "Healthcare",
-    description: "Complete website for a dental clinic in Hisar with online appointment booking, treatment information, doctor profiles, and WhatsApp integration for patient queries.",
+    description: "Complete website for a dental clinic in Sirsa with online appointment booking, treatment information, doctor profiles, and WhatsApp integration for patient queries.",
     duration: "5 days",
     icon: Shield,
     tags: ["Business Website", "Appointment Form", "WhatsApp"],
@@ -138,6 +138,7 @@ export const caseStudies = [
       { value: "50+", label: "Daily visitors" },
       { value: "24/7", label: "Online presence" },
     ],
+    link: "/case-studies",
   },
   {
     title: "Tasty Corner Restaurant",
@@ -151,6 +152,7 @@ export const caseStudies = [
       { value: "200+", label: "Menu views/day" },
       { value: "4.8★", label: "Customer rating" },
     ],
+    link: "/case-studies",
   },
   {
     title: "Gupta Properties",
@@ -164,6 +166,7 @@ export const caseStudies = [
       { value: "30%", label: "More enquiries" },
       { value: "10+", label: "Leads/month" },
     ],
+    link: "/case-studies",
   },
   {
     title: "Priya Fashion Boutique",
@@ -177,6 +180,19 @@ export const caseStudies = [
       { value: "35%", label: "More sales" },
       { value: "₹2L", label: "Monthly revenue" },
     ],
+    link: "/case-studies",
+  },
+  {
+    title: "NaXen India",
+    category: "Industrial Supplies",
+    description: "Corporate website and product showcase for NaXen India — built to highlight product lines, improve discoverability, and provide clear contact flows for enquiries.",
+    duration: "5 days",
+    icon: Globe2,
+    tags: ["Catalog", "Contact Forms", "SEO"],
+    metrics: [
+      { value: "—", label: "Client metrics available on request" },
+    ],
+    link: "/case-studies/naxenindia",
   },
 ];
 
@@ -537,19 +553,19 @@ export const industries = [
 export const companyStats = [
   { value: "30+", label: "Websites Delivered", icon: Briefcase },
   { value: "25+", label: "Local Businesses", icon: Users },
-  { value: "Hisar", label: "Based In", icon: MapPin },
+  { value: "Sirsa", label: "Based In", icon: MapPin },
   { value: "2+", label: "Years Experience", icon: Clock },
 ];
 
 export const timeline = [
-  { year: "2023", title: "The Beginning", description: "Started building websites for local shops and clinics in Hisar while completing BCA degree." },
+  { year: "2023", title: "The Beginning", description: "Started building websites for local shops and clinics in Sirsa and Ellenabad while completing BCA degree." },
   { year: "2024", title: "Growing Local Presence", description: "Delivered websites for 20+ local businesses including restaurants, clinics, and retail stores." },
   { year: "2025", title: "Omnitrix Web Solutions", description: "Formalized as a web development service focused on helping local businesses go digital affordably." },
-  { year: "2026", title: "Serving Hisar & Beyond", description: "Now serving clients across Haryana with a team of 4, delivering modern websites in under a week." },
+  { year: "2026", title: "Serving Sirsa & Beyond", description: "Now serving clients across Haryana with a team of 4, delivering modern websites in under a week." },
 ];
 
 export const awards = [
-  { year: "2025", title: "Trusted Local Web Developer", organization: "Hisar Business Network", icon: Award },
+  { year: "2025", title: "Trusted Local Web Developer", organization: "Sirsa Business Network", icon: Award },
   { year: "2024", title: "Best Website Design", organization: "Haryana Digital Awards", icon: Sparkles },
   { year: "2024", title: "Top Rated Service", organization: "Google My Business", icon: Star },
 ];
@@ -702,7 +718,7 @@ export const detailedServices = [
   },
   {
     title: "SEO & Local Marketing",
-    description: "Get found on Google by customers in Hisar and nearby areas. We optimize your website, Google Business Profile, and local listings.",
+    description: "Get found on Google by customers in Sirsa, Ellenabad and nearby areas. We optimize your website, Google Business Profile, and local listings.",
     icon: BarChart3,
     deliverables: [
       "Google My Business setup & optimization",
@@ -756,9 +772,9 @@ export const contactMethods = [
 
 export const officeLocations = [
   {
-    city: "Hisar",
+    city: "Sirsa",
     country: "Haryana, India (HQ)",
-    address: "Sector 15, Hisar, Haryana 125001",
+    address: "Ellenabad, Sirsa, Haryana 125102",
   },
   {
     city: "Gurugram",
@@ -778,7 +794,7 @@ export const portfolioItems = [
     title: "Sharma Dental Clinic",
     category: "Healthcare",
     year: "2025",
-    description: "Professional website for a dental clinic in Hisar with appointment booking, services, and doctor profiles.",
+    description: "Professional website for a dental clinic in Sirsa with appointment booking, services, and doctor profiles.",
     gradient: "from-blue-500/40 to-cyan-600/30",
     icon: Shield,
     tags: ["Business Site", "Appointment Form", "WhatsApp"],

@@ -149,7 +149,7 @@ export default function IndustriesPage() {
                 Serving Local Businesses with Impact
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-slate-300">
-                From Hisar to Haryana and beyond, we deliver modern business websites and marketing systems that help local businesses grow.
+                From Sirsa to Haryana and beyond, we deliver modern business websites and marketing systems that help local businesses grow.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <MagneticButton href="/#contact">Start Your Project</MagneticButton>

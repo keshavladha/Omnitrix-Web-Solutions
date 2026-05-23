@@ -96,7 +96,7 @@ export default function TermsPage() {
 
                   <h2 className="font-display text-xl font-semibold text-white mt-8 mb-4">9. Governing Law & Taxes</h2>
                   <p className="text-slate-400">
-                    These terms are governed by the laws of India. Any disputes will be resolved in the courts of Hisar, Haryana. All prices quoted are exclusive of applicable GST (currently 18%). GST invoices will be provided for all payments.
+                    These terms are governed by the laws of India. Any disputes will be resolved in the courts of Sirsa, Haryana. All prices quoted are exclusive of applicable GST (currently 18%). GST invoices will be provided for all payments.
                   </p>
 
                   <h2 className="font-display text-xl font-semibold text-white mt-8 mb-4">10. Contact</h2>

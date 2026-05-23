@@ -5,9 +5,11 @@ import { Reveal, TiltCard } from "@/components/motion";
 import { processSteps, values } from "@/lib/data";
 import { ArrowRight, GitBranch, MessageSquare, Rocket, Target } from "lucide-react";
 
+import DiscoveryPlanner from "@/components/discovery-planner";
+
 export const metadata = {
-  title: "Our Process - How We Build Websites in Hisar",
-  description: "Simple 5-step process for launching your Hisar business website. From discovery to go-live in under 2 weeks.",
+  title: "Our Process - How We Build Websites in Sirsa",
+  description: "Simple 5-step process for launching your Sirsa/Ellenabad business website. From discovery to go-live in under 2 weeks.",
 };
 
 export default function ProcessPage() {
@@ -84,6 +86,24 @@ export default function ProcessPage() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </section>
+
+        {/* Interactive Discovery Planner Section */}
+        <section className="border-t border-white/8 bg-white/[0.01] py-20">
+          <div className="container">
+            <Reveal>
+              <div className="text-center mb-12">
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-200/80">Interactive Planner</p>
+                <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">
+                  Conversational Discovery Planner
+                </h2>
+                <p className="mt-4 text-slate-300 max-w-xl mx-auto">
+                  Answer 3 simple questions about your goals, industry, and timeframe to generate a tailored technical architecture blueprint for your business.
+                </p>
+              </div>
+            </Reveal>
+            <DiscoveryPlanner />
           </div>
         </section>
 

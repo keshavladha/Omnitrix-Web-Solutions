@@ -1,52 +1,66 @@
 "use client";
 
 import { MagneticButton, Reveal } from "@/components/motion";
-import { clientIndustries, trustBadges } from "@/lib/data";
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { BadgeCheck, Code2, Lock, Rocket, ShieldCheck, TrendingUp } from "lucide-react";
+
+const industries = ["SaaS", "Healthcare", "E-Commerce", "Education", "Services", "Real Estate"];
+
+const differentiators = [
+  {
+    title: "Business-first strategy",
+    description: "We design around trust, clarity, and conversion before touching visual polish.",
+    icon: TrendingUp,
+  },
+  {
+    title: "Modern stack only",
+    description: "Next.js 16, React 19, TypeScript, Tailwind CSS 4, Framer Motion, and MongoDB-ready architecture.",
+    icon: Code2,
+  },
+  {
+    title: "Fast launch cycles",
+    description: "Lean execution with clean milestones, focused reviews, and no bloated agency process.",
+    icon: Rocket,
+  },
+  {
+    title: "Secure ownership",
+    description: "No vendor lock-in. You get a scalable system that can be extended as the business grows.",
+    icon: Lock,
+  },
+];
 
 export function TrustSignalsSection() {
   return (
-    <section className="border-y border-white/8 bg-white/[0.02] py-12">
+    <section className="border-y border-slate-200 bg-slate-50/50 py-12">
       <div className="container">
         <Reveal>
           <p className="mb-8 text-center text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">
-            Trusted by local businesses and service brands
+            Built for modern businesses across high-trust industries
           </p>
         </Reveal>
 
-        {/* Client Industries Marquee */}
-        <div className="relative mb-10 overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 z-10 w-24 bg-gradient-to-r from-[#02040a] to-transparent" />
-          <div className="absolute right-0 top-0 bottom-0 z-10 w-24 bg-gradient-to-l from-[#02040a] to-transparent" />
-          <motion.div
-            className="flex gap-12"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            {[...clientIndustries, ...clientIndustries, ...clientIndustries, ...clientIndustries].map(
-              (industry, index) => (
-                <div
-                  key={`${industry}-${index}`}
-                  className="flex-shrink-0 rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-slate-300"
-                >
-                  {industry}
-                </div>
-              )
-            )}
-          </motion.div>
-        </div>
+        <Reveal delay={0.08}>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {industries.map((industry) => (
+              <div
+                key={industry}
+                className="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-650 shadow-sm"
+              >
+                {industry}
+              </div>
+            ))}
+          </div>
+        </Reveal>
 
-        {/* Trust Badges */}
-        <Reveal delay={0.2}>
-          <div className="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
-            {trustBadges.map((badge) => (
-              <div key={badge.label} className="flex items-center gap-2 text-sm text-slate-400">
-                <badge.icon className="h-4 w-4 text-cyan-200" />
+        <Reveal delay={0.16}>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-6 lg:gap-10">
+            {[
+              { label: "Conversion focused", icon: BadgeCheck },
+              { label: "Secure forms", icon: ShieldCheck },
+              { label: "Performance first", icon: Rocket },
+              { label: "Scalable codebase", icon: Code2 },
+            ].map((badge) => (
+              <div key={badge.label} className="flex items-center gap-2 text-sm text-slate-550 font-medium">
+                <badge.icon className="h-4 w-4 text-blue-600" aria-hidden />
                 <span>{badge.label}</span>
               </div>
             ))}
@@ -58,77 +72,36 @@ export function TrustSignalsSection() {
 }
 
 export function WhyOmnitrixSection() {
-  const differentiators = [
-    {
-      title: "Modern Stack Only",
-      description: "No WordPress. No outdated PHP. We build with Next.js 16, React 19, and modern tools that scale.",
-      competitor: "Traditional agencies still using legacy CMS",
-    },
-    {
-      title: "Fast Local Launches",
-      description: "1-2 weeks for landing pages, 4-6 for full business websites. We move faster than traditional agencies.",
-      competitor: "Slow agency timelines",
-    },
-    {
-      title: "Business Mindset",
-      description: "We think about customer experience, conversions, and revenue—not just code.",
-      competitor: "Ticket-based task execution",
-    },
-    {
-      title: "Transparent Pricing",
-      description: "Fixed-price packages with clear deliverables. No hidden fees, no scope creep surprises.",
-      competitor: "Hourly billing with unpredictable costs",
-    },
-    {
-      title: "You Own Everything",
-      description: "Full code ownership, clean documentation, no vendor lock-in. Deploy anywhere.",
-      competitor: "Proprietary platforms you can't leave",
-    },
-    {
-      title: "Direct Communication",
-      description: "Connect directly over WhatsApp or email. No account managers, no delays.",
-      competitor: "Multiple layers of account management",
-    },
-  ];
-
   return (
     <section className="container py-20">
       <Reveal>
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-100/16 bg-white/5 px-4 py-2 text-sm text-cyan-100 backdrop-blur">
-            Why Choose Us
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-600 font-semibold">
+            Agency standard
           </div>
-          <h2 className="font-display text-3xl font-semibold text-white sm:text-5xl">
-            Not Your Typical <span className="shimmer">Web Agency.</span>
+          <h2 className="font-display text-3xl font-semibold text-slate-900 sm:text-5xl">
+            Premium design with product-grade engineering.
           </h2>
-          <p className="mt-4 text-slate-300">
-            We're engineers who design, not designers who dabble in code. Here's how we're different.
+          <p className="mt-4 text-slate-500">
+            Omnitrix combines clean SaaS aesthetics, conversion strategy, and scalable full-stack execution for businesses that need a serious digital presence.
           </p>
           <div className="mt-6">
-            <Link href="/about">
-              <MagneticButton href="/about" variant="secondary">
-                Learn more about our approach
-              </MagneticButton>
-            </Link>
+            <MagneticButton href="/contact" variant="secondary">
+              Discuss your project
+            </MagneticButton>
           </div>
         </div>
       </Reveal>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-2">
+      <div className="mt-12 grid gap-5 lg:grid-cols-4">
         {differentiators.map((item, index) => (
-          <Reveal key={item.title} delay={0.1 * index}>
-            <div className="glass glow-border relative rounded-xl p-6">
-              <div className="mb-4">
-                <h3 className="font-display text-lg font-semibold text-white mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-slate-300">{item.description}</p>
-              </div>
-              <div className="border-t border-white/10 pt-4">
-                <p className="text-xs text-slate-500">
-                  vs. <span className="text-slate-400">{item.competitor}</span>
-                </p>
-              </div>
+          <Reveal key={item.title} delay={0.06 * index}>
+            <div className="glass relative h-full rounded-2xl p-6 transition hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-md bg-white">
+              <item.icon className="h-6 w-6 text-blue-600" aria-hidden />
+              <h3 className="mt-5 font-display text-lg font-semibold text-slate-800">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-slate-500 leading-relaxed">{item.description}</p>
             </div>
           </Reveal>
         ))}

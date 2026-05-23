@@ -75,7 +75,7 @@ export default function BlogPage() {
                     ))}
                   </div>
                   <a
-                    href="#"
+                    href="/contact"
                     className="inline-flex items-center gap-2 rounded-full border border-cyan-200/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition hover:border-cyan-200/50 hover:bg-white/10"
                   >
                     Read article
@@ -153,9 +153,15 @@ export default function BlogPage() {
                 </p>
               </Reveal>
               <Reveal delay={0.1}>
-                <form className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <form className="mt-8 flex flex-col gap-3 sm:flex-row" action="/api/contact" method="post">
+                  <input type="hidden" name="name" value="Newsletter Subscriber" />
+                  <input type="hidden" name="projectType" value="Newsletter subscription" />
+                  <input type="hidden" name="message" value="Please add this email to the Omnitrix insights list." />
+                  <input type="hidden" name="page" value="Blog newsletter" />
                   <input
+                    name="email"
                     type="email"
+                    required
                     placeholder="Enter your email"
                     className="flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-white placeholder:text-slate-500 focus:border-cyan-200/30 focus:outline-none"
                   />

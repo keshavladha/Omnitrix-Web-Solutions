@@ -125,7 +125,7 @@ export default function FAQPage() {
                       </div>
                     </a>
                     <a
-                      href="#contact"
+                      href="/contact"
                       className="glass flex items-center gap-4 rounded-xl p-4 transition hover:border-cyan-200/30"
                     >
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5">
@@ -139,7 +139,7 @@ export default function FAQPage() {
                   </div>
 
                   <div className="mt-8 text-center">
-                    <MagneticButton href="#contact">
+                    <MagneticButton href="/contact">
                       Schedule a Call
                     </MagneticButton>
                   </div>
@@ -179,6 +179,25 @@ export default function FAQPage() {
             </div>
           </Reveal>
         </section>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": faqCategories.flatMap((cat) =>
+                cat.questions.map((faq) => ({
+                  "@type": "Question",
+                  "name": faq.q,
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": faq.a
+                  }
+                }))
+              )
+            })
+          }}
+        />
       </main>
       <Footer />
     </>

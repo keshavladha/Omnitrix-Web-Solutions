@@ -1,7 +1,11 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, type Db } from "mongodb";
 
 const uri = process.env.MONGODB_URI;
-const options = {};
+const dbName = process.env.MONGODB_DB ?? "omnitrix";
+const options = {
+  maxPoolSize: 10,
+  serverSelectionTimeoutMS: 5000,
+};
 
 let client: MongoClient | undefined;
 let clientPromise: Promise<MongoClient> | undefined;
@@ -30,4 +34,9 @@ export function getMongoClient() {
   }
 
   return clientPromise;
+}
+
+export async function getMongoDb(): Promise<Db> {
+  const mongoClient = await getMongoClient();
+  return mongoClient.db(dbName);
 }
