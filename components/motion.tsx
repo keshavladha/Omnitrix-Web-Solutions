@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import type { PropsWithChildren } from "react";
+import { useRef, type PropsWithChildren } from "react";
 
 export const MotionDiv = motion.div;
 export const MotionSection = motion.section;
@@ -35,6 +35,7 @@ export function MagneticButton({
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 190, damping: 18 });
   const springY = useSpring(y, { stiffness: 190, damping: 18 });
+  const rectRef = useRef<DOMRect | null>(null);
 
   return (
     <motion.a
@@ -45,12 +46,20 @@ export function MagneticButton({
           : "inline-flex min-h-12 items-center justify-center rounded-full border border-slate-300 bg-white/40 px-6 text-sm font-semibold text-slate-700 backdrop-blur transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900 cursor-pointer"
       }
       style={{ x: springX, y: springY }}
+      onMouseEnter={(event) => {
+        rectRef.current = event.currentTarget.getBoundingClientRect();
+      }}
       onMouseMove={(event) => {
-        const rect = event.currentTarget.getBoundingClientRect();
+        let rect = rectRef.current;
+        if (!rect) {
+          rect = event.currentTarget.getBoundingClientRect();
+          rectRef.current = rect;
+        }
         x.set((event.clientX - rect.left - rect.width / 2) * 0.18);
         y.set((event.clientY - rect.top - rect.height / 2) * 0.18);
       }}
       onMouseLeave={() => {
+        rectRef.current = null;
         x.set(0);
         y.set(0);
       }}
@@ -67,22 +76,39 @@ export function TiltCard({
 }: PropsWithChildren<{ className?: string }>) {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rotateX = useTransform(my, [-0.5, 0.5], [5, -5]);
-  const rotateY = useTransform(mx, [-0.5, 0.5], [-6, 6]);
+  
+  // Use springs to smooth out the tilt values and prevent abrupt jumps, which can cause frame stutter!
+  const springMx = useSpring(mx, { stiffness: 150, damping: 20 });
+  const springMy = useSpring(my, { stiffness: 150, damping: 20 });
+  
+  // Transform from the smooth spring motion values to avoid micro-jitter during pointer motion
+  const rotateX = useTransform(springMy, [-0.5, 0.5], [5, -5]);
+  const rotateY = useTransform(springMx, [-0.5, 0.5], [-6, 6]);
+  
+  const rectRef = useRef<DOMRect | null>(null);
 
   return (
     <motion.div
       className={className}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      onMouseEnter={(event) => {
+        rectRef.current = event.currentTarget.getBoundingClientRect();
+      }}
       onMouseMove={(event) => {
-        const rect = event.currentTarget.getBoundingClientRect();
+        let rect = rectRef.current;
+        if (!rect) {
+          rect = event.currentTarget.getBoundingClientRect();
+          rectRef.current = rect;
+        }
         mx.set((event.clientX - rect.left) / rect.width - 0.5);
         my.set((event.clientY - rect.top) / rect.height - 0.5);
       }}
       onMouseLeave={() => {
+        rectRef.current = null;
         mx.set(0);
         my.set(0);
       }}
+      whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 180, damping: 20 }}
     >
       {children}

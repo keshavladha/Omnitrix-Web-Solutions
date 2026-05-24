@@ -70,7 +70,7 @@ export function ServicesSection() {
             return (
               <Reveal key={service.title} delay={index * 0.035}>
                 <Link href="/services" className="block h-full">
-                  <TiltCard className={`glass h-full rounded-xl p-5 transition duration-300 hover:-translate-y-1 hover:shadow-md ${borders[index % borders.length]}`}>
+                  <TiltCard className={`glass h-full rounded-xl p-5 transition-shadow duration-300 hover:shadow-md ${borders[index % borders.length]}`}>
                     <service.icon className={`h-6 w-6 ${icons[index % icons.length]}`} aria-hidden />
                     <h3 className="mt-5 font-display text-xl font-semibold text-slate-800">{service.title}</h3>
                     <p className="mt-3 text-sm leading-6 text-slate-500">{service.copy}</p>
@@ -235,8 +235,12 @@ export function ProjectsSection() {
           {projects.map((project, index) => {
             const borders = ["border-t-2 border-t-blue-500", "border-t-2 border-t-red-500", "border-t-2 border-t-yellow-500", "border-t-2 border-t-green-500"];
             return (
-              <Reveal key={project.title} delay={index * 0.08}>
-                <Link href="/work" className={`block h-full ${index === 0 ? "lg:col-span-4" : "lg:col-span-2"}`}>
+              <Reveal 
+                key={project.title} 
+                delay={index * 0.08}
+                className={index === 0 ? "lg:col-span-4" : "lg:col-span-2"}
+              >
+                <Link href="/work" className="block h-full">
                   <TiltCard className={`glass glow-border h-full rounded-2xl p-5 ${borders[index % borders.length]}`}>
                     <div className="mb-5 aspect-[1.35] rounded-xl border border-slate-200 bg-[radial-gradient(circle_at_35%_20%,rgba(66,133,244,0.06),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.8),rgba(66,133,244,0.02))] p-4">
                       <div className="h-full rounded-lg border border-blue-500/10 bg-slate-50 p-4">
