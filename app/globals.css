@@ -1,6 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --color-blue-50: #f0fdf4;
+  --color-blue-100: #dcfce7;
+  --color-blue-200: #a7f3d0;
+  --color-blue-300: #6ee7b7;
+  --color-blue-400: #34d399;
+  --color-blue-500: #10b981;
+  --color-blue-600: #059669;
+  --color-blue-700: #047857;
+  --color-blue-800: #065f46;
+  --color-blue-900: #064e3b;
+  --color-blue-950: #022c22;
+
+  --color-cyan-50: #ecfdf5;
+  --color-cyan-100: #d1fae5;
+  --color-cyan-200: #a7f3d0;
+  --color-cyan-300: #6ee7b7;
+  --color-cyan-400: #34d399;
+  --color-cyan-500: #10b981;
+  --color-cyan-600: #059669;
+  --color-cyan-700: #047857;
+  --color-cyan-800: #065f46;
+  --color-cyan-900: #064e3b;
+  --color-cyan-950: #022c22;
+}
 
 :root {
   --background: #ffffff; /* Google Workspace clean white background */
@@ -8,11 +33,11 @@
   --muted: #5f6368; /* Google medium gray */
   --line: rgba(0, 0, 0, 0.08); /* Crisp subtle divider lines */
   --glass: rgba(255, 255, 255, 0.85); /* Highly reflective premium Google Light cards */
-  --blue: #1a73e8; /* Google Blue */
+  --blue: #10b981; /* Premium Emerald Green */
   --red: #ea4335; /* Google Red */
   --yellow: #fbbc05; /* Google Yellow */
-  --green: #34a853; /* Google Green */
-  --cyan: #4285f4; /* Google Medium Blue */
+  --green: #059669; /* Google Green */
+  --cyan: #34d399; /* Mint Green */
   --silver: #475569;
   --font-inter: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-space: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif; /* Google Sans Friendly Geometric Vibe */
@@ -33,9 +58,9 @@ body {
   overflow-x: hidden;
   color: var(--foreground);
   background:
-    radial-gradient(circle at 50% -10%, rgba(26, 115, 232, 0.05), transparent 42rem),
-    radial-gradient(circle at 85% 15%, rgba(52, 168, 83, 0.03), transparent 28rem),
-    radial-gradient(circle at 15% 55%, rgba(251, 188, 5, 0.02), transparent 28rem),
+    radial-gradient(circle at 50% -10%, rgba(16, 185, 129, 0.06), transparent 42rem),
+    radial-gradient(circle at 85% 15%, rgba(5, 150, 105, 0.04), transparent 28rem),
+    radial-gradient(circle at 15% 55%, rgba(52, 211, 153, 0.02), transparent 28rem),
     linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
   font-family: var(--font-inter), system-ui, sans-serif;
 }
@@ -84,7 +109,7 @@ select {
   border-radius: inherit;
   content: "";
   opacity: 0;
-  background: linear-gradient(135deg, var(--blue), var(--green), var(--yellow), var(--red));
+  background: linear-gradient(135deg, var(--blue), var(--cyan), var(--green), #a7f3d0);
   transition: opacity 240ms ease;
 }
 
@@ -100,9 +125,9 @@ select {
   mask-image: linear-gradient(to bottom, transparent, black 14%, black 62%, transparent);
 }
 
-/* Beautiful Google Four-Color Shimmer Title Gradient */
+/* Beautiful Premium Emerald-Mint Shimmer Title Gradient */
 .shimmer {
-  background: linear-gradient(90deg, #4285F4 0%, #EA4335 28%, #FBBC05 56%, #34A853 82%, #4285F4 100%);
+  background: linear-gradient(90deg, #10b981 0%, #34d399 28%, #059669 56%, #a7f3d0 82%, #10b981 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;

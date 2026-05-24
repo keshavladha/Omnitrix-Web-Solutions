@@ -187,7 +187,7 @@ export default function PaymentPageClient() {
         },
         prefill: { name: "", email: "", contact: "" },
         notes: { package: packageLabel },
-        theme: { color: "#2563eb" },
+        theme: { color: "#10b981" },
         modal: {
           ondismiss: () => {
             setLoading(false);
