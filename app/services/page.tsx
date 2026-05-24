@@ -2,7 +2,7 @@ import { AmbientBackground } from "@/components/background";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { MagneticButton, Reveal, TiltCard } from "@/components/motion";
-import { detailedServices } from "@/lib/data";
+import { detailedServices, industries } from "@/lib/data";
 import { ArrowRight, Check, Sparkles, Zap } from "lucide-react";
 import Link from "next/link";
 
@@ -102,6 +102,102 @@ export default function ServicesPage() {
                   )}
                 </Reveal>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Industries We Serve Section */}
+        <section className="border-t border-slate-200 bg-white py-20">
+          <div className="container">
+            <Reveal>
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-600 font-semibold">
+                <Sparkles className="h-4 w-4" aria-hidden />
+                Our Focus Areas
+              </div>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <h2 className="font-display text-3xl font-semibold text-slate-900 sm:text-4xl">
+                Specialized Solutions for <span className="shimmer">Your Industry.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-4 max-w-2xl text-slate-500">
+                We design and build with compliance, conversion, and local customer workflows in mind. See how we support your business model.
+              </p>
+            </Reveal>
+
+            {/* Industries Grid */}
+            <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {industries.map((industry, index) => {
+                const colors = [
+                  "from-orange-500/10 to-red-600/5 border-orange-500/20 text-orange-600",
+                  "from-blue-500/10 to-cyan-600/5 border-blue-500/20 text-blue-600",
+                  "from-violet-500/10 to-pink-600/5 border-violet-500/20 text-violet-600",
+                  "from-emerald-500/10 to-teal-600/5 border-emerald-500/20 text-emerald-600",
+                  "from-yellow-500/10 to-orange-600/5 border-yellow-500/20 text-yellow-600",
+                  "from-pink-500/10 to-purple-600/5 border-pink-500/20 text-pink-600",
+                ];
+                return (
+                  <Reveal key={industry.name} delay={0.05 * index}>
+                    <TiltCard className={`glass h-full rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:border-blue-500/30 flex flex-col justify-between`}>
+                      <div>
+                        {/* Header: Icon + Title */}
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className={`flex h-11 w-11 items-center justify-center rounded-xl border bg-gradient-to-br ${colors[index % colors.length]}`}>
+                            <industry.icon className="h-5 w-5" />
+                          </span>
+                          <div>
+                            <h3 className="font-display text-lg font-bold text-slate-800">
+                              {industry.name}
+                            </h3>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                              {industry.clients}+ sites delivered
+                            </span>
+                          </div>
+                        </div>
+
+                        <p className="text-slate-500 leading-relaxed text-sm mb-4">
+                          {industry.description}
+                        </p>
+
+                        <div className="mb-6">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
+                            Key Solutions
+                          </span>
+                          <div className="flex flex-wrap gap-1.5">
+                            {industry.solutions.map((sol) => (
+                              <span key={sol} className="rounded-full bg-slate-50 border border-slate-200/60 px-2.5 py-1 text-xs text-slate-600">
+                                {sol}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Footer Info */}
+                      <div className="flex items-center justify-between border-t border-slate-100 pt-4 mt-auto">
+                        <div className="flex items-center gap-4">
+                          {industry.metrics.map((metric) => (
+                            <div key={metric.label}>
+                              <div className="font-display text-[15px] font-bold text-blue-600">
+                                {metric.value}
+                              </div>
+                              <div className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">{metric.label}</div>
+                            </div>
+                          ))}
+                        </div>
+                        <Link
+                          href="/contact"
+                          className="text-xs font-bold text-slate-800 hover:text-blue-600 transition flex items-center gap-1"
+                        >
+                          Book consultation
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      </div>
+                    </TiltCard>
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
         </section>

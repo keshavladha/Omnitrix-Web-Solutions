@@ -461,17 +461,19 @@ export const faqCategories = [
   },
 ];
 
-// Updated navigation with new pages
+// Simplified main navigation with dropdown grouping
 export const mainNavItems = [
   { label: "Services", href: "/services" },
-  { label: "Work", href: "/work" },
-  { label: "Industries", href: "/industries" },
-  { label: "Process", href: "/process" },
+  { label: "Our Work", href: "/work" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Payments", href: "/payments" },
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Pay Online", href: "/payments" },
+];
+
+export const resourceDropdownItems = [
+  { label: "Our Process", href: "/process", desc: "How we build premium websites.", iconName: "Layers" },
+  { label: "Insights Blog", href: "/blog", desc: "Local business growth & tech tips.", iconName: "Sparkles" },
+  { label: "Help & FAQ", href: "/faq", desc: "Answers on pricing, domain, hosting.", iconName: "HelpCircle" },
+  { label: "About Us", href: "/about", desc: "Our BCA roots, values, and local team.", iconName: "Users" },
 ];
 
 // Industries Data
