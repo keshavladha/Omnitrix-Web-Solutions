@@ -19,7 +19,7 @@ export default function CaseStudiesPage() {
       <main className="min-h-screen pt-28">
         <section className="container pb-20">
           <Reveal>
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-600 font-semibold">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-sm text-emerald-400 font-semibold">
               <BarChart3 className="h-4 w-4" aria-hidden />
               Proven Results
             </div>
@@ -37,26 +37,26 @@ export default function CaseStudiesPage() {
 
           <div className="mt-16 grid gap-8 lg:grid-cols-2">
             {caseStudies.map((study, index) => {
-              const borders = ["border-t-2 border-t-blue-500", "border-t-2 border-t-red-500", "border-t-2 border-t-yellow-500", "border-t-2 border-t-green-500"];
+              const borders = ["border-t-2 border-t-emerald-500", "border-t-2 border-t-red-500", "border-t-2 border-t-amber-500", "border-t-2 border-t-green-500"];
               const badgeColors = [
-                "bg-blue-50 text-blue-600 border border-blue-100",
-                "bg-red-50 text-red-650 border border-red-100",
-                "bg-amber-50 text-amber-700 border border-amber-200",
-                "bg-green-50 text-green-600 border border-green-100"
+                "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+                "bg-red-500/10 text-red-400 border border-red-500/20",
+                "bg-amber-500/10 text-amber-400 border border-amber-500/20",
+                "bg-green-500/10 text-green-400 border border-green-500/20"
               ];
-              const iconColors = ["text-blue-500/20", "text-red-500/20", "text-amber-500/20", "text-green-500/20"];
-              const linkColors = ["text-blue-600 hover:text-blue-750", "text-red-600 hover:text-red-750", "text-amber-600 hover:text-amber-750", "text-green-600 hover:text-green-750"];
+              const iconColors = ["text-emerald-500/20", "text-red-500/20", "text-amber-500/20", "text-green-500/20"];
+              const linkColors = ["text-emerald-400 hover:text-emerald-300", "text-red-400 hover:text-red-300", "text-amber-400 hover:text-amber-300", "text-green-400 hover:text-green-300"];
               return (
                 <Reveal key={study.title} delay={0.1 * index}>
                   <TiltCard className={`glass group relative overflow-hidden rounded-2xl ${borders[index % borders.length]}`}>
-                    <div className="relative h-56 overflow-hidden bg-slate-50">
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-100 via-transparent to-transparent z-10" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-slate-200/20 to-transparent" />
+                    <div className="relative h-56 overflow-hidden bg-slate-950/60">
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent z-10" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
                       <div className="flex h-full items-center justify-center">
                         <study.icon className={`h-20 w-20 ${iconColors[index % iconColors.length]}`} />
                       </div>
                     </div>
-                    <div className="p-6 bg-white">
+                    <div className="p-6">
                       <div className="flex items-center gap-3 text-sm text-slate-500 mb-3">
                         <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${badgeColors[index % badgeColors.length]}`}>
                           {study.category}
@@ -66,27 +66,27 @@ export default function CaseStudiesPage() {
                           {study.duration}
                         </span>
                       </div>
-                      <h3 className="font-display text-2xl font-semibold text-slate-800 mb-3">
+                      <h3 className="font-display text-2xl font-semibold text-white mb-3">
                         {study.title}
                       </h3>
-                      <p className="text-slate-500 leading-relaxed mb-4 text-sm">
+                      <p className="text-slate-400 leading-relaxed mb-4 text-sm">
                         {study.description}
                       </p>
                       <div className="flex flex-wrap gap-2 mb-6">
                         {study.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs text-slate-650"
+                            className="rounded-full border border-white/10 bg-slate-950/40 px-3 py-1 text-xs text-slate-400"
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
-                      <div className="grid grid-cols-3 gap-4 border-t border-slate-200 pt-4">
+                      <div className="grid grid-cols-3 gap-4 border-t border-white/10 pt-4">
                         {study.metrics.map((metric) => (
                           <div key={metric.label}>
                             <div className={`font-display text-xl font-semibold ${
-                              index % 4 === 0 ? "text-blue-600" : index % 4 === 1 ? "text-red-600" : index % 4 === 2 ? "text-amber-600" : "text-green-600"
+                              index % 4 === 0 ? "text-emerald-400" : index % 4 === 1 ? "text-red-400" : index % 4 === 2 ? "text-amber-400" : "text-green-400"
                             }`}>
                               {metric.value}
                             </div>
@@ -126,9 +126,9 @@ export default function CaseStudiesPage() {
                 ].map((item) => (
                   <div
                     key={item.label}
-                    className="glass rounded-xl p-6 text-center bg-white"
+                    className="glass rounded-xl p-6 text-center"
                   >
-                    <div className="font-display text-4xl font-semibold text-slate-900">
+                    <div className="font-display text-4xl font-semibold text-white">
                       {item.stat}
                     </div>
                     <div className="mt-2 text-sm text-slate-500 font-medium">{item.label}</div>

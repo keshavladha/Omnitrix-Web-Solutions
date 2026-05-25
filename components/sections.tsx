@@ -144,17 +144,22 @@ export function TechStackSection() {
             {techStackItems.map((tech, index) => {
               const textColors = ["group-hover:text-blue-600", "group-hover:text-red-600", "group-hover:text-amber-500", "group-hover:text-green-600"];
               const borderColors = ["group-hover:border-blue-500", "group-hover:border-red-500", "group-hover:border-yellow-500", "group-hover:border-green-500"];
-              const numberBgs = ["bg-blue-50 text-blue-600 border border-blue-200", "bg-red-50 text-red-600 border border-red-200", "bg-amber-50 text-amber-600 border border-amber-200", "bg-green-50 text-green-600 border border-green-200"];
+              const numberBgs = [
+                "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+                "bg-red-500/10 text-red-400 border border-red-500/20",
+                "bg-amber-500/10 text-amber-400 border border-amber-500/20",
+                "bg-green-500/10 text-green-400 border border-green-500/20"
+              ];
               return (
                 <div
                   key={tech.name}
-                  className={`glass group relative overflow-hidden rounded-xl border border-slate-200 p-6 transition-all duration-300 hover:bg-white hover:shadow-md flex flex-col justify-between ${borderColors[index % borderColors.length]}`}
+                  className={`glass group relative overflow-hidden rounded-xl border border-slate-200 p-6 transition-all duration-300 hover:bg-slate-100/10 hover:shadow-md flex flex-col justify-between ${borderColors[index % borderColors.length]}`}
                 >
                   <div>
                     {/* Top Row: Number + Name */}
                     <div className="mb-4 flex items-center gap-3">
                       <span className={`flex h-8 w-8 items-center justify-center rounded-lg text-sm font-semibold ${numberBgs[index % numberBgs.length]}`}>
-                        {String(index + 1).padStart(2, '0')}
+                        {String(index + 1).padStart(2, "0")}
                       </span>
                       <h3 className={`font-display text-lg font-semibold text-slate-800 transition-colors ${textColors[index % textColors.length]}`}>
                         {tech.name}
@@ -359,7 +364,7 @@ export function ContactSection() {
               <Link
                 key={social.label}
                 href={social.href}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-600 transition hover:border-blue-500 hover:text-blue-600 hover:bg-white"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-600 transition hover:border-emerald-500 hover:text-emerald-400 hover:bg-slate-100/15"
                 aria-label={social.label}
               >
                 <social.icon className="h-4 w-4" aria-hidden />
@@ -390,20 +395,20 @@ export function ContactSection() {
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
                 <span className="mb-2 block text-sm font-medium text-slate-600">Name</span>
-                <input name="name" required className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 outline-none transition focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+                <input name="name" required className="w-full rounded-lg border border-white/10 bg-slate-950/40 px-4 py-3 text-white outline-none transition focus:bg-slate-900/60 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50" />
               </label>
               <label className="block">
                 <span className="mb-2 block text-sm font-medium text-slate-600">Email</span>
-                <input name="email" type="email" required className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 outline-none transition focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+                <input name="email" type="email" required className="w-full rounded-lg border border-white/10 bg-slate-950/40 px-4 py-3 text-white outline-none transition focus:bg-slate-900/60 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50" />
               </label>
             </div>
             <label className="mt-4 block">
               <span className="mb-2 block text-sm font-medium text-slate-600">Project type</span>
-              <input name="projectType" className="w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 outline-none transition focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+              <input name="projectType" className="w-full rounded-lg border border-white/10 bg-slate-950/40 px-4 py-3 text-white outline-none transition focus:bg-slate-900/60 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50" />
             </label>
             <label className="mt-4 block">
               <span className="mb-2 block text-sm font-medium text-slate-600">Vision</span>
-              <textarea name="message" required rows={5} className="w-full resize-none rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 outline-none transition focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+              <textarea name="message" required rows={5} className="w-full resize-none rounded-lg border border-white/10 bg-slate-950/40 px-4 py-3 text-white outline-none transition focus:bg-slate-900/60 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50" />
             </label>
             <button className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-6 text-sm font-semibold text-white transition hover:bg-blue-700 shadow-md hover:shadow-lg cursor-pointer">
               Send project signal <Send className="h-4 w-4" aria-hidden />
@@ -432,19 +437,19 @@ export function ProcessSection() {
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {processSteps.map((step, index) => (
             <Reveal key={step.phase} delay={0.06 * index}>
-              <div className="glass h-full rounded-2xl p-6 transition hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-md bg-white">
+              <div className="glass h-full rounded-2xl p-6 transition hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-md">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 border border-blue-100 text-blue-600 font-display text-lg font-semibold">{step.number}</div>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-display text-lg font-semibold">{step.number}</div>
                   <div>
-                    <h3 className="font-display text-lg font-semibold text-slate-800">{step.title}</h3>
+                    <h3 className="font-display text-lg font-semibold text-slate-900">{step.title}</h3>
                     <p className="mt-2 text-sm text-slate-500">{step.description}</p>
                   </div>
                 </div>
                 <div className="mt-4 border-t border-slate-200 pt-4 text-sm text-slate-500">
-                  <strong className="text-slate-800 font-semibold">Deliverables:</strong>
+                  <strong className="text-slate-900 font-semibold">Deliverables:</strong>
                   <ul className="mt-2 flex flex-wrap gap-2">
                     {step.deliverables?.map((d) => (
-                      <li key={d} className="rounded-full bg-slate-50 border border-slate-200 px-3 py-1 text-xs text-slate-600">{d}</li>
+                      <li key={d} className="rounded-full bg-slate-950 border border-slate-200 px-3 py-1 text-xs text-slate-600">{d}</li>
                     ))}
                   </ul>
                 </div>
@@ -461,12 +466,12 @@ export function CTASection() {
   return (
     <section className="py-20">
       <div className="container">
-        <div className="glass mx-auto max-w-4xl rounded-2xl bg-gradient-to-br from-blue-50 via-white to-green-50/30 p-8 text-center sm:p-12 shadow-sm border border-slate-200">
-          <h2 className="font-display text-4xl font-semibold text-slate-900 sm:text-5xl">Let's Build Something Amazing</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-600">Start with a focused project inquiry. We will recommend the fastest path to a premium, high-converting website for your business.</p>
+        <div className="glass mx-auto max-w-4xl rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950/20 p-8 text-center sm:p-12 shadow-2xl">
+          <h2 className="font-display text-4xl font-semibold text-white sm:text-5xl">Let's Build Something Amazing</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-400">Start with a focused project inquiry. We will recommend the fastest path to a premium, high-converting website for your business.</p>
           <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <a href="/contact" className="inline-flex min-h-12 items-center rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 shadow-md hover:shadow-lg">Start a project</a>
-            <a href="https://api.whatsapp.com/send?phone=917027340360&text=Hi,%20I%20want%20to%20start%20a%20website%20project%20with%20Omnitrix." className="inline-flex min-h-12 items-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 shadow-sm hover:shadow-md">Chat on WhatsApp</a>
+            <a href="/contact" className="inline-flex min-h-12 items-center rounded-full bg-emerald-500 text-black px-6 py-3 text-sm font-bold transition hover:bg-emerald-400 shadow-md hover:shadow-emerald-500/20 hover:scale-[1.02]">Start a project</a>
+            <a href="https://api.whatsapp.com/send?phone=917027340360&text=Hi,%20I%20want%20to%20start%20a%20website%20project%20with%20Omnitrix." className="inline-flex min-h-12 items-center rounded-full border border-emerald-500/20 bg-emerald-500/5 px-6 py-3 text-sm font-semibold text-emerald-400 transition hover:bg-emerald-500/10 shadow-sm hover:scale-[1.02]">Chat on WhatsApp</a>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ export default function PricingPage() {
       <main className="min-h-screen pt-28">
         <section className="container pb-20">
           <Reveal>
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-600 font-semibold">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-sm text-emerald-400 font-semibold">
               <Crown className="h-4 w-4" aria-hidden />
               Transparent Pricing
             </div>
@@ -42,22 +42,22 @@ export default function PricingPage() {
               <Reveal key={plan.name} delay={0.1 * index}>
                 <div
                   className={`glass relative overflow-hidden rounded-2xl p-6 lg:p-8 ${
-                    plan.popular ? "border-blue-500 ring-2 ring-blue-500/10 bg-white" : ""
+                    plan.popular ? "border-emerald-500/40 ring-2 ring-emerald-500/10" : ""
                   }`}
                 >
                   {plan.popular && (
                     <div className="absolute right-4 top-4">
-                      <span className="flex items-center gap-1 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
+                      <span className="flex items-center gap-1 rounded-full bg-emerald-500 px-3 py-1 text-xs font-bold text-black shadow-sm">
                         <Sparkles className="h-3 w-3" />
                         Most Popular
                       </span>
                     </div>
                   )}
                   <div className="mb-6">
-                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-slate-50">
-                      <plan.icon className="h-6 w-6 text-blue-600" />
+                    <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-slate-200 bg-slate-950/60">
+                      <plan.icon className="h-6 w-6 text-emerald-400" />
                     </div>
-                    <h3 className="font-display text-xl font-semibold text-slate-800">
+                    <h3 className="font-display text-xl font-semibold text-white">
                       {plan.name}
                     </h3>
                     <p className="mt-2 text-sm text-slate-500">
@@ -75,8 +75,8 @@ export default function PricingPage() {
                   <ul className="mb-8 space-y-3">
                     {plan.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
-                        <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600" />
-                        <span className="text-sm text-slate-600">{feature}</span>
+                        <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-400" />
+                        <span className="text-sm text-slate-400">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -94,14 +94,14 @@ export default function PricingPage() {
           </div>
 
           {/* Interactive Cost & ROI Estimator */}
-          <div className="mt-24 border-t border-slate-200 pt-20">
+          <div className="mt-24 border-t border-slate-800 pt-20">
             <Reveal>
               <div className="text-center mb-12">
-                <p className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-blue-600">Interactive Planner</p>
-                <h2 className="font-display text-3xl font-semibold text-slate-900 sm:text-4xl">
+                 <p className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-emerald-400">Interactive Planner</p>
+                <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">
                   Interactive Cost & ROI Estimator
                 </h2>
-                <p className="mt-4 text-slate-500 max-w-xl mx-auto">
+                <p className="mt-4 text-slate-400 max-w-xl mx-auto">
                   Customize your pages, stack features, and add-ons to see an instant consultative quote and projected business growth.
                 </p>
               </div>
@@ -119,14 +119,14 @@ export default function PricingPage() {
                 {addOns.map((addon) => (
                   <div
                     key={addon.name}
-                    className="glass rounded-xl p-5 transition hover:border-blue-500/30 hover:shadow-md"
+                    className="glass rounded-xl p-5 transition hover:border-emerald-500/30 hover:shadow-md"
                   >
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-slate-50">
-                      <addon.icon className="h-5 w-5 text-blue-600" />
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-slate-950/60">
+                      <addon.icon className="h-5 w-5 text-emerald-400" />
                     </div>
-                    <h4 className="font-semibold text-slate-800 mb-1">{addon.name}</h4>
+                    <h4 className="font-semibold text-white mb-1">{addon.name}</h4>
                     <p className="text-xs text-slate-500 mb-3">{addon.description}</p>
-                    <span className="font-display text-lg font-semibold text-blue-600">
+                    <span className="font-display text-lg font-semibold text-emerald-400">
                       {addon.price}
                     </span>
                   </div>
@@ -141,8 +141,8 @@ export default function PricingPage() {
           <div className="container">
             <Reveal>
               <div className="mx-auto max-w-3xl text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-blue-200 bg-blue-50">
-                  <HelpCircle className="h-5 w-5 text-blue-600" />
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/5">
+                  <HelpCircle className="h-5 w-5 text-emerald-400" />
                 </div>
                 <h2 className="font-display text-3xl font-semibold text-slate-900">
                   Pricing FAQ
@@ -172,8 +172,8 @@ export default function PricingPage() {
                 },
               ].map((faq, index) => (
                 <Reveal key={index} delay={0.05 * index}>
-                  <div className="glass rounded-xl p-6 bg-white">
-                    <h4 className="font-semibold text-slate-800 mb-2">{faq.q}</h4>
+                  <div className="glass rounded-xl p-6">
+                    <h4 className="font-semibold text-white mb-2">{faq.q}</h4>
                     <p className="text-sm text-slate-500">{faq.a}</p>
                   </div>
                 </Reveal>
@@ -185,13 +185,13 @@ export default function PricingPage() {
         {/* CTA Section */}
         <section className="container py-20">
           <Reveal>
-            <div className="glass relative overflow-hidden rounded-2xl p-8 text-center lg:p-12 border border-slate-200 bg-gradient-to-br from-blue-50 via-white to-green-50/30 shadow-sm">
-              <div className="absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-blue-500/5 blur-3xl" />
-              <Zap className="mx-auto mb-4 h-10 w-10 text-blue-600" />
-              <h2 className="font-display text-3xl font-semibold text-slate-900 lg:text-4xl">
+            <div className="glass relative overflow-hidden rounded-2xl p-8 text-center lg:p-12 bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950/20 shadow-2xl">
+              <div className="absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-emerald-500/5 blur-3xl" />
+              <Zap className="mx-auto mb-4 h-10 w-10 text-emerald-400" />
+              <h2 className="font-display text-3xl font-semibold text-white lg:text-4xl">
                 Ready to Build Something Great?
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-slate-600">
+              <p className="mx-auto mt-4 max-w-xl text-slate-400">
                 Let's discuss your project. We'll provide a detailed proposal within 24 hours.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">

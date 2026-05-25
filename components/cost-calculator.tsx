@@ -104,25 +104,25 @@ export default function CostCalculator() {
 
   const planColors: Record<PlanKey, { text: string; border: string; bg: string; dot: string; hover: string }> = {
     basic: {
-      text: "text-blue-600 font-semibold",
-      border: "border-blue-500",
-      bg: "bg-blue-50/50",
-      dot: "bg-blue-600",
-      hover: "hover:border-blue-300 hover:bg-blue-50/20"
+      text: "text-emerald-400 font-semibold",
+      border: "border-emerald-500/40",
+      bg: "bg-emerald-500/10",
+      dot: "bg-emerald-400",
+      hover: "hover:border-emerald-500/50 hover:bg-emerald-500/5"
     },
     business: {
-      text: "text-amber-600 font-semibold",
-      border: "border-amber-500",
-      bg: "bg-amber-50/50",
-      dot: "bg-amber-500",
-      hover: "hover:border-amber-300 hover:bg-amber-50/20"
+      text: "text-teal-400 font-semibold",
+      border: "border-teal-500/40",
+      bg: "bg-teal-500/10",
+      dot: "bg-teal-400",
+      hover: "hover:border-teal-500/50 hover:bg-teal-500/5"
     },
     premium: {
-      text: "text-green-600 font-semibold",
-      border: "border-green-500",
-      bg: "bg-green-50/50",
-      dot: "bg-green-600",
-      hover: "hover:border-green-300 hover:bg-green-50/20"
+      text: "text-cyan-400 font-semibold",
+      border: "border-cyan-500/40",
+      bg: "bg-cyan-500/10",
+      dot: "bg-cyan-400",
+      hover: "hover:border-cyan-500/50 hover:bg-cyan-500/5"
     }
   };
 
@@ -192,7 +192,7 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
           <Reveal>
             <div className="glass rounded-2xl p-6">
               <h3 className="font-display text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-500/10 text-xs font-semibold text-blue-600">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400">
                   01
                 </span>
                 Choose Core Foundation Package
@@ -247,23 +247,23 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
           </Reveal>
 
           {/* Step 2: Page Customization */}
-          <Reveal delay={0.05}>
+           <Reveal delay={0.05}>
             <div className="glass rounded-2xl p-6">
               <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center mb-4">
                 <h3 className="font-display text-lg font-semibold text-slate-900 flex items-center gap-2">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-red-500/10 text-xs font-semibold text-red-600">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-teal-500/10 border border-teal-500/20 text-xs font-semibold text-teal-400">
                     02
                   </span>
                   Add Extra Pages
                 </h3>
-                <span className="text-xs text-slate-500 bg-slate-100 border border-slate-200 rounded-full px-3 py-1 font-semibold">
+                <span className="text-xs text-slate-400 bg-slate-900 border border-white/10 rounded-full px-3 py-1 font-semibold">
                   ₹1,500 per additional page
                 </span>
               </div>
 
-              <div className="flex items-center gap-5 rounded-2xl border border-slate-200 bg-slate-100/50 p-5">
+              <div className="flex items-center gap-5 rounded-2xl border border-white/10 bg-slate-950/40 p-5">
                 <div className="flex-1">
-                  <p className="text-sm text-slate-800 font-semibold">
+                  <p className="text-sm text-white font-semibold">
                     Total Project Pages: {plans[selectedPlan].basePages + extraPages}
                   </p>
                   <p className="text-xs text-slate-500 mt-1">
@@ -274,16 +274,16 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
                   <button
                     onClick={() => setExtraPages(Math.max(0, extraPages - 1))}
                     disabled={extraPages === 0}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:bg-red-50 hover:text-white hover:border-red-300 disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-slate-700 font-semibold text-lg cursor-pointer shadow-sm"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-slate-900 text-slate-300 transition hover:bg-red-500/20 hover:text-red-400 hover:border-red-500/40 disabled:opacity-30 font-semibold text-lg cursor-pointer shadow-sm"
                   >
                     -
                   </button>
-                  <span className="font-display text-lg font-semibold text-slate-800 min-w-8 text-center">
+                  <span className="font-display text-lg font-semibold text-white min-w-8 text-center">
                     {extraPages}
                   </span>
                   <button
                     onClick={() => setExtraPages(Math.min(20, extraPages + 1))}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:bg-green-500 hover:text-white hover:border-green-300 font-semibold text-lg cursor-pointer shadow-sm"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-slate-900 text-slate-300 transition hover:bg-emerald-500/20 hover:text-emerald-400 hover:border-emerald-500/40 font-semibold text-lg cursor-pointer shadow-sm"
                   >
                     +
                   </button>
@@ -296,7 +296,7 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
           <Reveal delay={0.1}>
             <div className="glass rounded-2xl p-6">
               <h3 className="font-display text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-yellow-500/10 text-xs font-semibold text-yellow-600">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-semibold text-cyan-400">
                   03
                 </span>
                 Enhance with Power-up Add-ons
@@ -311,13 +311,13 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
                       onClick={() => toggleAddOn(addon.id)}
                       className={`flex text-left rounded-2xl border p-4 transition-all duration-300 cursor-pointer ${
                         isChecked
-                          ? "border-amber-500/60 bg-amber-50/50 shadow-sm"
-                          : "border-slate-200 bg-slate-50/50 hover:border-slate-300 hover:bg-slate-100/60"
+                          ? "border-emerald-500/60 bg-emerald-500/10 shadow-sm"
+                          : "border-white/5 bg-slate-950/40 hover:border-emerald-500/20 hover:bg-slate-900/50"
                       }`}
                     >
                       <div className="flex gap-3">
-                        <div className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-white">
-                          {isChecked && <div className="h-2 w-2 rounded-full bg-amber-500 animate-scale" />}
+                        <div className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-white/10 bg-slate-950">
+                          {isChecked && <div className="h-2 w-2 rounded-full bg-emerald-400 animate-scale" />}
                         </div>
                         <div>
                           <p className="font-semibold text-sm text-slate-800">{addon.name}</p>
@@ -342,11 +342,11 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
             {/* Google workspace colored line top accent */}
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-500 via-red-500 via-yellow-500 to-green-500" />
             
-            <div className="border-b border-slate-200 pb-6 text-center pt-2">
-              <span className="flex mx-auto h-12 w-12 items-center justify-center rounded-full border border-blue-500/20 bg-blue-500/8 text-blue-600 mb-4">
+            <div className="border-b border-white/10 pb-6 text-center pt-2">
+              <span className="flex mx-auto h-12 w-12 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 mb-4">
                 <Sparkles className="h-5 w-5 animate-pulse" />
               </span>
-              <p className="text-xs uppercase tracking-[0.24em] text-blue-600 font-bold">Project Estimate</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-emerald-400 font-bold">Project Estimate</p>
               <h2 className="mt-3 font-display text-4xl font-extrabold text-slate-900">
                 ₹{totalPrice.toLocaleString("en-IN")}
               </h2>
@@ -366,7 +366,7 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
               </div>
               
               {selectedAddOns.length > 0 && (
-                <div className="border-t border-slate-200 pt-4">
+                <div className="border-t border-white/10 pt-4">
                   <p className="text-xs uppercase tracking-wider text-slate-500 mb-2 font-semibold">Selected Add-ons</p>
                   <div className="space-y-2">
                     {selectedAddOns.map((id) => {
@@ -374,7 +374,7 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
                       return addon ? (
                         <div key={id} className="flex justify-between items-center text-xs">
                           <span className="text-slate-600 truncate max-w-[200px]">{addon.name}</span>
-                          <span className="font-semibold text-amber-600">
+                          <span className="font-semibold text-emerald-400">
                             +₹{addon.price.toLocaleString("en-IN")}
                           </span>
                         </div>
@@ -384,15 +384,15 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
                 </div>
               )}
 
-              <div className="border-t border-slate-200 pt-4">
-                <div className="rounded-2xl bg-slate-100/50 border border-slate-200 p-4">
+              <div className="border-t border-white/10 pt-4">
+                <div className="rounded-2xl bg-slate-950/40 border border-white/5 p-4">
                   <div className="flex gap-3">
-                    <TrendingUp className="h-5 w-5 text-green-600 shrink-0" />
+                    <TrendingUp className="h-5 w-5 text-emerald-400 shrink-0" />
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-green-600">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
                         Consultant Projected ROI
                       </p>
-                      <p className="text-sm font-bold text-slate-800 mt-1">
+                      <p className="text-sm font-bold text-white mt-1">
                         {projectedValue}
                       </p>
                       <p className="text-xs text-slate-500 mt-1 leading-relaxed">
@@ -403,12 +403,12 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-slate-200 bg-slate-100/50 p-4">
+              <div className="rounded-2xl border border-white/5 bg-slate-950/40 p-4">
                 <div className="flex gap-3 items-center">
-                  <Zap className="h-5 w-5 text-blue-600 shrink-0" />
+                  <Zap className="h-5 w-5 text-emerald-400 shrink-0" />
                   <div className="text-xs">
                     <p className="text-slate-500">Estimated Delivery Timeline</p>
-                    <p className="font-semibold text-slate-800 mt-1">
+                    <p className="font-semibold text-white mt-1">
                       {plans[selectedPlan].timelineDays + (extraPages > 0 ? Math.ceil(extraPages / 2) : 0)} Days
                     </p>
                   </div>
@@ -420,7 +420,7 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
             <div className="mt-4">
               <Link
                 href={getHandoffUrl()}
-                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-6 text-sm font-semibold text-white transition hover:bg-blue-700 shadow-sm hover:shadow-md cursor-pointer"
+                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 text-sm font-bold text-black transition hover:bg-emerald-400 shadow-md hover:shadow-emerald-500/20 cursor-pointer"
               >
                 Lock In This Quote
                 <ArrowRight className="h-4 w-4" />

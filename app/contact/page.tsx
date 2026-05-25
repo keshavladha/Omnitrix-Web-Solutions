@@ -23,7 +23,7 @@ function ContactPageContent() {
         {/* Hero */}
         <section className="container pb-20">
           <Reveal>
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm text-blue-600 font-semibold">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-sm text-emerald-400 font-semibold">
               <MessageSquare className="h-4 w-4" aria-hidden />
               Let's Talk
             </div>
@@ -62,7 +62,7 @@ function ContactPageContent() {
                            type="text"
                            required
                            placeholder="John Doe"
-                           className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition"
+                           className="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-white placeholder:text-slate-500 focus:bg-slate-900/60 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 focus:outline-none transition"
                         />
                       </div>
                       <div>
@@ -74,7 +74,7 @@ function ContactPageContent() {
                            type="email"
                            required
                            placeholder="john@company.com"
-                           className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition"
+                           className="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-white placeholder:text-slate-500 focus:bg-slate-900/60 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 focus:outline-none transition"
                         />
                       </div>
                     </div>
@@ -88,7 +88,7 @@ function ContactPageContent() {
                            name="company"
                            type="text"
                            placeholder="Acme Inc."
-                           className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition"
+                           className="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-white placeholder:text-slate-500 focus:bg-slate-900/60 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 focus:outline-none transition"
                         />
                       </div>
                       <div>
@@ -98,14 +98,14 @@ function ContactPageContent() {
                         <select 
                           name="budget" 
                           defaultValue={initBudget}
-                          className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition cursor-pointer"
+                        className="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-white focus:bg-slate-900/60 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 focus:outline-none transition cursor-pointer"
                         >
-                          <option value="" className="bg-white text-slate-800">Select budget</option>
-                          <option value="25k-under" className="bg-white text-slate-800">Under ₹25,000</option>
-                          <option value="25-50k" className="bg-white text-slate-800">₹25,000 - ₹50,000</option>
-                          <option value="50-100k" className="bg-white text-slate-800">₹50,000 - ₹1,00,000</option>
-                          <option value="1-2L" className="bg-white text-slate-800">₹1,00,000 - ₹2,00,000</option>
-                          <option value="2L+" className="bg-white text-slate-800">₹2,00,000+</option>
+                          <option value="" className="bg-slate-950 text-slate-200">Select budget</option>
+                          <option value="25k-under" className="bg-slate-950 text-slate-200">Under ₹25,000</option>
+                          <option value="25-50k" className="bg-slate-950 text-slate-200">₹25,000 - ₹50,000</option>
+                          <option value="50-100k" className="bg-slate-950 text-slate-200">₹50,000 - ₹1,00,000</option>
+                          <option value="1-2L" className="bg-slate-950 text-slate-200">₹1,00,000 - ₹2,00,000</option>
+                          <option value="2L+" className="bg-slate-950 text-slate-200">₹2,00,000+</option>
                         </select>
                       </div>
                     </div>
@@ -117,15 +117,15 @@ function ContactPageContent() {
                       <select 
                         name="projectType" 
                         defaultValue={initProjectType}
-                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none transition cursor-pointer"
+                        className="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-white focus:bg-slate-900/60 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 focus:outline-none transition cursor-pointer"
                       >
-                        <option value="" className="bg-white text-slate-800">Select project type</option>
-                        <option value="business" className="bg-white text-slate-800">Business Website</option>
-                        <option value="website" className="bg-white text-slate-800">Website / Landing Page</option>
-                        <option value="ecommerce" className="bg-white text-slate-800">E-commerce</option>
-                        <option value="app" className="bg-white text-slate-800">Web Application</option>
-                        <option value="redesign" className="bg-white text-slate-800">Redesign / Migration</option>
-                        <option value="other" className="bg-white text-slate-800">Other</option>
+                        <option value="" className="bg-slate-950 text-slate-200">Select project type</option>
+                        <option value="business" className="bg-slate-950 text-slate-200">Business Website</option>
+                        <option value="website" className="bg-slate-950 text-slate-200">Website / Landing Page</option>
+                        <option value="ecommerce" className="bg-slate-950 text-slate-200">E-commerce</option>
+                        <option value="app" className="bg-slate-950 text-slate-200">Web Application</option>
+                        <option value="redesign" className="bg-slate-950 text-slate-200">Redesign / Migration</option>
+                        <option value="other" className="bg-slate-950 text-slate-200">Other</option>
                       </select>
                     </div>
 
@@ -139,13 +139,13 @@ function ContactPageContent() {
                         required
                         defaultValue={initMessage}
                         placeholder="Tell us about your project goals, timeline, and any specific requirements..."
-                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none resize-none transition"
+                        className="w-full rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3 text-white placeholder:text-slate-500 focus:bg-slate-900/60 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 focus:outline-none resize-none transition"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="flex w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-blue-700 shadow-md hover:shadow-lg cursor-pointer"
+                      className="flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 py-3.5 text-sm font-bold text-black transition hover:bg-emerald-400 shadow-md hover:shadow-emerald-500/20 cursor-pointer"
                     >
                       <Send className="h-4 w-4" />
                       Send Message
@@ -161,8 +161,8 @@ function ContactPageContent() {
               {/* Contact Info */}
               <Reveal delay={0.2}>
                 <div className="mt-10 lg:mt-0 space-y-6">
-                  <div className="glass rounded-xl p-6 bg-white">
-                    <h3 className="font-display text-lg font-semibold text-slate-800 mb-4">
+                  <div className="glass rounded-xl p-6">
+                    <h3 className="font-display text-lg font-semibold text-white mb-4">
                       Other Ways to Reach Us
                     </h3>
                     <div className="space-y-4">
@@ -170,37 +170,37 @@ function ContactPageContent() {
                         <a
                           key={method.label}
                           href={method.href}
-                          className="flex items-center gap-4 rounded-lg border border-slate-200 bg-slate-50/50 p-4 transition hover:border-blue-500/30 hover:bg-white hover:shadow-sm"
+                          className="flex items-center gap-4 rounded-lg border border-white/10 bg-slate-950/40 p-4 transition hover:border-emerald-500/30 hover:bg-slate-100/10 hover:shadow-sm"
                         >
-                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 border border-blue-100">
-                            <method.icon className="h-5 w-5 text-blue-600" />
+                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                            <method.icon className="h-5 w-5 text-emerald-400" />
                           </div>
                           <div>
                             <p className="text-sm text-slate-500">{method.label}</p>
-                            <p className="font-semibold text-slate-800">{method.value}</p>
+                            <p className="font-semibold text-white">{method.value}</p>
                           </div>
                         </a>
                       ))}
                     </div>
                   </div>
 
-                  <div className="glass rounded-xl p-6 bg-white">
+                  <div className="glass rounded-xl p-6">
                     <div className="flex items-center gap-3 mb-4">
-                      <Clock className="h-5 w-5 text-blue-600" />
-                      <h3 className="font-display font-semibold text-slate-800">Availability</h3>
+                      <Clock className="h-5 w-5 text-emerald-400" />
+                      <h3 className="font-display font-semibold text-white">Availability</h3>
                     </div>
                     <ul className="space-y-3 text-sm">
                       <li className="flex justify-between">
                         <span className="text-slate-500 font-medium">Response Time</span>
-                        <span className="text-slate-700 font-semibold">&lt; 4 hours</span>
+                        <span className="text-slate-300 font-semibold">&lt; 4 hours</span>
                       </li>
                       <li className="flex justify-between">
                         <span className="text-slate-500 font-medium">Working Hours</span>
-                        <span className="text-slate-700 font-semibold">IST (GMT+5:30)</span>
+                        <span className="text-slate-300 font-semibold">IST (GMT+5:30)</span>
                       </li>
                       <li className="flex justify-between">
                         <span className="text-slate-500 font-medium">Availability</span>
-                        <span className="text-green-600 font-semibold">● Open for projects</span>
+                        <span className="text-emerald-400 font-semibold">● Open for projects</span>
                       </li>
                     </ul>
                   </div>
@@ -225,14 +225,14 @@ function ContactPageContent() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {officeLocations.map((office, index) => (
               <Reveal key={office.city} delay={0.1 * index}>
-                <div className="glass rounded-xl p-6 bg-white">
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 border border-blue-100">
-                    <MapPin className="h-5 w-5 text-blue-600" />
+                <div className="glass rounded-xl p-6">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                    <MapPin className="h-5 w-5 text-emerald-400" />
                   </div>
-                  <h3 className="font-display text-lg font-semibold text-slate-800 mb-1">
+                  <h3 className="font-display text-lg font-semibold text-white mb-1">
                     {office.city}
                   </h3>
-                  <p className="text-sm text-blue-600 font-semibold mb-3">{office.country}</p>
+                  <p className="text-sm text-emerald-400 font-semibold mb-3">{office.country}</p>
                   <p className="text-sm text-slate-500 leading-relaxed">{office.address}</p>
                 </div>
               </Reveal>

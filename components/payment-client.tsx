@@ -214,27 +214,27 @@ const advance = chargeAmount;
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
       <div className="mx-auto max-w-5xl px-4 py-12 space-y-10">
         <div className="text-center space-y-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-semibold text-blue-600">
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1.5 text-sm font-semibold text-emerald-400">
             <Lock className="h-3.5 w-3.5" />
             Secure Razorpay Checkout
           </div>
-          <h1 className="font-display text-4xl font-semibold text-slate-900 sm:text-5xl">
+          <h1 className="font-display text-4xl font-semibold text-white sm:text-5xl">
             Pay for Your Project
           </h1>
-          <p className="text-lg text-slate-500 max-w-xl mx-auto">
+          <p className="text-lg text-slate-400 max-w-xl mx-auto">
             Choose a package or enter a custom amount. Pay securely via Razorpay.
           </p>
         </div>
 
         {/* Mode Tab Switcher */}
         <div className="flex justify-center">
-          <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 p-1 gap-1">
+          <div className="inline-flex rounded-full border border-white/10 bg-slate-950 p-1 gap-1">
             <button
               onClick={() => { setPaymentMode("package"); setError(""); }}
               className={`rounded-full px-5 py-2 text-sm font-semibold transition-all ${
                 paymentMode === "package"
-                  ? "bg-white text-blue-600 shadow-sm border border-slate-200"
-                  : "text-slate-500 hover:text-slate-700"
+                  ? "bg-emerald-500 text-black shadow-sm font-bold"
+                  : "text-slate-400 hover:text-white"
               }`}
             >
               Choose Package
@@ -243,8 +243,8 @@ const advance = chargeAmount;
               onClick={() => { setPaymentMode("custom"); setError(""); }}
               className={`rounded-full px-5 py-2 text-sm font-semibold transition-all ${
                 paymentMode === "custom"
-                  ? "bg-white text-blue-600 shadow-sm border border-slate-200"
-                  : "text-slate-500 hover:text-slate-700"
+                  ? "bg-emerald-500 text-black shadow-sm font-bold"
+                  : "text-slate-400 hover:text-white"
               }`}
             >
               <PenLine className="inline h-3.5 w-3.5 mr-1.5 -mt-0.5" />
@@ -265,12 +265,12 @@ const advance = chargeAmount;
                 onClick={() => setSelectedPackage(pkg)}
                 className={`relative text-left rounded-2xl border-2 p-5 transition-all duration-200 cursor-pointer ${
                   isSelected
-                    ? `${pkg.activeBorder} ${pkg.bgActive} shadow-md`
-                    : `${pkg.borderColor} bg-white hover:border-slate-300 hover:shadow-sm`
+                    ? "border-emerald-500 bg-emerald-500/10 shadow-lg shadow-emerald-500/5"
+                    : "border-white/5 bg-slate-950/40 text-slate-300 hover:border-emerald-500/20 hover:shadow-sm"
                 }`}
               >
                 {pkg.popular && (
-                  <span className="absolute -top-3 right-4 flex items-center gap-1 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white shadow">
+                  <span className="absolute -top-3 right-4 flex items-center gap-1 rounded-full bg-emerald-500 px-3 py-1 text-xs font-bold text-black shadow">
                     <Star className="h-3 w-3" />
                     Most Popular
                   </span>
@@ -279,15 +279,15 @@ const advance = chargeAmount;
                   <Icon className="h-5 w-5 text-white" />
                 </div>
                 <div className="flex items-start justify-between mb-1">
-                  <h3 className="font-semibold text-slate-900 text-base">{pkg.name}</h3>
-                  {isSelected && <CheckCircle2 className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />}
+                  <h3 className="font-semibold text-white text-base">{pkg.name}</h3>
+                  {isSelected && <CheckCircle2 className="h-5 w-5 text-emerald-400 flex-shrink-0 mt-0.5" />}
                 </div>
                 <p className="text-xs text-slate-500 mb-3">{pkg.subtitle}</p>
-                <p className="font-display text-2xl font-semibold text-slate-900">{pkg.displayPrice}</p>
+                <p className="font-display text-2xl font-semibold text-white">{pkg.displayPrice}</p>
                 <ul className="mt-3 space-y-1.5">
                   {pkg.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-xs text-slate-600">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-blue-500 flex-shrink-0" />
+                    <li key={f} className="flex items-center gap-2 text-xs text-slate-400">
+                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 flex-shrink-0" />
                       {f}
                     </li>
                   ))}
@@ -301,13 +301,13 @@ const advance = chargeAmount;
         {/* Custom Amount Input — shown only in custom mode */}
         {paymentMode === "custom" && (
           <div className="mx-auto max-w-md">
-            <div className="rounded-2xl border-2 border-blue-200 bg-blue-50 p-7 space-y-5 shadow-sm">
+            <div className="glass rounded-2xl p-7 space-y-5 shadow-sm border border-emerald-500/20">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center">
                   <IndianRupee className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-900">Custom Payment</h3>
+                  <h3 className="font-semibold text-white">Custom Payment</h3>
                   <p className="text-xs text-slate-500">Pay any specific amount agreed with us</p>
                 </div>
               </div>
@@ -328,11 +328,11 @@ const advance = chargeAmount;
                       setCustomAmount(e.target.value);
                       setCustomAmountError("");
                     }}
-                    className="w-full rounded-xl border border-slate-200 bg-white pl-9 pr-4 py-3.5 text-lg font-semibold text-slate-900 placeholder:text-slate-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition"
+                    className="w-full rounded-xl border border-white/10 bg-slate-950 pl-9 pr-4 py-3.5 text-lg font-semibold text-white placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none focus:ring-2 focus:ring-emerald-500/10 transition"
                   />
                 </div>
                 {customAmountError && (
-                  <p className="text-xs text-red-600 flex items-center gap-1">
+                  <p className="text-xs text-red-400 flex items-center gap-1">
                     <AlertCircle className="h-3.5 w-3.5" />
                     {customAmountError}
                   </p>
@@ -348,8 +348,8 @@ const advance = chargeAmount;
                       onClick={() => { setCustomAmount(amt.toString()); setCustomAmountError(""); }}
                       className={`rounded-full px-4 py-1.5 text-sm font-semibold border transition ${
                         customAmount === amt.toString()
-                          ? "bg-blue-600 text-white border-blue-600"
-                          : "bg-white text-slate-600 border-slate-200 hover:border-blue-400 hover:text-blue-600"
+                          ? "bg-emerald-500 text-black border-emerald-500 font-bold"
+                          : "bg-slate-900 text-slate-300 border-white/10 hover:border-emerald-500/35 hover:text-emerald-400"
                       }`}
                     >
                       ₹{amt.toLocaleString("en-IN")}
@@ -362,47 +362,47 @@ const advance = chargeAmount;
         )}
 
         <div className="grid gap-6 lg:grid-cols-5">
-          <div className="lg:col-span-3 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-5">
-            <h2 className="font-display text-xl font-semibold text-slate-900">Order Summary</h2>
-            <div className="rounded-xl bg-slate-50 border border-slate-100 p-4 space-y-3">
+          <div className="lg:col-span-3 rounded-2xl glass p-6 shadow-sm space-y-5">
+            <h2 className="font-display text-xl font-semibold text-white">Order Summary</h2>
+            <div className="rounded-xl bg-slate-950/40 border border-white/5 p-4 space-y-3">
               <div className="flex justify-between text-sm">
-                <span className="text-slate-600">Description</span>
-                <span className="font-semibold text-slate-900">{packageLabel}</span>
+                <span className="text-slate-500">Description</span>
+                <span className="font-semibold text-white">{packageLabel}</span>
               </div>
               {paymentMode === "package" && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-600">Payment Terms</span>
-                  <span className="text-slate-700">50% now · 50% on delivery</span>
+                  <span className="text-slate-500">Payment Terms</span>
+                  <span className="text-slate-300">50% now · 50% on delivery</span>
                 </div>
               )}
-              <div className="border-t border-slate-200 pt-3 flex justify-between">
-                <span className="font-semibold text-slate-900">Amount to Pay</span>
-                <span className="font-display text-xl font-bold text-blue-600">
-                  {advance > 0 ? `₹${advance.toLocaleString("en-IN")}` : <span className="text-slate-400 text-base">Enter amount</span>}
+              <div className="border-t border-white/10 pt-3 flex justify-between">
+                <span className="font-semibold text-white">Amount to Pay</span>
+                <span className="font-display text-xl font-bold text-emerald-400">
+                  {advance > 0 ? `₹${advance.toLocaleString("en-IN")}` : <span className="text-slate-500 text-base">Enter amount</span>}
                 </span>
               </div>
             </div>
             <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Included in {selectedPackage.name}
               </p>
               <div className="grid grid-cols-2 gap-1.5">
                 {selectedPackage.features.map((f) => (
-                  <div key={f} className="flex items-center gap-1.5 text-xs text-slate-600">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-green-500 flex-shrink-0" />
+                  <div key={f} className="flex items-center gap-1.5 text-xs text-slate-400">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 flex-shrink-0" />
                     {f}
                   </div>
                 ))}
               </div>
             </div>
             <div className="space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Accepted Payment Methods
               </p>
               <div className="flex gap-3 flex-wrap">
                 {paymentMethods.map((m) => (
-                  <div key={m.label} className="flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600">
-                    <m.icon className="h-3.5 w-3.5 text-blue-500" />
+                  <div key={m.label} className="flex items-center gap-1.5 rounded-lg border border-white/5 bg-slate-950/40 px-3 py-2 text-xs text-slate-400">
+                    <m.icon className="h-3.5 w-3.5 text-emerald-400" />
                     {m.label}
                   </div>
                 ))}
@@ -411,14 +411,14 @@ const advance = chargeAmount;
           </div>
 
           <div className="lg:col-span-2 flex flex-col gap-4">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm space-y-5 flex-1">
+            <div className="rounded-2xl glass p-6 shadow-sm space-y-5 flex-1">
               <div className="space-y-1">
-                <h2 className="font-display text-xl font-semibold text-slate-900">Pay Securely</h2>
-                <p className="text-sm text-slate-500">
+                <h2 className="font-display text-xl font-semibold text-white">Pay Securely</h2>
+                <p className="text-sm text-slate-400">
                   You will be redirected to Razorpay secure checkout portal.
                 </p>
               </div>
-              <div className="rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 p-5 text-center text-white">
+              <div className="rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 p-5 text-center text-white">
                 <p className="text-xs font-semibold uppercase tracking-widest opacity-80 mb-1">
                   Amount Due Now
                 </p>
@@ -430,7 +430,7 @@ const advance = chargeAmount;
                 </p>
               </div>
               {error && (
-                <div className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                <div className="flex items-start gap-2 rounded-lg border border-red-500/20 bg-red-950/40 p-3 text-sm text-red-400">
                   <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
                   {error}
                 </div>
@@ -438,7 +438,7 @@ const advance = chargeAmount;
               <button
                 onClick={handlePayment}
                 disabled={loading || verifying}
-                className="w-full flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3.5 text-base font-semibold text-white shadow-lg hover:bg-blue-700 active:scale-[0.98] transition-all disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 py-3.5 text-base font-bold text-black shadow-lg hover:bg-emerald-450 active:scale-[0.98] transition-all disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {verifying ? (
                   <>
@@ -457,16 +457,16 @@ const advance = chargeAmount;
                   </>
                 )}
               </button>
-              <div className="flex items-center gap-2 justify-center text-xs text-slate-400">
+              <div className="flex items-center gap-2 justify-center text-xs text-slate-500">
                 <Shield className="h-3.5 w-3.5" />
                 256-bit SSL encrypted - PCI DSS compliant
               </div>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-center space-y-1">
-              <p className="text-sm font-semibold text-slate-700">Need help choosing?</p>
+            <div className="rounded-2xl border border-white/5 bg-slate-950/40 p-4 text-center space-y-1">
+              <p className="text-sm font-semibold text-slate-300">Need help choosing?</p>
               <p className="text-xs text-slate-500">
                 Call or WhatsApp us at{" "}
-                <a href="https://api.whatsapp.com/send?phone=+917027340360" className="text-blue-600 font-medium hover:underline" target="_blank" rel="noopener noreferrer">
+                <a href="https://api.whatsapp.com/send?phone=+917027340360" className="text-emerald-400 font-semibold hover:underline" target="_blank" rel="noopener noreferrer">
                   +91 70273 40360
                 </a>
               </p>
