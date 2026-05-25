@@ -7,8 +7,8 @@ export function AmbientBackground() {
   const mouseX = useMotionValue(50);
   const mouseY = useMotionValue(18);
   
-  // Track cursor with Google Blue brand radial gradient
-  const background = useMotionTemplate`radial-gradient(circle at ${mouseX}% ${mouseY}%, rgba(66, 133, 244, 0.15), transparent 24rem)`;
+  // Track cursor with Premium Emerald Green brand radial gradient
+  const background = useMotionTemplate`radial-gradient(circle at ${mouseX}% ${mouseY}%, rgba(16, 185, 129, 0.12), transparent 24rem)`;
 
   // Scroll tracking for parallax background movement
   const { scrollY } = useScroll();
@@ -45,21 +45,21 @@ export function AmbientBackground() {
 
       {/* Layer 2: Giant Ambient Glowing Spheres (Scroll-driven Parallax Orbs) */}
       <motion.div
-        className="absolute left-[-15%] top-[20vh] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(66,133,244,0.06),transparent_70%)] blur-2xl"
+        className="absolute left-[-15%] top-[20vh] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.06),transparent_70%)] blur-2xl"
         style={{ y: yOrbLeft }}
       />
       <motion.div
-        className="absolute right-[-10%] top-[55vh] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.04),transparent_70%)] blur-2xl"
+        className="absolute right-[-10%] top-[55vh] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(5,150,105,0.04),transparent_70%)] blur-2xl"
         style={{ y: yOrbRight }}
       />
 
       {/* Layer 3: High-tech linear accents that move at a different parallax rate */}
       <motion.div
-        className="absolute left-[8%] top-[32%] h-px w-52 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"
+        className="absolute left-[8%] top-[32%] h-px w-52 bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent"
         style={{ y: yAccents }}
       />
       <motion.div
-        className="absolute right-[10%] top-[18%] h-64 w-px bg-gradient-to-b from-transparent via-red-400/20 to-transparent"
+        className="absolute right-[10%] top-[18%] h-64 w-px bg-gradient-to-b from-transparent via-teal-400/20 to-transparent"
         style={{ y: yAccents }}
       />
     </div>

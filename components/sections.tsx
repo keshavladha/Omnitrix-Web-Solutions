@@ -430,24 +430,26 @@ export function ProcessSection() {
         </div>
 
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {processSteps.map((step) => (
-            <div key={step.phase} className="glass rounded-2xl p-6 transition hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-md">
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 border border-blue-100 text-blue-600 font-display text-lg font-semibold">{step.number}</div>
-                <div>
-                  <h3 className="font-display text-lg font-semibold text-slate-800">{step.title}</h3>
-                  <p className="mt-2 text-sm text-slate-500">{step.description}</p>
+          {processSteps.map((step, index) => (
+            <Reveal key={step.phase} delay={0.06 * index}>
+              <div className="glass h-full rounded-2xl p-6 transition hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-md bg-white">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 border border-blue-100 text-blue-600 font-display text-lg font-semibold">{step.number}</div>
+                  <div>
+                    <h3 className="font-display text-lg font-semibold text-slate-800">{step.title}</h3>
+                    <p className="mt-2 text-sm text-slate-500">{step.description}</p>
+                  </div>
+                </div>
+                <div className="mt-4 border-t border-slate-200 pt-4 text-sm text-slate-500">
+                  <strong className="text-slate-800 font-semibold">Deliverables:</strong>
+                  <ul className="mt-2 flex flex-wrap gap-2">
+                    {step.deliverables?.map((d) => (
+                      <li key={d} className="rounded-full bg-slate-50 border border-slate-200 px-3 py-1 text-xs text-slate-600">{d}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-              <div className="mt-4 border-t border-slate-200 pt-4 text-sm text-slate-500">
-                <strong className="text-slate-800 font-semibold">Deliverables:</strong>
-                <ul className="mt-2 flex flex-wrap gap-2">
-                  {step.deliverables?.map((d) => (
-                    <li key={d} className="rounded-full bg-slate-50 border border-slate-200 px-3 py-1 text-xs text-slate-600">{d}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
