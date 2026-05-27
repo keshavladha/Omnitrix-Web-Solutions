@@ -21,7 +21,12 @@ export async function POST(request: Request) {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
-    } = body as Record<string, string>;
+      client_name,
+      client_email,
+      client_phone,
+      amount,
+      package: packageName,
+    } = body as Record<string, any>;
 
     // --- 1. Validate required fields ---
     if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
@@ -62,9 +67,26 @@ export async function POST(request: Request) {
     }
 
     // --- 4. Signatures match — payment is genuine ---
-    console.log("Razorpay payment verified", { razorpay_order_id, razorpay_payment_id });
+    console.log("Razorpay payment verified successfully", { razorpay_order_id, razorpay_payment_id });
+
+    // Send receipt email to client and notification to administrator in background
+    if (client_email) {
+      const { sendPaymentEmail } = await import("@/lib/email-service");
+      await sendPaymentEmail({
+        clientName: client_name || "Valued Client",
+        clientEmail: client_email,
+        clientPhone: client_phone || "N/A",
+        orderId: razorpay_order_id,
+        paymentId: razorpay_payment_id,
+        amount: Number(amount) || 0,
+        packageName: packageName || "Custom Package",
+      }).catch((err) => {
+        console.error("Error in background email notification dispatch:", err);
+      });
+    }
+
     return NextResponse.json(
-      { ok: true, message: "Payment verified successfully." },
+      { ok: true, message: "Payment verified and emails processed." },
       { status: 200 }
     );
   } catch (error) {

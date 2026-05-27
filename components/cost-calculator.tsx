@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Reveal, TiltCard } from "@/components/motion";
+import { GlowBorder } from "@/components/glow-border";
 import { Check, Info, Sparkles, TrendingUp, Zap, HelpCircle, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -95,6 +97,37 @@ const addOnsList: AddOnOption[] = [
   },
 ];
 
+function AnimatedPrice({ value }: { value: number }) {
+  const [displayVal, setDisplayVal] = useState(value);
+
+  useEffect(() => {
+    let start = displayVal;
+    const end = value;
+    if (start === end) return;
+
+    const duration = 500; // ms
+    const startTime = performance.now();
+
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease-out cubic formula
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(start + (end - start) * easeProgress);
+
+      setDisplayVal(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [value]);
+
+  return <>{displayVal.toLocaleString("en-IN")}</>;
+}
+
 export default function CostCalculator() {
   const [selectedPlan, setSelectedPlan] = useState<PlanKey>("business");
   const [extraPages, setExtraPages] = useState<number>(0);
@@ -104,24 +137,24 @@ export default function CostCalculator() {
 
   const planColors: Record<PlanKey, { text: string; border: string; bg: string; dot: string; hover: string }> = {
     basic: {
-      text: "text-emerald-400 font-semibold",
-      border: "border-emerald-500/40",
-      bg: "bg-emerald-500/10",
-      dot: "bg-emerald-400",
-      hover: "hover:border-emerald-500/50 hover:bg-emerald-500/5"
+      text: "text-blue-400 font-semibold",
+      border: "border-blue-500/40",
+      bg: "bg-blue-500/10",
+      dot: "bg-blue-400",
+      hover: "hover:border-blue-500/50 hover:bg-blue-500/5"
     },
     business: {
-      text: "text-teal-400 font-semibold",
-      border: "border-teal-500/40",
-      bg: "bg-teal-500/10",
-      dot: "bg-teal-400",
-      hover: "hover:border-teal-500/50 hover:bg-teal-500/5"
+      text: "text-blue-455 font-semibold",
+      border: "border-blue-455/40",
+      bg: "bg-blue-455/10",
+      dot: "bg-blue-455",
+      hover: "hover:border-blue-455/50 hover:bg-blue-455/5"
     },
     premium: {
-      text: "text-cyan-400 font-semibold",
+      text: "text-cyan-455 font-semibold",
       border: "border-cyan-500/40",
       bg: "bg-cyan-500/10",
-      dot: "bg-cyan-400",
+      dot: "bg-cyan-455",
       hover: "hover:border-cyan-500/50 hover:bg-cyan-500/5"
     }
   };
@@ -191,8 +224,8 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
           {/* Step 1: Select Plan */}
           <Reveal>
             <div className="glass rounded-2xl p-6">
-              <h3 className="font-display text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-400">
+              <h3 className="font-display text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-semibold text-cyan-400">
                   01
                 </span>
                 Choose Core Foundation Package
@@ -212,16 +245,16 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
                       className={`flex flex-col text-left rounded-2xl border p-4 transition-all duration-300 cursor-pointer ${
                         isSelected
                           ? `${planColors[key].border} ${planColors[key].bg} shadow-sm`
-                          : `border-slate-200 bg-slate-50/50 hover:border-slate-300 hover:bg-slate-100/60 ${planColors[key].hover}`
+                          : `border-white/5 bg-slate-950/40 hover:border-cyan-500/20 hover:bg-slate-900/40 ${planColors[key].hover}`
                       }`}
                     >
-                      <span className="font-display text-sm font-semibold text-slate-800">
+                      <span className="font-display text-sm font-semibold text-white">
                         {plan.name}
                       </span>
-                      <span className={`mt-2 font-display text-2xl font-bold transition-colors ${isSelected ? planColors[key].text : "text-slate-500"}`}>
+                      <span className={`mt-2 font-display text-2xl font-bold transition-colors ${isSelected ? planColors[key].text : "text-slate-400"}`}>
                         ₹{plan.basePrice.toLocaleString("en-IN")}
                       </span>
-                      <span className="mt-1 text-xs text-slate-500">
+                      <span className="mt-1 text-xs text-slate-400">
                         {plan.basePages} {plan.basePages === 1 ? "page" : "pages"} included
                       </span>
                     </button>
@@ -230,13 +263,13 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
               </div>
 
               {/* Selected Plan Details */}
-              <div className="mt-6 border-t border-slate-200 pt-5">
-                <p className="text-sm text-slate-600 leading-relaxed mb-4">
+              <div className="mt-6 border-t border-white/5 pt-5">
+                <p className="text-sm text-slate-350 leading-relaxed mb-4">
                   {plans[selectedPlan].description}
                 </p>
                 <div className="grid gap-2 sm:grid-cols-2">
                   {plans[selectedPlan].features.map((feat) => (
-                    <div key={feat} className="flex items-center gap-2 text-xs text-slate-600">
+                    <div key={feat} className="flex items-center gap-2 text-xs text-slate-350">
                       <Check className={`h-3.5 w-3.5 flex-shrink-0 ${planColors[selectedPlan].text}`} />
                       <span>{feat}</span>
                     </div>
@@ -250,43 +283,68 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
            <Reveal delay={0.05}>
             <div className="glass rounded-2xl p-6">
               <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center mb-4">
-                <h3 className="font-display text-lg font-semibold text-slate-900 flex items-center gap-2">
+                <h3 className="font-display text-lg font-semibold text-white flex items-center gap-2">
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-teal-500/10 border border-teal-500/20 text-xs font-semibold text-teal-400">
                     02
                   </span>
                   Add Extra Pages
                 </h3>
-                <span className="text-xs text-slate-400 bg-slate-900 border border-white/10 rounded-full px-3 py-1 font-semibold">
+                <span className="text-xs text-slate-400 bg-slate-950 border border-white/10 rounded-full px-3 py-1 font-semibold">
                   ₹1,500 per additional page
                 </span>
               </div>
 
-              <div className="flex items-center gap-5 rounded-2xl border border-white/10 bg-slate-950/40 p-5">
-                <div className="flex-1">
-                  <p className="text-sm text-white font-semibold">
-                    Total Project Pages: {plans[selectedPlan].basePages + extraPages}
-                  </p>
-                  <p className="text-xs text-slate-500 mt-1">
-                    {plans[selectedPlan].basePages} base pages + {extraPages} custom subpages
-                  </p>
+              <div className="rounded-2xl border border-white/10 bg-slate-950/40 p-5">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-5">
+                  <div className="flex-1">
+                    <p className="text-sm text-white font-semibold">
+                      Total Project Pages: {plans[selectedPlan].basePages + extraPages}
+                    </p>
+                    <p className="text-xs text-slate-400 mt-1">
+                      {plans[selectedPlan].basePages} base pages + {extraPages} custom subpages
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3 self-end sm:self-auto">
+                    <button
+                      onClick={() => setExtraPages(Math.max(0, extraPages - 1))}
+                      disabled={extraPages === 0}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-slate-950 text-slate-400 transition hover:bg-red-500/20 hover:text-red-400 hover:border-red-500/40 disabled:opacity-30 font-semibold text-lg cursor-pointer shadow-sm"
+                      aria-label="Decrease extra pages"
+                    >
+                      -
+                    </button>
+                    <span className="font-display text-lg font-semibold text-white min-w-8 text-center">
+                      {extraPages}
+                    </span>
+                    <button
+                      onClick={() => setExtraPages(Math.min(20, extraPages + 1))}
+                      disabled={extraPages >= 20}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-slate-950 text-slate-400 transition hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/40 font-semibold text-lg cursor-pointer shadow-sm"
+                      aria-label="Increase extra pages"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => setExtraPages(Math.max(0, extraPages - 1))}
-                    disabled={extraPages === 0}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-slate-900 text-slate-300 transition hover:bg-red-500/20 hover:text-red-400 hover:border-red-500/40 disabled:opacity-30 font-semibold text-lg cursor-pointer shadow-sm"
-                  >
-                    -
-                  </button>
-                  <span className="font-display text-lg font-semibold text-white min-w-8 text-center">
-                    {extraPages}
-                  </span>
-                  <button
-                    onClick={() => setExtraPages(Math.min(20, extraPages + 1))}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-slate-900 text-slate-300 transition hover:bg-emerald-500/20 hover:text-emerald-400 hover:border-emerald-500/40 font-semibold text-lg cursor-pointer shadow-sm"
-                  >
-                    +
-                  </button>
+
+                {/* Cybernetic Custom Range Slider */}
+                <div className="relative pt-2">
+                  <input
+                    type="range"
+                    min="0"
+                    max="20"
+                    value={extraPages}
+                    onChange={(e) => setExtraPages(Number(e.target.value))}
+                    className="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-slate-900 border border-white/10 accent-cyan-400 outline-none"
+                    style={{
+                      background: `linear-gradient(to right, #40e8ff 0%, #40e8ff ${(extraPages / 20) * 100}%, #0a0e16 ${(extraPages / 20) * 100}%, #0a0e16 100%)`
+                    }}
+                  />
+                  <div className="flex justify-between text-[10px] text-slate-500 mt-2 font-mono">
+                    <span>MIN (0)</span>
+                    <span>10 PAGES</span>
+                    <span>MAX (20)</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -295,7 +353,7 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
           {/* Step 3: Add-on Powerups */}
           <Reveal delay={0.1}>
             <div className="glass rounded-2xl p-6">
-              <h3 className="font-display text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
+              <h3 className="font-display text-lg font-semibold text-white mb-4 flex items-center gap-2">
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cyan-500/10 border border-cyan-500/20 text-xs font-semibold text-cyan-400">
                   03
                 </span>
@@ -311,18 +369,18 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
                       onClick={() => toggleAddOn(addon.id)}
                       className={`flex text-left rounded-2xl border p-4 transition-all duration-300 cursor-pointer ${
                         isChecked
-                          ? "border-emerald-500/60 bg-emerald-500/10 shadow-sm"
-                          : "border-white/5 bg-slate-950/40 hover:border-emerald-500/20 hover:bg-slate-900/50"
+                          ? "border-cyan-500/60 bg-cyan-500/10 shadow-sm"
+                          : "border-white/5 bg-slate-950/40 hover:border-cyan-500/20 hover:bg-slate-950/50"
                       }`}
                     >
                       <div className="flex gap-3">
                         <div className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-white/10 bg-slate-950">
-                          {isChecked && <div className="h-2 w-2 rounded-full bg-emerald-400 animate-scale" />}
+                          {isChecked && <div className="h-2 w-2 rounded-full bg-cyan-400 animate-scale" />}
                         </div>
                         <div>
-                          <p className="font-semibold text-sm text-slate-800">{addon.name}</p>
-                          <p className="text-xs text-slate-500 mt-1 leading-relaxed">{addon.description}</p>
-                          <p className="text-xs font-semibold text-amber-600 mt-2">
+                          <p className="font-semibold text-sm text-white">{addon.name}</p>
+                          <p className="text-xs text-slate-400 mt-1 leading-relaxed">{addon.description}</p>
+                          <p className="text-xs font-semibold text-cyan-400 mt-2">
                             +₹{addon.price.toLocaleString("en-IN")}
                           </p>
                         </div>
@@ -338,99 +396,150 @@ Projected Budget Estimate: ₹${totalPrice.toLocaleString("en-IN")}. Please cont
 
         {/* Right Summary Panel */}
         <Reveal delay={0.15}>
-          <TiltCard className="glass sticky top-24 rounded-2xl p-6 border-slate-200 shadow-md overflow-hidden">
-            {/* Google workspace colored line top accent */}
-            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-500 via-red-500 via-yellow-500 to-green-500" />
+          <div className="relative overflow-visible">
+            {/* Ambient Aura behind estimated card */}
+            <div className="absolute inset-0 bg-cyan-500/5 rounded-2xl blur-3xl scale-95 pointer-events-none" />
             
-            <div className="border-b border-white/10 pb-6 text-center pt-2">
-              <span className="flex mx-auto h-12 w-12 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 mb-4">
-                <Sparkles className="h-5 w-5 animate-pulse" />
-              </span>
-              <p className="text-xs uppercase tracking-[0.24em] text-emerald-400 font-bold">Project Estimate</p>
-              <h2 className="mt-3 font-display text-4xl font-extrabold text-slate-900">
-                ₹{totalPrice.toLocaleString("en-IN")}
-              </h2>
-              <p className="mt-2 text-xs text-slate-500">All prices exclusive of 18% GST</p>
-            </div>
-
-            <div className="py-6 space-y-4">
-              <div className="flex justify-between items-center text-sm">
-                <span className="text-slate-500 font-medium">Core Package</span>
-                <span className={`font-semibold ${planColors[selectedPlan].text}`}>{plans[selectedPlan].name}</span>
-              </div>
-              <div className="flex justify-between items-center text-sm">
-                <span className="text-slate-500 font-medium">Pages Count</span>
-                <span className="font-semibold text-slate-800">
-                  {plans[selectedPlan].basePages + extraPages} Pages
-                </span>
-              </div>
-              
-              {selectedAddOns.length > 0 && (
-                <div className="border-t border-white/10 pt-4">
-                  <p className="text-xs uppercase tracking-wider text-slate-500 mb-2 font-semibold">Selected Add-ons</p>
-                  <div className="space-y-2">
-                    {selectedAddOns.map((id) => {
-                      const addon = addOnsList.find((a) => a.id === id);
-                      return addon ? (
-                        <div key={id} className="flex justify-between items-center text-xs">
-                          <span className="text-slate-600 truncate max-w-[200px]">{addon.name}</span>
-                          <span className="font-semibold text-emerald-400">
-                            +₹{addon.price.toLocaleString("en-IN")}
-                          </span>
-                        </div>
-                      ) : null;
-                    })}
-                  </div>
+            <GlowBorder borderRadius={16} className="sticky top-24">
+              <TiltCard className="glass rounded-2xl p-6 border border-white/5 bg-slate-950/70 shadow-xl overflow-visible">
+                {/* Visual glow tracer colored line top accent */}
+                <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-500 via-cyan-400 to-cyan-300 rounded-t-2xl" />
+                
+                <div className="border-b border-white/10 pb-6 text-center pt-2" style={{ transform: "translateZ(10px)", transformStyle: "preserve-3d" }}>
+                  <span className="flex mx-auto h-12 w-12 items-center justify-center rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-400 mb-4">
+                    <Sparkles className="h-5 w-5 animate-pulse" />
+                  </span>
+                  <p className="text-xs uppercase tracking-[0.24em] text-cyan-400 font-bold">Project Estimate</p>
+                  <h2 className="mt-3 font-display text-4xl font-extrabold text-white">
+                    ₹<AnimatedPrice value={totalPrice} />
+                  </h2>
+                  <p className="mt-2 text-xs text-slate-400">All prices exclusive of 18% GST</p>
                 </div>
-              )}
 
-              <div className="border-t border-white/10 pt-4">
-                <div className="rounded-2xl bg-slate-950/40 border border-white/5 p-4">
-                  <div className="flex gap-3">
-                    <TrendingUp className="h-5 w-5 text-emerald-400 shrink-0" />
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
-                        Consultant Projected ROI
-                      </p>
-                      <p className="text-sm font-bold text-white mt-1">
-                        {projectedValue}
-                      </p>
-                      <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                        Estimated walk-in / enquiry increase on mobile networks.
-                      </p>
+                <div className="py-6 space-y-4" style={{ transform: "translateZ(20px)", transformStyle: "preserve-3d" }}>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-slate-400 font-medium">Core Package</span>
+                    <span className={`font-semibold ${planColors[selectedPlan].text}`}>{plans[selectedPlan].name}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="text-slate-400 font-medium">Pages Count</span>
+                    <span className="font-semibold text-white">
+                      {plans[selectedPlan].basePages + extraPages} Pages
+                    </span>
+                  </div>
+                  
+                  {selectedAddOns.length > 0 && (
+                    <div className="border-t border-white/10 pt-4">
+                      <p className="text-xs uppercase tracking-wider text-slate-400 mb-2 font-semibold">Selected Add-ons</p>
+                      <div className="space-y-2">
+                        {selectedAddOns.map((id) => {
+                          const addon = addOnsList.find((a) => a.id === id);
+                          return addon ? (
+                            <div key={id} className="flex justify-between items-center text-xs">
+                              <span className="text-slate-350 truncate max-w-[200px]">{addon.name}</span>
+                              <span className="font-semibold text-cyan-400">
+                                +₹{addon.price.toLocaleString("en-IN")}
+                              </span>
+                            </div>
+                          ) : null;
+                        })}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Visual Project Scope & Pipeline Density Index */}
+                  <div className="border-t border-white/10 pt-4" style={{ transform: "translateZ(35px)" }}>
+                    <div className="flex justify-between items-center text-xs mb-2">
+                      <span className="text-slate-400 font-semibold uppercase tracking-wider">Architecture Scope Weight</span>
+                      <span className="text-cyan-400 font-mono font-bold">
+                        {Math.round(((plans[selectedPlan].basePages + extraPages + selectedAddOns.length * 3) / 36) * 100)}%
+                      </span>
+                    </div>
+                    <div className="h-2 w-full bg-slate-900 rounded-full overflow-hidden border border-white/5 relative">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-blue-500 via-cyan-400 to-cyan-300 rounded-full"
+                        initial={{ width: 0 }}
+                        animate={{
+                          width: `${Math.min(100, Math.round(((plans[selectedPlan].basePages + extraPages + selectedAddOns.length * 3) / 36) * 100))}%`
+                        }}
+                        transition={{ type: "spring", stiffness: 120, damping: 15 }}
+                      />
+                    </div>
+                    <div className="flex justify-between text-[8px] text-slate-500 mt-1.5 font-mono">
+                      <span>MICRO-SITE</span>
+                      <span>STANDARD APP</span>
+                      <span>ENTERPRISE PLATFORM</span>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div className="rounded-2xl border border-white/5 bg-slate-950/40 p-4">
-                <div className="flex gap-3 items-center">
-                  <Zap className="h-5 w-5 text-emerald-400 shrink-0" />
-                  <div className="text-xs">
-                    <p className="text-slate-500">Estimated Delivery Timeline</p>
-                    <p className="font-semibold text-white mt-1">
-                      {plans[selectedPlan].timelineDays + (extraPages > 0 ? Math.ceil(extraPages / 2) : 0)} Days
-                    </p>
+                  <div className="border-t border-white/10 pt-4" style={{ transform: "translateZ(30px)" }}>
+                    <div className="rounded-2xl bg-slate-950/40 border border-white/5 p-4">
+                      <div className="flex gap-3">
+                        <TrendingUp className="h-5 w-5 text-cyan-400 shrink-0" />
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
+                            Consultant Projected ROI
+                          </p>
+                          <p className="text-sm font-bold text-white mt-1">
+                            {projectedValue}
+                          </p>
+                          <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                            Estimated walk-in / enquiry increase on mobile networks.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-white/5 bg-slate-950/40 p-4" style={{ transform: "translateZ(40px)" }}>
+                    <div className="flex gap-3 items-center">
+                      <Zap className="h-5 w-5 text-cyan-400 shrink-0" />
+                      <div className="text-xs">
+                        <p className="text-slate-400">Estimated Delivery Timeline</p>
+                        <p className="font-semibold text-white mt-1">
+                          {plans[selectedPlan].timelineDays + (extraPages > 0 ? Math.ceil(extraPages / 2) : 0)} Days
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div className="mt-4" style={{ transform: "translateZ(50px)" }}>
+                  <Link
+                    href={getHandoffUrl()}
+                    className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-cyan-400 px-6 text-sm font-bold text-black transition hover:bg-cyan-300 shadow-md hover:shadow-cyan-500/20 cursor-pointer"
+                  >
+                    Lock In This Quote
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+
+                {/* FLOATING 3D CORES ON ROTATING PERSPECTIVE */}
+                <div 
+                  className="absolute -right-8 top-32 glass rounded-2xl p-3 shadow-2xl border border-cyan-500/30 w-36 pointer-events-none"
+                  style={{ transform: "translateZ(65px)", transformStyle: "preserve-3d" }}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 rounded-full bg-cyan-455 animate-ping" />
+                    <span className="text-[9px] font-bold uppercase tracking-wider text-cyan-455">ROI Boost +150%</span>
                   </div>
                 </div>
-              </div>
 
-            </div>
+                <div 
+                  className="absolute -left-10 bottom-24 glass rounded-2xl p-3 shadow-2xl border border-white/10 w-36 pointer-events-none"
+                  style={{ transform: "translateZ(85px)", transformStyle: "preserve-3d" }}
+                >
+                  <p className="text-[8px] uppercase font-bold tracking-wider text-slate-400">Fast Delivery</p>
+                  <p className="text-[10px] font-bold text-white mt-0.5">SLA Guaranteed</p>
+                </div>
+              </TiltCard>
+            </GlowBorder>
 
-            <div className="mt-4">
-              <Link
-                href={getHandoffUrl()}
-                className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 text-sm font-bold text-black transition hover:bg-emerald-400 shadow-md hover:shadow-emerald-500/20 cursor-pointer"
-              >
-                Lock In This Quote
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <p className="text-center text-[10px] text-slate-500 mt-3 leading-relaxed">
-                Clicking lock-in transfers your choices directly to our contact planner to initiate priority discovery.
-              </p>
-            </div>
-
-          </TiltCard>
+            <p className="text-center text-[10px] text-slate-400 mt-3 leading-relaxed">
+              Clicking lock-in transfers your choices directly to our contact planner to initiate priority discovery.
+            </p>
+          </div>
         </Reveal>
 
       </div>

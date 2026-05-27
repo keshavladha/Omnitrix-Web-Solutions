@@ -127,8 +127,8 @@ export default function BlogPage() {
                       {post.excerpt}
                     </p>
                     <div className="mt-4 flex items-center justify-between">
-                      <span className="text-xs text-slate-500">{post.date}</span>
-                      <ArrowUpRight className="h-4 w-4 text-slate-500 transition group-hover:text-cyan-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      <span className="text-xs text-slate-400">{post.date}</span>
+                      <ArrowUpRight className="h-4 w-4 text-slate-400 transition group-hover:text-cyan-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                   </div>
                 </article>
@@ -163,7 +163,7 @@ export default function BlogPage() {
                     type="email"
                     required
                     placeholder="Enter your email"
-                    className="flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-white placeholder:text-slate-500 focus:border-cyan-200/30 focus:outline-none"
+                    className="flex-1 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-white placeholder:text-slate-400 focus:border-cyan-200/30 focus:outline-none"
                   />
                   <button
                     type="submit"

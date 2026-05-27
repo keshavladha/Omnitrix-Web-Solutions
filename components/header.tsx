@@ -1,5 +1,4 @@
 "use client";
-
 import { mainNavItems, resourceDropdownItems } from "@/lib/data";
 import { 
   Aperture, 
@@ -71,18 +70,18 @@ export function Header() {
         
         {/* Futuristic Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group" aria-label="Omnitrix Web Solutions home">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-550/5 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
-            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 via-teal-500/5 to-emerald-500/10 opacity-40 animate-pulse" />
-            <Aperture className="h-4.5 w-4.5 text-emerald-400 group-hover:rotate-90 transition-transform duration-500" aria-hidden />
+          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-cyan-500/20 bg-cyan-950/5 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
+            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-blue-500/5 to-cyan-500/10 opacity-40 animate-pulse" />
+            <Aperture className="h-4.5 w-4.5 text-cyan-400 group-hover:rotate-90 transition-transform duration-500" aria-hidden />
           </span>
-          <span className="font-display text-sm font-semibold uppercase tracking-[0.25em] text-slate-100 flex items-center gap-1 group-hover:text-emerald-400 transition-colors">
+          <span className="font-display text-sm font-semibold uppercase tracking-[0.25em] text-white flex items-center gap-1 group-hover:text-cyan-400 transition-colors">
             Omnitrix
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-450 inline-block animate-ping" />
+            <span className="h-1.5 w-1.5 rounded-full bg-cyan-450 inline-block animate-ping" />
           </span>
         </Link>
 
         {/* Simplified Premium Desktop Navigation Pill */}
-        <div className="hidden items-center gap-1 xl:flex bg-slate-900/60 border border-white/10 rounded-full px-4 py-1 shadow-2xl backdrop-blur-md">
+        <div className="hidden items-center gap-1 xl:flex bg-black/60 border border-white/10 rounded-full px-4 py-1 shadow-2xl backdrop-blur-md">
           {mainNavItems.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -91,14 +90,14 @@ export function Header() {
                 href={item.href}
                 className={`text-[11px] font-bold uppercase tracking-wider rounded-full px-4.5 py-2.5 transition-all duration-300 relative flex items-center gap-1 ${
                   isActive 
-                    ? "text-emerald-400 bg-white/10 shadow-md border border-white/5 font-extrabold" 
+                    ? "text-cyan-400 bg-white/10 shadow-md border border-white/5 font-extrabold" 
                     : "text-slate-400 hover:text-white hover:bg-white/5"
                 }`}
               >
-                {item.label === "Pay Online" && <Wallet className="h-3.5 w-3.5 text-emerald-400" />}
+                {item.label === "Pay Online" && <Wallet className="h-3.5 w-3.5 text-cyan-400" />}
                 {item.label}
                 {isActive && (
-                  <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 h-1 w-1 rounded-full bg-emerald-450 animate-pulse" />
+                  <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-transparent via-cyan-455 to-transparent shadow-[0_0_14px_rgba(26,219,245,0.85)]" />
                 )}
               </Link>
             );
@@ -111,16 +110,19 @@ export function Header() {
             onMouseLeave={handleMouseLeave}
           >
             <button
-              className={`text-[11px] font-bold uppercase tracking-wider rounded-full px-4.5 py-2.5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer outline-none ${
+              className={`text-[11px] font-bold uppercase tracking-wider rounded-full px-4.5 py-2.5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer outline-none relative ${
                 isResourceActive
-                  ? "text-emerald-400 bg-white/10 shadow-md border border-white/5 font-extrabold"
+                  ? "text-cyan-400 bg-white/10 shadow-md border border-white/5 font-extrabold"
                   : dropdownOpen
                   ? "text-white bg-white/10"
                   : "text-slate-400 hover:text-white hover:bg-white/5"
               }`}
             >
               Resources
-              <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-350 ${dropdownOpen ? "rotate-180 text-emerald-450" : "text-slate-500"}`} />
+              <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-350 ${dropdownOpen ? "rotate-180 text-cyan-450" : "text-slate-400"}`} />
+              {isResourceActive && (
+                <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-transparent via-cyan-455 to-transparent shadow-[0_0_14px_rgba(26,219,245,0.85)]" />
+              )}
             </button>
 
             {/* Glowing Dropdown Panel */}
@@ -130,7 +132,7 @@ export function Header() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-b from-emerald-500/[0.02] to-transparent pointer-events-none" />
+                <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-b from-cyan-500/[0.02] to-transparent pointer-events-none" />
                 
                 {resourceDropdownItems.map((subItem) => {
                   const isSubActive = pathname === subItem.href;
@@ -146,19 +148,19 @@ export function Header() {
                     >
                       <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${
                         isSubActive 
-                          ? "bg-emerald-500/10 border-emerald-400 text-emerald-400 shadow-sm" 
-                          : "bg-white/5 border-white/5 text-slate-400 group-hover/item:bg-emerald-500 group-hover/item:border-emerald-400 group-hover/item:text-black group-hover/item:scale-105"
+                          ? "bg-cyan-500/10 border-cyan-400 text-cyan-400 shadow-sm" 
+                          : "bg-white/5 border-white/5 text-slate-400 group-hover/item:bg-cyan-500 group-hover/item:border-cyan-400 group-hover/item:text-black group-hover/item:scale-105"
                       }`}>
                         <DropdownIcon name={subItem.iconName} className="h-4.5 w-4.5" />
                       </span>
                       <div className="flex-1">
                         <div className="flex items-center gap-1.5">
                           <span className={`text-[13px] font-bold tracking-tight transition-colors ${
-                            isSubActive ? "text-emerald-450" : "text-slate-200 group-hover/item:text-emerald-400"
+                            isSubActive ? "text-cyan-450" : "text-slate-200 group-hover/item:text-cyan-400"
                           }`}>
                             {subItem.label}
                           </span>
-                          <ArrowRight className="h-3 w-3 text-emerald-400 opacity-0 -translate-x-1 transition-all duration-200 group-hover/item:opacity-100 group-hover/item:translate-x-0" />
+                          <ArrowRight className="h-3 w-3 text-cyan-400 opacity-0 -translate-x-1 transition-all duration-200 group-hover/item:opacity-100 group-hover/item:translate-x-0" />
                         </div>
                         <p className="mt-0.5 text-xs text-slate-400 leading-normal">
                           {subItem.desc}
@@ -176,7 +178,7 @@ export function Header() {
         <div className="flex items-center gap-3">
           <Link
             href="/contact"
-            className="hidden rounded-full border border-emerald-500/20 bg-emerald-500/10 px-5.5 py-2.5 text-xs font-bold uppercase tracking-wider text-emerald-400 transition-all duration-300 hover:bg-emerald-600 hover:text-black hover:shadow-[0_4px_12px_rgba(16,185,129,0.15)] sm:block cursor-pointer"
+            className="hidden rounded-full border border-cyan-500/20 bg-cyan-500/10 px-5.5 py-2.5 text-xs font-bold uppercase tracking-wider text-cyan-400 transition-all duration-300 hover:bg-cyan-600 hover:text-black hover:shadow-[0_4px_12px_rgba(64,232,255,0.15)] sm:block cursor-pointer"
           >
             Start Project
           </Link>
@@ -206,11 +208,11 @@ export function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex items-center gap-2.5 rounded-xl px-4.5 py-3.5 text-[13px] font-bold uppercase tracking-wider transition-all duration-200 ${
                       isActive
-                        ? "bg-white/5 text-emerald-400 border border-white/10 font-extrabold shadow-sm"
+                        ? "bg-white/5 text-cyan-400 border border-white/10 font-extrabold shadow-sm"
                         : "text-slate-300 hover:bg-white/5 hover:text-white"
                     }`}
                   >
-                    {item.label === "Pay Online" && <Wallet className="h-4.5 w-4.5 text-emerald-450" />}
+                    {item.label === "Pay Online" && <Wallet className="h-4.5 w-4.5 text-cyan-455" />}
                     {item.label}
                   </Link>
                 );
@@ -223,7 +225,7 @@ export function Header() {
                   className="flex w-full items-center justify-between px-4.5 py-3 text-[13px] font-bold uppercase tracking-wider text-slate-400 hover:text-white cursor-pointer"
                 >
                   Resource Hub
-                  <ChevronDown className={`h-4.5 w-4.5 transition-transform duration-300 ${mobileResourcesOpen ? "rotate-180 text-emerald-400" : ""}`} />
+                  <ChevronDown className={`h-4.5 w-4.5 transition-transform duration-300 ${mobileResourcesOpen ? "rotate-180 text-cyan-400" : ""}`} />
                 </button>
                 
                 {mobileResourcesOpen && (
@@ -237,11 +239,11 @@ export function Header() {
                           onClick={() => setMobileMenuOpen(false)}
                           className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition ${
                             isSubActive
-                              ? "text-emerald-400 font-semibold"
+                              ? "text-cyan-400 font-semibold"
                               : "text-slate-400 hover:text-white"
                           }`}
                         >
-                          <DropdownIcon name={subItem.iconName} className={`h-4 w-4 ${isSubActive ? "text-emerald-450" : "text-slate-500"}`} />
+                          <DropdownIcon name={subItem.iconName} className={`h-4 w-4 ${isSubActive ? "text-cyan-455" : "text-slate-400"}`} />
                           <span>{subItem.label}</span>
                         </Link>
                       );
@@ -253,7 +255,7 @@ export function Header() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-5.5 py-3.5 text-center text-[12px] font-bold uppercase tracking-wider text-emerald-400 transition hover:bg-emerald-600 hover:text-black"
+                className="mt-4 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-5.5 py-3.5 text-center text-[12px] font-bold uppercase tracking-wider text-cyan-400 transition hover:bg-cyan-600 hover:text-black"
               >
                 Start Project
               </Link>

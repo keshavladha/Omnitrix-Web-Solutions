@@ -2,7 +2,7 @@ import { Briefcase, Code2, Smartphone, Star, Zap, Sparkles, ShieldCheck, Databas
 
 export function TrustBar() {
   const items = [
-    { text: "Fast Load speed (0.8s)", icon: Zap, color: "text-emerald-450 bg-emerald-500/10 border-emerald-500/20" },
+    { text: "Fast Load speed (0.8s)", icon: Zap, color: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20" },
     { text: "Next.js 16 Production Ready", icon: Code2, color: "text-blue-400 bg-blue-500/10 border-blue-500/20" },
     { text: "99% Lighthouse Speed", icon: Sparkles, color: "text-amber-400 bg-amber-500/10 border-amber-500/20" },
     { text: "Secure Payment Gateway", icon: ShieldCheck, color: "text-teal-400 bg-teal-500/10 border-teal-500/20" },

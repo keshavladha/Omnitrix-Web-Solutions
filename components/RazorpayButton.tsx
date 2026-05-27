@@ -61,7 +61,7 @@ export default function RazorpayButton({ amount }: { amount: number }) {
             name: "", email: "", contact: "",
           },
           theme: {
-            color: "#10b981", // Premium emerald green
+            color: "#40e8ff", // Premium Neon Tech Cyan
           },
         } as any;
         // @ts-ignore – Razorpay is loaded from script

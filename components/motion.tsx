@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from "framer-motion";
 import { useRef, type PropsWithChildren } from "react";
 
 export const MotionDiv = motion.div;
@@ -42,10 +42,10 @@ export function MagneticButton({
       href={href}
       className={
         variant === "primary"
-          ? "inline-flex min-h-12 items-center justify-center rounded-full bg-blue-600 px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 cursor-pointer"
-          : "inline-flex min-h-12 items-center justify-center rounded-full border border-slate-300 bg-white/40 px-6 text-sm font-semibold text-slate-700 backdrop-blur transition hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900 cursor-pointer"
+          ? "inline-flex min-h-12 items-center justify-center rounded-full bg-white px-8 text-sm font-bold text-obsidian-lowest shadow-[0_0_36px_rgba(64,232,255,0.28)] transition hover:brightness-110 cursor-pointer"
+          : "inline-flex min-h-12 items-center justify-center rounded-full border border-cyan-200/20 bg-white/5 px-8 text-sm font-bold text-white backdrop-blur transition hover:bg-white/10 hover:border-cyan-200/40 cursor-pointer"
       }
-      style={{ x: springX, y: springY }}
+      style={{ x: springX, y: springY, color: variant === "primary" ? "#02040a" : undefined }}
       onMouseEnter={(event) => {
         rectRef.current = event.currentTarget.getBoundingClientRect();
       }}
@@ -77,11 +77,11 @@ export function TiltCard({
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   
-  // Use springs to smooth out the tilt values and prevent abrupt jumps, which can cause frame stutter!
+  // Use springs to smooth out the tilt values and prevent abrupt jumps
   const springMx = useSpring(mx, { stiffness: 150, damping: 20 });
   const springMy = useSpring(my, { stiffness: 150, damping: 20 });
   
-  // Transform from the smooth spring motion values to avoid micro-jitter during pointer motion
+  // Transform from the smooth spring motion values
   const rotateX = useTransform(springMy, [-0.5, 0.5], [5, -5]);
   const rotateY = useTransform(springMx, [-0.5, 0.5], [-6, 6]);
   
@@ -110,6 +110,47 @@ export function TiltCard({
       }}
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 180, damping: 20 }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function ThreeDReveal({
+  children,
+  className,
+  delay = 0,
+}: PropsWithChildren<{ className?: string; delay?: number }>) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Beautiful, futuristic 3D rotation and rise effect during scroll entry
+  const rotateX = useTransform(scrollYProgress, [0, 0.3], [24, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.3], [0.92, 1]);
+  const y = useTransform(scrollYProgress, [0, 0.3], [60, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.22], [0, 1]);
+
+  const smoothRotateX = useSpring(rotateX, { stiffness: 85, damping: 18 });
+  const smoothScale = useSpring(scale, { stiffness: 85, damping: 18 });
+  const smoothY = useSpring(y, { stiffness: 85, damping: 18 });
+  const smoothOpacity = useSpring(opacity, { stiffness: 85, damping: 18 });
+
+  return (
+    <motion.div
+      ref={containerRef}
+      className={className}
+      style={{
+        perspective: 1200,
+        rotateX: smoothRotateX,
+        scale: smoothScale,
+        y: smoothY,
+        opacity: smoothOpacity,
+        transformStyle: "preserve-3d",
+      }}
     >
       {children}
     </motion.div>

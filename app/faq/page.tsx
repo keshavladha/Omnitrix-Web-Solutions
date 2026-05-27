@@ -173,7 +173,7 @@ export default function FAQPage() {
                     </div>
                     <div className="text-sm text-slate-400">{link.desc}</div>
                   </div>
-                  <ChevronRight className="h-5 w-5 text-slate-500 transition group-hover:text-cyan-200 group-hover:translate-x-1" />
+                  <ChevronRight className="h-5 w-5 text-slate-400 transition group-hover:text-cyan-200 group-hover:translate-x-1" />
                 </a>
               ))}
             </div>

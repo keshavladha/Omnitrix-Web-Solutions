@@ -140,9 +140,9 @@ Please schedule a discovery call to review my requirements!`;
 
   return (
     <div className="mx-auto max-w-3xl glass rounded-2xl p-6 sm:p-8 border-slate-200 shadow-md overflow-hidden relative">
-      {/* Top Google accent indicator */}
+      {/* Top indicator bar */}
       {step === 4 && (
-        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-500 via-cyan-500 to-green-500" />
+        <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-500 via-blue-500 via-cyan-400 to-blue-400" />
       )}
       
       {/* Header and Step Indicators */}
@@ -150,7 +150,7 @@ Please schedule a discovery call to review my requirements!`;
         <div className="mb-8 flex items-center justify-between border-b border-white/10 pb-4">
           <div>
             <span className={`text-xs uppercase font-bold tracking-wider ${
-              step === 1 ? "text-emerald-400" : step === 2 ? "text-teal-400" : "text-cyan-400"
+              step === 1 ? "text-cyan-400" : step === 2 ? "text-blue-400" : "text-cyan-400"
             }`}>
               Omnitrix Strategic Discovery
             </span>
@@ -162,11 +162,15 @@ Please schedule a discovery call to review my requirements!`;
           </div>
           <div className="flex items-center gap-2">
             <span className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold ${
-              step === 1 ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" : step === 2 ? "bg-teal-500/10 text-teal-400 border border-teal-500/20" : "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
+              step === 1 
+                ? "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20" 
+                : step === 2 
+                ? "bg-blue-500/10 text-blue-400 border border-blue-500/20" 
+                : "bg-cyan-500/10 text-cyan-400 border border-cyan-500/20"
             }`}>
               {step}
             </span>
-            <span className="text-sm font-semibold text-slate-500">of 3</span>
+            <span className="text-sm font-semibold text-slate-400">of 3</span>
           </div>
         </div>
       )}
@@ -184,13 +188,13 @@ Please schedule a discovery call to review my requirements!`;
                   <button
                     key={item.id}
                     onClick={() => handleNext(item.id)}
-                    className="flex text-left items-start gap-4 rounded-2xl border border-white/5 bg-slate-950/40 p-5 transition duration-300 hover:border-emerald-500/40 hover:bg-slate-900/40 hover:shadow-sm group cursor-pointer"
+                    className="flex text-left items-start gap-4 rounded-2xl border border-white/5 bg-slate-950/40 p-5 transition duration-300 hover:border-cyan-500/40 hover:bg-slate-900/40 hover:shadow-sm group cursor-pointer"
                   >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-450 group-hover:bg-emerald-500/20 transition">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-455 group-hover:bg-cyan-500/20 transition">
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <h4 className="font-display font-semibold text-white group-hover:text-emerald-450 transition">
+                      <h4 className="font-display font-semibold text-white group-hover:text-cyan-455 transition">
                         {item.label}
                       </h4>
                       <p className="text-xs text-slate-400 mt-1 leading-relaxed">
@@ -214,12 +218,12 @@ Please schedule a discovery call to review my requirements!`;
                   <button
                     key={item.id}
                     onClick={() => handleNext(item.id)}
-                    className="flex flex-col text-left items-start gap-3 rounded-2xl border border-white/5 bg-slate-950/40 p-5 transition duration-300 hover:border-teal-500/40 hover:bg-slate-900/40 hover:shadow-sm group cursor-pointer"
+                    className="flex flex-col text-left items-start gap-3 rounded-2xl border border-white/5 bg-slate-950/40 p-5 transition duration-300 hover:border-blue-500/40 hover:bg-slate-900/40 hover:shadow-sm group cursor-pointer"
                   >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 group-hover:bg-teal-500/20 transition">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 group-hover:bg-blue-500/20 transition">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h4 className="font-display font-semibold text-white group-hover:text-teal-400 transition">
+                    <h4 className="font-display font-semibold text-white group-hover:text-blue-400 transition">
                       {item.label}
                     </h4>
                   </button>
@@ -230,7 +234,7 @@ Please schedule a discovery call to review my requirements!`;
             <div className="mt-8 flex justify-start">
               <button
                 onClick={handleBack}
-                className="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white transition rounded-full border border-white/10 bg-slate-900 px-4 py-2 cursor-pointer hover:bg-slate-800 shadow-sm"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-cyan-400 hover:border-cyan-500/30 transition rounded-full border border-white/10 bg-slate-950 px-4 py-2 cursor-pointer hover:bg-cyan-500/10 shadow-sm"
               >
                 <ArrowLeft className="h-3.5 w-3.5" /> Back
               </button>
@@ -269,7 +273,7 @@ Please schedule a discovery call to review my requirements!`;
             <div className="mt-8 flex justify-start">
               <button
                 onClick={handleBack}
-                className="inline-flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white transition rounded-full border border-white/10 bg-slate-900 px-4 py-2 cursor-pointer hover:bg-slate-800 shadow-sm"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-cyan-400 hover:border-cyan-500/30 transition rounded-full border border-white/10 bg-slate-950 px-4 py-2 cursor-pointer hover:bg-cyan-500/10 shadow-sm"
               >
                 <ArrowLeft className="h-3.5 w-3.5" /> Back
               </button>
@@ -281,10 +285,10 @@ Please schedule a discovery call to review my requirements!`;
         {step === 4 && (
           <Reveal>
             <div className="text-center pt-2">
-              <span className="flex mx-auto h-12 w-12 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-450 mb-4">
+              <span className="flex mx-auto h-12 w-12 items-center justify-center rounded-full border border-cyan-500/20 bg-cyan-500/5 text-cyan-455 mb-4">
                 <Sparkles className="h-5 w-5 animate-pulse" />
               </span>
-              <p className="text-xs uppercase tracking-[0.24em] text-emerald-400 font-bold">
+              <p className="text-xs uppercase tracking-[0.24em] text-cyan-400 font-bold">
                 Strategic Website Blueprint
               </p>
               <h2 className="mt-2 font-display text-3xl font-bold text-white">
@@ -295,75 +299,115 @@ Please schedule a discovery call to review my requirements!`;
               </p>
             </div>
 
-            <div className="mt-8 grid gap-6 md:grid-cols-2 text-left">
+            <div className="mt-8 grid gap-6 md:grid-cols-2 text-left overflow-visible">
               
               {/* Left Column: Blueprint specs */}
-              <div className="space-y-4">
-                <div className="glass rounded-2xl p-5 border-white/5 bg-slate-950/40 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500" />
-                  <span className="text-[10px] uppercase font-bold text-emerald-400 block pl-2">
-                    Recommended Technical Stack
-                  </span>
-                  <h4 className="font-display text-lg font-bold text-white mt-1 pl-2">
-                    Next-Gen Headless System
-                  </h4>
-                  <p className="text-xs text-slate-400 mt-2 leading-relaxed pl-2">
-                    Powered by <strong className="text-white">{result.stack}</strong>. Built for sub-second responses and zero bounce rate on Haryana local networks.
-                  </p>
-                </div>
-
-                <div className="glass rounded-2xl p-5 border-white/5 bg-slate-950/40 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-teal-500" />
-                  <span className="text-[10px] uppercase font-bold text-teal-400 block pl-2">
-                    Suggested Pricing Package
-                  </span>
-                  <div className="flex justify-between items-center mt-2 pl-2">
-                    <h4 className="font-display text-lg font-bold text-white">
-                      {result.planName}
-                    </h4>
-                    <span className="font-display text-xl font-bold text-teal-400">
-                      {result.planPrice}
-                    </span>
+              <div className="space-y-4 overflow-visible">
+                <TiltCard className="overflow-visible">
+                  <div className="glass rounded-2xl p-5 border-white/5 bg-slate-950/40 relative overflow-visible h-full group" style={{ transformStyle: "preserve-3d" }}>
+                    <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500" />
+                    
+                    {/* Floating 3D blueprint metrics chip popped at translateZ(60px) */}
+                    <div 
+                      className="absolute -top-3 -right-2 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-lg backdrop-blur-md pointer-events-none"
+                      style={{ transform: "translateZ(60px)" }}
+                    >
+                      🚀 Latency &lt; 80ms
+                    </div>
+                    
+                    <div style={{ transform: "translateZ(30px)", transformStyle: "preserve-3d" }}>
+                      <span className="text-[10px] uppercase font-bold text-cyan-400 block pl-2">
+                        Recommended Technical Stack
+                      </span>
+                      <h4 className="font-display text-lg font-bold text-white mt-1 pl-2">
+                        Next-Gen Headless System
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-2 leading-relaxed pl-2">
+                        Powered by <strong className="text-white">{result.stack}</strong>. Built for sub-second responses and zero bounce rate on Haryana local networks.
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </TiltCard>
+
+                <TiltCard className="overflow-visible">
+                  <div className="glass rounded-2xl p-5 border-white/5 bg-slate-950/40 relative overflow-visible group" style={{ transformStyle: "preserve-3d" }}>
+                    <div className="absolute top-0 left-0 w-1 h-full bg-blue-500" />
+                    
+                    {/* Floating 3D metric chip */}
+                    <div 
+                      className="absolute -top-3 -right-2 bg-blue-500/20 text-blue-300 border border-blue-500/30 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-lg backdrop-blur-md pointer-events-none"
+                      style={{ transform: "translateZ(65px)" }}
+                    >
+                      ⚡ Best ROI
+                    </div>
+
+                    <div className="flex justify-between items-center mt-2 pl-2" style={{ transform: "translateZ(30px)" }}>
+                      <div>
+                        <span className="text-[10px] uppercase font-bold text-blue-400 block mb-0.5">
+                          Suggested Pricing Package
+                        </span>
+                        <h4 className="font-display text-lg font-bold text-white">
+                          {result.planName}
+                        </h4>
+                      </div>
+                      <span className="font-display text-xl font-bold text-blue-400">
+                        {result.planPrice}
+                      </span>
+                    </div>
+                  </div>
+                </TiltCard>
               </div>
 
               {/* Right Column: Suggested features */}
-              <div className="glass rounded-2xl p-5 border-white/5 bg-slate-950/40 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500" />
-                <span className="text-[10px] uppercase font-bold text-cyan-400 block pl-2">
-                  Recommended Core Features Checklist
-                </span>
-                <div className="mt-4 space-y-3 pl-2">
-                  {result.features.map((feat) => (
-                    <div key={feat} className="flex items-start gap-2.5 text-xs text-slate-400">
-                      <Check className="h-4 w-4 shrink-0 text-cyan-400 mt-0.5" />
-                      <span>{feat}</span>
+              <TiltCard className="overflow-visible h-full">
+                <div className="glass rounded-2xl p-5 border-white/5 bg-slate-950/40 relative overflow-visible h-full group" style={{ transformStyle: "preserve-3d" }}>
+                  <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500" />
+                  
+                  {/* Floating blueprint metric chip */}
+                  <div 
+                    className="absolute -top-3 -right-2 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-lg backdrop-blur-md pointer-events-none"
+                    style={{ transform: "translateZ(60px)" }}
+                  >
+                    🎯 100% Custom
+                  </div>
+
+                  <div className="h-full flex flex-col" style={{ transform: "translateZ(35px)", transformStyle: "preserve-3d" }}>
+                    <span className="text-[10px] uppercase font-bold text-cyan-400 block pl-2 mb-4">
+                      Recommended Core Features Checklist
+                    </span>
+                    <div className="space-y-3.5 pl-2 flex-grow">
+                      {result.features.map((feat) => (
+                        <div key={feat} className="flex items-start gap-2.5 text-xs text-slate-400 transition duration-300 hover:text-white">
+                          <Check className="h-4 w-4 shrink-0 text-cyan-400 mt-0.5" />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
+              </TiltCard>
 
             </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center border-t border-white/10 pt-6">
               <button
                 onClick={() => setStep(1)}
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-slate-900 px-6 text-xs font-semibold text-slate-300 transition hover:bg-slate-800 cursor-pointer shadow-sm"
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-slate-950 px-6 text-xs font-semibold text-slate-300 transition hover:bg-slate-900 hover:text-slate-100 cursor-pointer shadow-sm"
               >
                 Reset Wizard
               </button>
               
               <Link
                 href={getHandoffUrl()}
-                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 text-xs font-bold text-black transition hover:bg-emerald-400 shadow-sm hover:shadow-emerald-500/20 cursor-pointer"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-cyan-500 px-6 text-xs font-bold text-obsidian-lowest transition hover:bg-cyan-400 shadow-sm hover:shadow-cyan-500/20 cursor-pointer"
+                style={{ color: "#02040a" }}
               >
                 Apply This Blueprint To Contact
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
             
-            <p className="text-center text-[10px] text-slate-500 mt-4 leading-relaxed max-w-md mx-auto">
+            <p className="text-center text-[10px] text-slate-400 mt-4 leading-relaxed max-w-md mx-auto">
               Applying pre-fills all contact form fields (goals, stack, timeline) dynamically so Keshav can immediately prepare your proposal scope.
             </p>
           </Reveal>

@@ -56,7 +56,13 @@ export default function NaXenCaseStudy() {
               </div>
 
               <div className="mt-8 flex gap-3">
-                <Link href="/contact" className="inline-flex items-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-950">Start a project</Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center rounded-full bg-cyan-500 px-5 py-3 text-sm font-bold transition hover:bg-cyan-400 hover:shadow-cyan-500/20 hover:shadow-md cursor-pointer"
+                  style={{ color: "#02040a" }}
+                >
+                  Start a project
+                </Link>
                 <a href="https://naxenindia.com" target="_blank" rel="noreferrer" className="inline-flex items-center rounded-full border border-white/8 bg-white/5 px-5 py-3 text-sm font-semibold text-white">Visit live site</a>
               </div>
             </div>

@@ -64,7 +64,7 @@ export function RazorpayCheckoutButton() {
           },
         },
         theme: {
-          color: "#10b981",
+          color: "#40e8ff",
         },
       };
 
@@ -82,20 +82,21 @@ export function RazorpayCheckoutButton() {
     <div className="space-y-4">
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
 
-      <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
-        <h2 className="font-display text-xl font-semibold text-slate-900 mb-3">Pay with Razorpay</h2>
-        <p className="text-sm text-slate-600 mb-4">
+      <div className="rounded-3xl border border-white/5 bg-slate-950/40 p-6 shadow-sm">
+        <h2 className="font-display text-xl font-semibold text-white mb-3">Pay with Razorpay</h2>
+        <p className="text-sm text-slate-400 mb-4">
           This demo uses a secure server-side order creation route and Razorpay Checkout.
         </p>
         <button
           type="button"
           onClick={handleCheckout}
           disabled={loading}
-          className="inline-flex items-center justify-center rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex items-center justify-center rounded-full bg-cyan-500 px-5 py-3 text-sm font-bold text-obsidian-lowest transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-60 shadow-md hover:shadow-cyan-500/20 cursor-pointer"
+          style={{ color: "#02040a" }}
         >
           {loading ? "Preparing payment…" : "Pay ₹100.00"}
         </button>
-        {status ? <p className="mt-3 text-sm text-slate-700">{status}</p> : null}
+        {status ? <p className="mt-3 text-sm text-slate-400">{status}</p> : null}
       </div>
     </div>
   );
