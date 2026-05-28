@@ -69,7 +69,7 @@ export function ServicesSection() {
             const borders = ["border-t-2 border-t-cyan-500/50", "border-t-2 border-t-blue-500/50", "border-t-2 border-t-cyan-400/50", "border-t-2 border-t-blue-400/50"];
             const icons = ["text-cyan-400", "text-blue-400", "text-cyan-305", "text-blue-305"];
             return (
-              <ThreeDReveal key={service.title} delay={index * 0.035} className="overflow-visible">
+              <Reveal key={service.title} delay={index * 0.035} className="overflow-visible">
                 <Link href="/services" className="block h-full">
                   <TiltCard className={`glass-panel h-full rounded-xl p-5 border border-white/5 transition-shadow duration-300 hover:shadow-md overflow-visible ${borders[index % borders.length]}`}>
                     <div style={{ transform: "translateZ(30px)" }}>
@@ -79,7 +79,7 @@ export function ServicesSection() {
                     <p className="mt-3 text-sm leading-6 text-slate-400" style={{ transform: "translateZ(20px)" }}>{service.copy}</p>
                   </TiltCard>
                 </Link>
-              </ThreeDReveal>
+              </Reveal>
             );
           })}
         </div>
@@ -154,7 +154,7 @@ export function TechStackSection() {
                 "bg-blue-400/10 text-blue-400 border border-blue-400/20"
               ];
               return (
-                <ThreeDReveal key={tech.name} delay={index * 0.05} className="overflow-visible">
+                <Reveal key={tech.name} delay={index * 0.05} className="overflow-visible">
                   <GlowBorder borderRadius={12} className="h-full">
                     <TiltCard
                       className={`glass-panel group relative overflow-visible rounded-xl border border-white/5 p-6 bg-slate-950/40 transition-all duration-300 hover:shadow-md flex flex-col justify-between h-full ${borderColors[index % borderColors.length]}`}
@@ -190,7 +190,7 @@ export function TechStackSection() {
                       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     </TiltCard>
                   </GlowBorder>
-                </ThreeDReveal>
+                </Reveal>
               );
             })}
           </div>
@@ -246,7 +246,7 @@ export function ProjectsSection() {
           {projects.map((project, index) => {
             const borders = ["border-t-2 border-t-cyan-500/50", "border-t-2 border-t-blue-500/50", "border-t-2 border-t-cyan-400/50", "border-t-2 border-t-blue-400/50"];
             return (
-              <ThreeDReveal 
+              <Reveal 
                 key={project.title} 
                 delay={index * 0.08}
                 className={`overflow-visible ${index === 0 ? "lg:col-span-4" : "lg:col-span-2"}`}
@@ -288,7 +288,7 @@ export function ProjectsSection() {
                     </TiltCard>
                   </GlowBorder>
                 </Link>
-              </ThreeDReveal>
+              </Reveal>
             );
           })}
         </div>
@@ -311,7 +311,7 @@ export function WhySection() {
             const borders = ["border-t-2 border-t-cyan-500/50", "border-t-2 border-t-blue-500/50", "border-t-2 border-t-cyan-400/50", "border-t-2 border-t-blue-400/50"];
             const icons = ["text-cyan-455", "text-blue-400", "text-cyan-400", "text-blue-455"];
             return (
-              <ThreeDReveal key={reason.label} delay={index * 0.04}>
+              <Reveal key={reason.label} delay={index * 0.04}>
                 <div className={`glass-panel rounded-xl p-5 border border-white/5 bg-slate-950/40 ${borders[index % borders.length]}`}>
                   <div className="flex items-start justify-between">
                     <reason.icon className={`h-6 w-6 ${icons[index % icons.length]}`} aria-hidden />
@@ -319,7 +319,7 @@ export function WhySection() {
                   </div>
                   <p className="mt-8 font-display text-xl font-semibold text-white">{reason.value}</p>
                 </div>
-              </ThreeDReveal>
+              </Reveal>
             );
           })}
         </div>
@@ -339,7 +339,7 @@ export function TestimonialsSection() {
         />
         <div className="grid gap-5 lg:grid-cols-3">
           {testimonials.map((item, index) => (
-            <ThreeDReveal key={item.name} delay={index * 0.08}>
+            <Reveal key={item.name} delay={index * 0.08}>
               <div className="glass-panel h-full rounded-2xl p-6 border border-white/5 bg-slate-950/40">
                 <p className="text-lg leading-8 text-slate-350">"{item.quote}"</p>
                 <div className="mt-8 border-t border-white/10 pt-5">
@@ -347,7 +347,7 @@ export function TestimonialsSection() {
                   <p className="mt-1 text-sm text-slate-400">{item.role}</p>
                 </div>
               </div>
-            </ThreeDReveal>
+            </Reveal>
           ))}
         </div>
       </div>

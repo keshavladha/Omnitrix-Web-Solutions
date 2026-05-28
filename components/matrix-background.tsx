@@ -115,9 +115,10 @@ export function MatrixBackground() {
           const pj = particles[j];
           const dx = pi.x - pj.x;
           const dy = pi.y - pj.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < 100) {
+          if (distSq < 10000) { // 100 * 100
+            const dist = Math.sqrt(distSq);
             const alpha = (100 - dist) / 100 * 0.08;
             ctx.beginPath();
             ctx.moveTo(pi.x, pi.y);
