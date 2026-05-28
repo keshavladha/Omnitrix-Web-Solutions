@@ -10,11 +10,14 @@ import {
   HelpCircle, 
   Users, 
   ArrowRight,
-  Wallet
+  Wallet,
+  Volume2,
+  VolumeX
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
+import { getMuteState, setMuteState, playCyberClick, playCyberHover } from "@/lib/audio-effects";
 
 // Helper to render dynamic icons by their string name
 function DropdownIcon({ name, className }: { name: string; className?: string }) {
@@ -36,8 +39,22 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [muted, setMuted] = useState(false);
   const pathname = usePathname();
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    setMuted(getMuteState());
+  }, []);
+
+  const toggleSound = () => {
+    const nextMute = !muted;
+    setMuteState(nextMute);
+    setMuted(nextMute);
+    if (!nextMute) {
+      setTimeout(() => playCyberClick(), 50);
+    }
+  };
 
   // Close dropdowns on route change
   useEffect(() => {
@@ -88,6 +105,8 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => playCyberClick()}
+                onMouseEnter={() => playCyberHover()}
                 className={`text-[11px] font-bold uppercase tracking-wider rounded-full px-4.5 py-2.5 transition-all duration-300 relative flex items-center gap-1 ${
                   isActive 
                     ? "text-cyan-400 bg-white/10 shadow-md border border-white/5 font-extrabold" 
@@ -106,10 +125,11 @@ export function Header() {
           {/* Resources Hover Dropdown Pill */}
           <div 
             className="relative"
-            onMouseEnter={handleMouseEnter}
+            onMouseEnter={() => { handleMouseEnter(); playCyberHover(); }}
             onMouseLeave={handleMouseLeave}
           >
             <button
+              onClick={() => playCyberClick()}
               className={`text-[11px] font-bold uppercase tracking-wider rounded-full px-4.5 py-2.5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer outline-none relative ${
                 isResourceActive
                   ? "text-cyan-400 bg-white/10 shadow-md border border-white/5 font-extrabold"
@@ -176,8 +196,25 @@ export function Header() {
 
         {/* Action Buttons & Hamburger Menu */}
         <div className="flex items-center gap-3">
+          {/* Volume Mute Toggle */}
+          <button
+            onClick={toggleSound}
+            onMouseEnter={() => playCyberHover()}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#0a0e16]/60 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 cursor-pointer shadow-sm relative group"
+            aria-label={muted ? "Unmute sound effects" : "Mute sound effects"}
+          >
+            {muted ? <VolumeX className="h-4 w-4 text-slate-400" /> : <Volume2 className="h-4 w-4 text-cyan-400" />}
+            
+            {/* Tooltip */}
+            <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 rounded bg-black/90 border border-white/10 px-2 py-1 text-[8px] font-bold text-white uppercase tracking-wider opacity-0 group-hover:opacity-100 transition duration-200 pointer-events-none whitespace-nowrap">
+              {muted ? "Sound Off" : "Sound On"}
+            </span>
+          </button>
+
           <Link
             href="/contact"
+            onClick={() => playCyberClick()}
+            onMouseEnter={() => playCyberHover()}
             className="hidden rounded-full border border-cyan-500/20 bg-cyan-500/10 px-5.5 py-2.5 text-xs font-bold uppercase tracking-wider text-cyan-400 transition-all duration-300 hover:bg-cyan-600 hover:text-black hover:shadow-[0_4px_12px_rgba(64,232,255,0.15)] sm:block cursor-pointer"
           >
             Start Project

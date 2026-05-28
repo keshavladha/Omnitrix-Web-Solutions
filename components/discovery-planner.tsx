@@ -136,6 +136,17 @@ Please schedule a discovery call to review my requirements!`;
     return `/contact?projectType=${selectedGoal === "whatsapp" ? "ecommerce" : selectedGoal === "booking" ? "app" : "business"}&budget=${budgetVal}&message=${encodeURIComponent(msg)}`;
   };
 
+  const getWhatsAppUrl = () => {
+    const res = getResultPlan();
+    const goalLabel = goals.find((g) => g.id === selectedGoal)?.label || "";
+    const indLabel = industries.find((i) => i.id === selectedIndustry)?.label || "";
+    const timeLabel = timelines.find((t) => t.id === selectedTimeline)?.label || "";
+    
+    const msg = `*OMNITRIX PROJECT DISCOVERY BRIEF* 🚀\n-------------------------------------------\n👤 *Primary Goal:* ${goalLabel}\n🏢 *Industry Sector:* ${indLabel}\n📅 *Timeline:* ${timeLabel}\n🛠️ *Strategy Blueprint:* ${res.planName}\n📦 *Recommended Stack:* ${res.stack}\n-------------------------------------------\nPlease schedule a discovery call to review my requirements!`;
+
+    return `https://api.whatsapp.com/send?phone=+917027340360&text=${encodeURIComponent(msg)}`;
+  };
+
   const result = getResultPlan();
 
   return (
@@ -399,16 +410,25 @@ Please schedule a discovery call to review my requirements!`;
               
               <Link
                 href={getHandoffUrl()}
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/10 bg-slate-950 px-6 text-xs font-semibold text-slate-300 transition hover:bg-white/5 hover:border-cyan-500/30 hover:text-cyan-400 cursor-pointer shadow-sm"
+              >
+                Apply to Contact Form
+              </Link>
+
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-cyan-500 px-6 text-xs font-bold text-obsidian-lowest transition hover:bg-cyan-400 shadow-sm hover:shadow-cyan-500/20 cursor-pointer"
                 style={{ color: "#02040a" }}
               >
-                Apply This Blueprint To Contact
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+                <MessageSquare className="h-3.5 w-3.5" />
+                Send Brief via WhatsApp
+              </a>
             </div>
             
-            <p className="text-center text-[10px] text-slate-400 mt-4 leading-relaxed max-w-md mx-auto">
-              Applying pre-fills all contact form fields (goals, stack, timeline) dynamically so Keshav can immediately prepare your proposal scope.
+            <p className="text-center text-[10px] text-slate-400 mt-4 leading-relaxed max-w-lg mx-auto">
+              Choose to **Send via WhatsApp** to instantly message Keshav your formatted blueprint brief, or **Apply to Contact Form** to pre-fill the local project inquiry form.
             </p>
           </Reveal>
         )}
