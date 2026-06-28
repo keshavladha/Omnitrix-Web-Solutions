@@ -180,7 +180,7 @@ function EngineNode({
             scale: isHovered ? 1.05 : 1,
             // Glass materials shift when hovered
           }}
-          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Main node */}
           <div

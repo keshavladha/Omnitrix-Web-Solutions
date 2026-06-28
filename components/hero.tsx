@@ -105,10 +105,10 @@ export function Hero() {
 
           {/* Supporting paragraph */}
           <motion.p
-            className="mt-8 max-w-lg text-lg leading-8 text-slate-400"
+            className="mt-8 max-w-lg text-lg leading-relaxed text-slate-400/90"
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+            transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             Premium design, conversion strategy, and full-stack development for companies that need a serious digital presence.
           </motion.p>
@@ -139,7 +139,7 @@ export function Hero() {
           className="relative mx-auto flex items-center justify-center lg:mx-0"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           <ArchitectureEngine />
         </motion.div>

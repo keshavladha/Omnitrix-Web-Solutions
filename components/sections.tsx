@@ -12,7 +12,7 @@ import { useRef } from "react";
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-32 relative">
+    <section id="about" className="py-40 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0d12]/50 to-transparent" />
       <div className="container relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
@@ -50,7 +50,7 @@ export function AboutSection() {
 
 export function ServicesSection() {
   return (
-    <section id="services" className="py-32">
+    <section id="services" className="py-40">
       <div className="container">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-3xl">
@@ -70,24 +70,26 @@ export function ServicesSection() {
             <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-20 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
             return (
               <Reveal key={service.title} delay={index * 0.05}>
                 <Link href="/services" className="block h-full group">
-                  <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/5 bg-[#0a0d12] p-8 transition-colors duration-500 hover:bg-[#12161f]">
-                    {/* Hover Light Sweep */}
-                    <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full" />
-                    
-                    {/* Accent bar */}
-                    <div className="absolute left-0 top-0 h-full w-1 bg-blue-500/0 transition-colors duration-300 group-hover:bg-blue-500/50" />
-                    
-                    <div>
-                      <service.icon className="h-7 w-7 text-blue-400 transition-transform duration-500 group-hover:rotate-[15deg] group-hover:scale-110" aria-hidden />
-                      <h3 className="mt-6 font-display text-xl font-semibold text-white">{service.title}</h3>
-                      <p className="mt-3 text-sm leading-6 text-slate-400">{service.copy}</p>
+                  <TiltCard className="h-full">
+                    <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-2xl glass-panel p-8 transition-all duration-700">
+                      {/* Interactive Glass Sheen */}
+                      <div className="absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 ease-[0.16,1,0.3,1] group-hover:translate-x-[150%] rotate-12" />
+                      
+                      {/* Accent glow on hover */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-0 bg-gradient-to-r from-transparent via-blue-400 to-transparent transition-all duration-700 group-hover:w-3/4 opacity-0 group-hover:opacity-100" />
+                      
+                      <div>
+                        <service.icon className="h-7 w-7 text-blue-400 transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:-translate-y-1 group-hover:scale-110" aria-hidden />
+                        <h3 className="mt-8 font-display text-xl font-semibold text-white">{service.title}</h3>
+                        <p className="mt-3 text-sm leading-relaxed text-slate-400/90">{service.copy}</p>
+                      </div>
                     </div>
-                  </div>
+                  </TiltCard>
                 </Link>
               </Reveal>
             );
@@ -109,7 +111,7 @@ const techStackItems = [
 
 export function TechStackSection() {
   return (
-    <section id="stack" className="py-32 relative">
+    <section id="stack" className="py-40 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0d12]/50 to-transparent" />
       <div className="container relative">
         <SectionHeading
@@ -162,7 +164,7 @@ export function TechStackSection() {
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-32 relative">
+    <section id="projects" className="py-40 relative">
       <div className="container relative">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-3xl">
@@ -260,7 +262,7 @@ export function ProcessSection() {
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="process" className="py-32 relative">
+    <section id="process" className="py-40 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0d12]/50 to-transparent" />
       <div className="container relative" ref={containerRef}>
         <SectionHeading
@@ -346,7 +348,7 @@ export function ProcessSection() {
 
 export function WhySection() {
   return (
-    <section id="why-us" className="py-32">
+    <section id="why-us" className="py-40">
       <div className="container">
         <SectionHeading
           eyebrow="Why choose us"
@@ -375,7 +377,7 @@ export function WhySection() {
 
 export function TestimonialsSection() {
   return (
-    <section className="py-32 relative">
+    <section className="py-40 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0d12]/50 to-transparent" />
       <div className="container relative">
         <SectionHeading
@@ -403,7 +405,7 @@ export function TestimonialsSection() {
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-32 relative">
+    <section id="contact" className="py-40 relative">
       <div className="container relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">Contact</p>
@@ -477,7 +479,7 @@ export function ContactSection() {
 
 export function CTASection() {
   return (
-    <section className="py-24">
+    <section className="py-32">
       <div className="container">
         <ThreeDReveal>
           <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[32px] border border-white/10 bg-[#0a0d12] p-10 text-center sm:p-16 shadow-2xl">
