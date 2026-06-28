@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { CyberPointer } from "@/components/cyber-pointer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -61,7 +60,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#02040a",
+  themeColor: "#050608",
 };
 
 export default function RootLayout({
@@ -72,7 +71,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <CyberPointer />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                if (typeof window !== 'undefined' && (window.location.search.includes('app=true') || window.self !== window.top)) {
+                  document.documentElement.classList.add('is-app');
+                }
+              })();
+            `
+          }}
+        />
+
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white/6 focus:px-3 focus:py-2 focus:text-white">Skip to content</a>
 
         <main id="main" className="relative z-10">{children}</main>
@@ -81,7 +91,7 @@ export default function RootLayout({
         <div className="pointer-events-none">
           <a
             href="https://api.whatsapp.com/send?phone=+917027340360&text=Hi,%20I%27d%20like%20to%20start%20a%20project"
-            className="pointer-events-auto fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-white/10 bg-gradient-to-br from-cyan-400/20 to-blue-500/8 px-4 py-3 shadow-lg backdrop-blur hover:scale-105 transition-transform"
+            className="pointer-events-auto fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-2xl border border-white/8 bg-white/4 px-4 py-3 shadow-lg backdrop-blur-md hover:scale-105 hover:bg-white/6 transition-all duration-300"
             aria-label="Chat on WhatsApp"
             rel="noreferrer"
           >

@@ -37,8 +37,8 @@ export function Footer() {
           {/* Brand Column */}
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-500/20 bg-cyan-950/10 shadow-sm">
-                <Aperture className="h-5 w-5 text-cyan-400" aria-hidden />
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-blue-500/20 bg-blue-950/10 shadow-sm">
+                <Aperture className="h-5 w-5 text-blue-400" aria-hidden />
               </span>
               <span className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-white">
                 Omnitrix
@@ -53,7 +53,7 @@ export function Footer() {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-slate-950/40 text-slate-400 transition hover:bg-slate-900/60 hover:text-cyan-400"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-slate-950/40 text-slate-400 transition hover:bg-slate-900/60 hover:text-blue-400"
                 >
                   <social.icon className="h-4 w-4" aria-hidden />
                 </a>
@@ -67,7 +67,7 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-slate-400 transition hover:text-cyan-400">
+                  <Link href={link.href} className="text-sm text-slate-400 transition hover:text-blue-400">
                     {link.label}
                   </Link>
                 </li>
@@ -81,7 +81,7 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-slate-400 transition hover:text-cyan-400">
+                  <Link href={link.href} className="text-sm text-slate-400 transition hover:text-blue-400">
                     {link.label}
                   </Link>
                 </li>
@@ -95,7 +95,7 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm text-slate-400 transition hover:text-cyan-400">
+                  <Link href={link.href} className="text-sm text-slate-400 transition hover:text-blue-400">
                     {link.label}
                   </Link>
                 </li>
@@ -111,7 +111,7 @@ export function Footer() {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="flex items-center gap-2 text-sm text-slate-400 transition hover:text-cyan-400"
+                    className="flex items-center gap-2 text-sm text-slate-400 transition hover:text-blue-400"
                   >
                     <item.icon className="h-4 w-4 text-slate-400" />
                     <span className="truncate">{item.label}</span>
@@ -138,7 +138,7 @@ export function Footer() {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1 text-cyan-400 font-semibold transition hover:text-cyan-300"
+              className="inline-flex items-center gap-1 text-blue-400 font-semibold transition hover:text-blue-300"
             >
               Start a project
               <ArrowUpRight className="h-3.5 w-3.5" />

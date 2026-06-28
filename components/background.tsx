@@ -1,68 +1,228 @@
 "use client";
-import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform } from "framer-motion";
-import { useEffect } from "react";
-import { MatrixBackground } from "./matrix-background";
+import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform, useSpring } from "framer-motion";
+import { useEffect, useRef, useCallback } from "react";
 
-export function AmbientBackground() {
-  const mouseX = useMotionValue(50);
-  const mouseY = useMotionValue(18);
-  
-  // Track cursor with Premium Neon Tech Cyan brand radial gradient
-  const background = useMotionTemplate`radial-gradient(circle at ${mouseX}% ${mouseY}%, rgba(64, 232, 255, 0.08), transparent 26rem)`;
+/**
+ * Cinematic Environment Layer (Brahmastra V5)
+ * 
+ * Physical Lighting & Depth:
+ * - Layer 0: The Deep Void (Obsidian base)
+ * - Layer 1: Distant Parallax Stars (Slow)
+ * - Layer 2: Midground Parallax Grid (Perspective tilt)
+ * - Layer 3: Volumetric Spotlights (Scroll-linked to illuminate sections)
+ * - Layer 4: Interactive Dust (Mouse-repellent)
+ * - Layer 5: Machined Vignette & Optical Noise
+ */
 
-  // Scroll tracking for parallax background movement
-  const { scrollY } = useScroll();
+// ── Multi-Layer Parallax Dust/Stars ──
+function ParticleField() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<{ x: number; y: number; vx: number; vy: number; opacity: number; size: number; layer: number }[]>([]);
+  const animationRef = useRef<number>(0);
+  const scrollYRef = useRef(0);
+  const mouseRef = useRef({ x: 500, y: 500 });
 
-  // Scroll mapping transforms for depth layers
-  // Layer 1 (Tech grid): shifts at mechanical speed
-  const yGrid = useTransform(scrollY, [0, 4000], [0, -350]);
-  
-  // Layer 2 (Orbs and rings): shifts at high speed, creating dramatic relative depth
-  const yOrbLeft = useTransform(scrollY, [0, 4000], [0, -600]);
-  const yOrbRight = useTransform(scrollY, [0, 4000], [0, -1000]);
-
-  // Layer 3 (Foreground accent lines): slides dynamically
-  const yAccents = useTransform(scrollY, [0, 4000], [0, -800]);
+  const initParticles = useCallback((width: number, height: number) => {
+    const particles = [];
+    // Distant stars (Layer 1)
+    for (let i = 0; i < 50; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: 0,
+        vy: -0.05,
+        opacity: 0.1 + Math.random() * 0.2,
+        size: 0.5 + Math.random() * 1,
+        layer: 1,
+      });
+    }
+    // Midground dust (Layer 2)
+    for (let i = 0; i < 30; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.1,
+        vy: -0.1 + (Math.random() - 0.5) * 0.1,
+        opacity: 0.2 + Math.random() * 0.3,
+        size: 1 + Math.random() * 1.5,
+        layer: 2,
+      });
+    }
+    // Foreground interactive dust (Layer 3)
+    for (let i = 0; i < 20; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: -0.2 + (Math.random() - 0.5) * 0.2,
+        opacity: 0.4 + Math.random() * 0.4,
+        size: 2 + Math.random() * 2,
+        layer: 3,
+      });
+    }
+    particlesRef.current = particles;
+  }, []);
 
   useEffect(() => {
-    const onMove = (event: PointerEvent) => {
-      mouseX.set((event.clientX / window.innerWidth) * 100);
-      mouseY.set((event.clientY / window.innerHeight) * 100);
+    const onScroll = () => { scrollYRef.current = window.scrollY; };
+    const onMove = (e: MouseEvent) => { 
+      mouseRef.current = { x: e.clientX, y: e.clientY }; 
     };
-
+    
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("pointermove", onMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onMove);
-  }, [mouseX, mouseY]);
+    
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles(canvas.width, canvas.height);
+    };
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
+
+    let lastScrollY = scrollYRef.current;
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const scrollDelta = scrollYRef.current - lastScrollY;
+      lastScrollY = scrollYRef.current;
+
+      for (const p of particlesRef.current) {
+        // Base movement
+        p.x += p.vx;
+        p.y += p.vy;
+        
+        // Scroll Parallax (Foreground moves faster)
+        p.y -= scrollDelta * (p.layer * 0.15);
+
+        // Interactive repel for foreground dust
+        if (p.layer === 3) {
+          const dx = mouseRef.current.x - p.x;
+          const dy = mouseRef.current.y - p.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            p.x -= (dx / dist) * 1.5;
+            p.y -= (dy / dist) * 1.5;
+          }
+        }
+
+        // Wrap around
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        
+        // Add subtle bloom to foreground particles
+        if (p.layer === 3) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = `rgba(59, 130, 246, ${p.opacity})`;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+        
+        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+        ctx.fill();
+      }
+      animationRef.current = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animationRef.current);
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pointermove", onMove);
+    };
+  }, [initParticles]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      {/* Live mouse tracking background */}
-      <motion.div className="absolute inset-0" style={{ background }} />
-      
-      {/* Dynamic interactive Canvas matrix background particles layer */}
-      <MatrixBackground />
-      
-      {/* Parallax sliding futuristic tech grid */}
-      <motion.div className="grid-mask absolute inset-0 opacity-80" style={{ y: yGrid }} />
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 pointer-events-none"
+      style={{ willChange: "transform" }}
+      aria-hidden="true"
+    />
+  );
+}
 
-      {/* Layer 2: Giant Ambient Glowing Spheres (Scroll-driven Parallax Orbs) */}
-      <motion.div
-        className="absolute left-[-15%] top-[20vh] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(64,232,255,0.05),transparent_70%)] blur-3xl animate-pulse"
-        style={{ y: yOrbLeft }}
-      />
-      <motion.div
-        className="absolute right-[-10%] top-[55vh] h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(47,125,255,0.04),transparent_70%)] blur-3xl"
-        style={{ y: yOrbRight }}
+export function AmbientBackground() {
+  const { scrollY, scrollYProgress } = useScroll();
+  
+  // Smooth the scroll progress for lighting transitions
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 40, damping: 20 });
+
+  // Dynamic Volumetric Lighting
+  // As user scrolls, the primary light source shifts its Y position and expands
+  const lightY = useTransform(smoothProgress, [0, 1], ["-10%", "110%"]);
+  const lightScale = useTransform(smoothProgress, [0, 0.5, 1], [1, 1.5, 1]);
+  const lightOpacity = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [0.15, 0.25, 0.25, 0.15]);
+
+  // Secondary ambient wash that moves in opposition
+  const ambientY = useTransform(smoothProgress, [0, 1], ["120%", "-20%"]);
+
+  return (
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#020305]">
+      
+      {/* ── Midground Perspective Grid ── */}
+      <div 
+        className="absolute left-0 right-0 top-[20%] h-[120vh] opacity-10"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)`,
+          backgroundSize: '4rem 4rem',
+          transform: 'perspective(1000px) rotateX(60deg) scale(2.5)',
+          transformOrigin: 'top center',
+          maskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 0%, transparent 100%)',
+        }}
       />
 
-      {/* Layer 3: High-tech linear accents that move at a different parallax rate */}
+      {/* ── Volumetric Light Sources (Screen Blending for physical light addition) ── */}
       <motion.div
-        className="absolute left-[8%] top-[32%] h-px w-52 bg-gradient-to-r from-transparent via-cyan-400/20 to-transparent"
-        style={{ y: yAccents }}
+        className="absolute left-[10%] right-[10%] aspect-square rounded-full mix-blend-screen"
+        style={{
+          y: lightY,
+          scale: lightScale,
+          opacity: lightOpacity,
+          background: "radial-gradient(circle at center, rgba(59, 130, 246, 0.8) 0%, rgba(99, 102, 241, 0.3) 30%, transparent 70%)",
+          filter: "blur(120px)",
+        }}
       />
+
       <motion.div
-        className="absolute right-[10%] top-[18%] h-64 w-px bg-gradient-to-b from-transparent via-blue-500/10 to-transparent"
-        style={{ y: yAccents }}
+        className="absolute -left-[20%] -right-[20%] aspect-square rounded-full mix-blend-screen"
+        style={{
+          y: ambientY,
+          opacity: 0.1,
+          background: "radial-gradient(circle at center, rgba(139, 92, 246, 0.6) 0%, transparent 60%)",
+          filter: "blur(140px)",
+        }}
+      />
+
+      {/* ── Interactive & Parallax Dust ── */}
+      <ParticleField />
+
+      {/* ── Optical Noise & Vignette (Simulates camera sensor) ── */}
+      <div
+        className="absolute inset-0 opacity-[0.03] mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          backgroundSize: "200px 200px",
+        }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "radial-gradient(ellipse at center, transparent 40%, rgba(2, 3, 5, 0.8) 100%)",
+        }}
       />
     </div>
   );

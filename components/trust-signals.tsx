@@ -33,7 +33,7 @@ export function TrustSignalsSection() {
     <section className="border-y border-white/5 bg-slate-950/20 py-12">
       <div className="container">
         <Reveal>
-          <p className="mb-8 text-center text-xs font-semibold uppercase tracking-[0.28em] text-slate-400">
+          <p className="mb-8 text-center text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">
             Built for modern businesses across high-trust industries
           </p>
         </Reveal>
@@ -43,7 +43,7 @@ export function TrustSignalsSection() {
             {industries.map((industry) => (
               <div
                 key={industry}
-                className="rounded-full border border-white/5 bg-slate-950/40 px-5 py-2.5 text-sm font-medium text-slate-300 shadow-sm hover:border-cyan-500/20 transition-all duration-300"
+                className="rounded-full border border-white/5 bg-slate-950/40 px-5 py-2.5 text-sm font-medium text-slate-300 shadow-sm hover:border-blue-500/20 transition-all duration-300"
               >
                 {industry}
               </div>
@@ -60,7 +60,7 @@ export function TrustSignalsSection() {
               { label: "Scalable codebase", icon: Code2 },
             ].map((badge) => (
               <div key={badge.label} className="flex items-center gap-2 text-sm text-slate-300 font-medium">
-                <badge.icon className="h-4 w-4 text-cyan-455" aria-hidden />
+                <badge.icon className="h-4 w-4 text-blue-400" aria-hidden />
                 <span>{badge.label}</span>
               </div>
             ))}
@@ -76,7 +76,7 @@ export function WhyOmnitrixSection() {
     <section className="container py-20">
       <Reveal>
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-2 text-sm text-cyan-400 font-semibold">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-2 text-sm text-blue-400 font-semibold">
             Agency standard
           </div>
           <h2 className="font-display text-3xl font-semibold text-white sm:text-5xl">
@@ -96,8 +96,8 @@ export function WhyOmnitrixSection() {
       <div className="mt-12 grid gap-5 lg:grid-cols-4">
         {differentiators.map((item, index) => (
           <Reveal key={item.title} delay={0.06 * index}>
-            <div className="glass relative h-full rounded-2xl p-6 transition hover:-translate-y-1 hover:border-cyan-500/30 hover:shadow-md">
-              <item.icon className="h-6 w-6 text-cyan-400" aria-hidden />
+            <div className="glass relative h-full rounded-2xl p-6 transition hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-md">
+              <item.icon className="h-6 w-6 text-blue-400" aria-hidden />
               <h3 className="mt-5 font-display text-lg font-semibold text-white">
                 {item.title}
               </h3>

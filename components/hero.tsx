@@ -1,159 +1,148 @@
-import { MagneticButton, Reveal, TiltCard } from "@/components/motion";
-import { GlowBorder } from "@/components/glow-border";
-import { BarChart3, CheckCircle2, Gauge, MousePointer2, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
+"use client";
+
+import { MagneticButton } from "@/components/motion";
+import { ArchitectureEngine } from "@/components/architecture-engine";
+import { motion, useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+
+// ── Animated count-up hook ──
+function useCountUp(target: number, duration: number = 1.5, inView: boolean) {
+  const [count, setCount] = useState(0);
+  const hasRun = useRef(false);
+
+  useEffect(() => {
+    if (!inView || hasRun.current) return;
+    hasRun.current = true;
+
+    const startTime = performance.now();
+    const step = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [target, duration, inView]);
+
+  return count;
+}
+
+// ── Cinematic Masked Typography Reveal ──
+function MaskedHeadline({ text }: { text: string }) {
+  const words = text.split(" ");
+  return (
+    <h1 className="font-display max-w-2xl text-5xl font-semibold leading-[1.08] text-white sm:text-6xl lg:text-7xl">
+      {words.map((word, i) => (
+        <span key={i} className="inline-block overflow-hidden mr-[0.28em] align-top py-1">
+          <motion.span
+            className="inline-block"
+            initial={{ y: "110%", rotate: 2 }}
+            animate={{ y: "0%", rotate: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.4 + i * 0.08,
+              ease: [0.16, 1, 0.3, 1], // Expansive Apple-style easing
+            }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </h1>
+  );
+}
+
+// ── Trust Metric ──
+function TrustMetric({ value, suffix, label, inView, delay }: {
+  value: number;
+  suffix: string;
+  label: string;
+  inView: boolean;
+  delay: number;
+}) {
+  const count = useCountUp(value, 2, inView);
+  return (
+    <motion.div
+      className="text-center"
+      initial={{ opacity: 0, filter: "blur(8px)", y: 10 }}
+      animate={inView ? { opacity: 1, filter: "blur(0px)", y: 0 } : {}}
+      transition={{ duration: 1, delay, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <div className="font-display text-2xl font-semibold text-white">
+        {count}{suffix}
+      </div>
+      <div className="mt-1 text-xs font-medium text-slate-400">{label}</div>
+    </motion.div>
+  );
+}
 
 export function Hero() {
+  const metricsRef = useRef<HTMLDivElement>(null);
+  const metricsInView = useInView(metricsRef, { once: true, margin: "-40px" });
+
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden px-0 pb-20 pt-28">
-      {/* Background Gradients */}
-      <div className="absolute left-1/2 top-20 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(64,232,255,0.08),transparent_68%)]" />
-      <div className="absolute right-[8%] top-32 hidden h-44 w-44 rounded-full border border-white/5 bg-slate-950/40 lg:block" />
-
-      <div className="container relative grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+    <section className="relative flex min-h-screen items-center overflow-hidden px-0 pb-24 pt-32">
+      <div className="container relative grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] z-10">
+        
+        {/* ── Left Column: Copy ── */}
         <div>
-          <Reveal>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-2 text-sm text-cyan-400 font-semibold backdrop-blur">
-              <Sparkles className="h-4 w-4" aria-hidden />
-              Premium websites for growth-focused brands
-            </div>
-          </Reveal>
+          {/* Eyebrow */}
+          <div className="overflow-hidden mb-8">
+            <motion.div
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: "0%", opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-2 text-sm font-medium text-blue-400">
+                Web Solutions Studio
+              </span>
+            </motion.div>
+          </div>
 
-          <Reveal delay={0.08}>
-            <h1 className="font-display max-w-5xl text-5xl font-semibold leading-[1.02] text-white sm:text-7xl lg:text-8xl">
-              We Build Fast, Modern Websites That Grow Businesses
-            </h1>
-          </Reveal>
+          {/* Headline */}
+          <MaskedHeadline text="We engineer websites that grow businesses." />
 
-          <Reveal delay={0.16}>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-350">
-              Omnitrix Web Solutions helps businesses grow with premium websites, sharp branding, conversion-focused UX, and performance-first full-stack development.
-            </p>
-          </Reveal>
+          {/* Supporting paragraph */}
+          <motion.p
+            className="mt-8 max-w-lg text-lg leading-8 text-slate-400"
+            initial={{ opacity: 0, filter: "blur(10px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+          >
+            Premium design, conversion strategy, and full-stack development for companies that need a serious digital presence.
+          </motion.p>
 
-          <Reveal delay={0.24} className="mt-9 flex flex-col gap-4 sm:flex-row">
+          {/* CTA Buttons */}
+          <motion.div
+            className="mt-10 flex flex-col gap-4 sm:flex-row"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          >
             <MagneticButton href="/contact">Start a Project</MagneticButton>
-            <MagneticButton href="/#projects" variant="secondary">View Work</MagneticButton>
-          </Reveal>
+            <MagneticButton href="/#projects" variant="secondary">View Our Work</MagneticButton>
+          </motion.div>
 
-          <Reveal delay={0.32}>
-            <div className="mt-10 flex flex-wrap gap-3 text-sm text-slate-400 font-medium">
-              {["Fast", "SEO Optimized", "Mobile First", "Scalable"].map((item) => (
-                <span key={item} className="inline-flex items-center gap-2 rounded-full border border-cyan-500/10 bg-cyan-950/20 px-4 py-2">
-                  <CheckCircle2 className="h-4 w-4 text-cyan-400" aria-hidden />
-                  {item}
-                </span>
-              ))}
-            </div>
-          </Reveal>
+          {/* Trust Metrics */}
+          <div ref={metricsRef} className="mt-14 flex gap-10">
+            <TrustMetric value={50} suffix="+" label="Projects Delivered" inView={metricsInView} delay={1.2} />
+            <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+            <TrustMetric value={99} suffix="%" label="Lighthouse Score" inView={metricsInView} delay={1.3} />
+            <div className="w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
+            <TrustMetric value={5} suffix=" day" label="Avg. Delivery" inView={metricsInView} delay={1.4} />
+          </div>
         </div>
 
-        <Reveal delay={0.18}>
-          <div className="relative mx-auto w-full max-w-[500px] h-[550px] flex items-center justify-center overflow-visible">
-            {/* Ambient Glowing Aura */}
-            <div className="absolute inset-0 bg-cyan-500/5 rounded-3xl blur-3xl scale-95 pointer-events-none -z-10 animate-pulse" />
-            
-            <GlowBorder borderRadius={24} className="w-full h-full">
-              <TiltCard className="glass-panel relative w-full h-full rounded-3xl p-6 border-white/10 shadow-2xl flex flex-col justify-between overflow-visible">
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
-              
-              {/* Background 3D Rotating Cyan Engine Mesh Core */}
-              <div 
-                className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none"
-                style={{ transform: "translateZ(-30px) scale(0.9)" }}
-              >
-                <img 
-                  src="/futuristic_3d_emerald_engine.png" 
-                  alt="3D Tech Engine Core" 
-                  className="w-[380px] h-[380px] object-contain animate-[spin_40s_linear_infinite] hue-rotate-[145deg] saturate-[180%]"
-                />
-              </div>
-
-              {/* Base Dashboard Mockup Layout */}
-              <div className="w-full h-full flex flex-col justify-between" style={{ transform: "translateZ(10px)", transformStyle: "preserve-3d" }}>
-                {/* Header Mockup */}
-                <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-4">
-                  <div className="flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-red-500/40" />
-                    <span className="h-3 w-3 rounded-full bg-yellow-500/40" />
-                    <span className="h-3 w-3 rounded-full bg-cyan-500/40" />
-                  </div>
-                  <div className="h-5 w-40 rounded-full bg-white/5 border border-white/5" />
-                </div>
-                
-                {/* Dashboard Chart Mockup */}
-                <div className="flex-1 flex flex-col justify-between bg-slate-950/20 border border-white/5 rounded-2xl p-4">
-                  <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
-                    <span>Performance Matrix</span>
-                    <span className="font-bold text-cyan-400 uppercase tracking-widest text-[10px]">Growth Enabled</span>
-                  </div>
-                  <div className="mt-4 flex items-end justify-between h-28 gap-2">
-                    {[45, 60, 35, 75, 50, 92, 70, 85].map((val, idx) => (
-                      <div key={idx} className="flex-1 bg-gradient-to-t from-blue-950/60 to-cyan-500/30 rounded-t-lg border-t border-cyan-450/40 transition-all duration-500" style={{ height: `${val}%` }} />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Bottom Stats Grid */}
-                <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-                  {[
-                    ["99%", "Speed"],
-                    ["100%", "Mobile"],
-                    ["24/7", "Secure"],
-                  ].map(([value, label]) => (
-                    <div key={label} className="rounded-xl bg-slate-950/60 p-3 border border-white/5 shadow-md">
-                      <div className="font-display text-lg font-bold text-white">{value}</div>
-                      <div className="text-[10px] text-slate-400 font-medium uppercase tracking-wider mt-0.5">{label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* FLOATING 3D LAYERS popping out at higher translateZ depths */}
-
-              {/* Floating Layer 1 (Conversion Rate widget) */}
-              <div 
-                className="absolute -right-8 top-16 glass rounded-2xl p-4 shadow-2xl border border-cyan-500/30 w-44"
-                style={{ transform: "translateZ(60px)", transformStyle: "preserve-3d" }}
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className="h-8 w-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                    <TrendingUp className="h-4.5 w-4.5 text-cyan-400" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Conversions</p>
-                    <p className="font-display text-base font-extrabold text-white mt-0.5">+48% growth</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Layer 2 (Active Leads dialogue) */}
-              <div 
-                className="absolute -left-12 top-48 glass rounded-2xl p-4 shadow-2xl border border-white/10 w-48"
-                style={{ transform: "translateZ(90px)", transformStyle: "preserve-3d" }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-cyan-400 animate-ping" />
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Strategy Active</span>
-                </div>
-                <h4 className="mt-2 text-[13px] font-bold text-white">B2B Lead Flow Optimized</h4>
-                <p className="text-[10px] text-slate-400 mt-1">Core Web Vitals are fully optimized.</p>
-              </div>
-
-              {/* Floating Layer 3 (Secure payments chip) */}
-              <div 
-                className="absolute right-12 -bottom-6 glass rounded-2xl px-4 py-3 shadow-2xl border border-cyan-500/20 w-40 flex items-center gap-2"
-                style={{ transform: "translateZ(120px)", transformStyle: "preserve-3d" }}
-              >
-                <div className="h-6 w-6 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center">
-                  <ShieldCheck className="h-3.5 w-3.5 text-cyan-400" />
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-300">Secure checkout</span>
-              </div>
-
-            </TiltCard>
-          </GlowBorder>
-        </div>
-      </Reveal>
+        {/* ── Right Column: Architecture Engine ── */}
+        <motion.div
+          className="relative mx-auto flex items-center justify-center lg:mx-0"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
+        >
+          <ArchitectureEngine />
+        </motion.div>
       </div>
     </section>
   );

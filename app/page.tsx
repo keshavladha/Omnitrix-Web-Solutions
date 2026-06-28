@@ -14,7 +14,6 @@ import {
   CTASection,
 } from "@/components/sections";
 import { TrustSignalsSection, WhyOmnitrixSection } from "@/components/trust-signals";
-import TrustBar from "@/components/trust-bar";
 
 export default function Home() {
   return (
@@ -23,7 +22,6 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <TrustBar />
         <TrustSignalsSection />
         <AboutSection />
         <ServicesSection />

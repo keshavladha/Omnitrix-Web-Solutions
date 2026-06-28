@@ -14,7 +14,7 @@ export function GlowBorder({
   children,
   className = "",
   borderRadius = 16,
-  glowColor = "#40e8ff",
+  glowColor = "#3b82f6",
   duration = 2.2,
 }: GlowBorderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -68,9 +68,9 @@ export function GlowBorder({
         >
           <defs>
             <linearGradient id="glow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor={glowColor} stopOpacity={0.8} />
-              <stop offset="40%" stopColor="#2f7dff" stopOpacity={0.9} />
-              <stop offset="70%" stopColor="#cbd5e1" stopOpacity={0.2} />
+              <stop offset="0%" stopColor={glowColor} stopOpacity={0.6} />
+              <stop offset="40%" stopColor="#8b5cf6" stopOpacity={0.5} />
+              <stop offset="80%" stopColor={glowColor} stopOpacity={0.1} />
               <stop offset="100%" stopColor={glowColor} stopOpacity={0} />
             </linearGradient>
           </defs>
@@ -88,7 +88,7 @@ export function GlowBorder({
             d={pathData}
             fill="transparent"
             stroke="url(#glow-gradient)"
-            strokeWidth="1.6"
+            strokeWidth="1.2"
             strokeDasharray={perimeter}
             initial={{ strokeDashoffset: perimeter }}
             animate={{

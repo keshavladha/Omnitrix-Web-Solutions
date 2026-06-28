@@ -586,7 +586,7 @@ export const portfolioItems = [
     category: "Cloud Native",
     year: "2024",
     description: "Automating background server scaling, transaction ledgers, and database query caching for enterprise clients.",
-    gradient: "from-green-500/40 to-teal-600/30",
+    gradient: "from-blue-500/40 to-indigo-600/30",
     icon: Home,
     tags: ["Docker", "MongoDB", "AWS DevOps"],
     link: "/case-studies",

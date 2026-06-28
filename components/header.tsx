@@ -11,15 +11,11 @@ import {
   Users, 
   ArrowRight,
   Wallet,
-  Volume2,
-  VolumeX
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { getMuteState, setMuteState, playCyberClick, playCyberHover } from "@/lib/audio-effects";
 
-// Helper to render dynamic icons by their string name
 function DropdownIcon({ name, className }: { name: string; className?: string }) {
   switch (name) {
     case "Layers":
@@ -39,22 +35,8 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [muted, setMuted] = useState(false);
   const pathname = usePathname();
-  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    setMuted(getMuteState());
-  }, []);
-
-  const toggleSound = () => {
-    const nextMute = !muted;
-    setMuteState(nextMute);
-    setMuted(nextMute);
-    if (!nextMute) {
-      setTimeout(() => playCyberClick(), 50);
-    }
-  };
+  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Close dropdowns on route change
   useEffect(() => {
@@ -73,169 +55,138 @@ export function Header() {
   const handleMouseLeave = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setDropdownOpen(false);
-    }, 150); // slight delay to prevent sudden disappearance
+    }, 150);
   };
 
-  // Check if any dropdown item is active
   const isResourceActive = resourceDropdownItems.some(
     (item) => pathname === item.href
   );
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/5 bg-black/40 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.15)] transition-all duration-300">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/5 bg-[#050608]/80 backdrop-blur-xl transition-all duration-300">
       <nav className="container flex h-16 items-center justify-between">
         
-        {/* Futuristic Brand Logo */}
+        {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3 group" aria-label="Omnitrix Web Solutions home">
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-cyan-500/20 bg-cyan-950/5 shadow-sm relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
-            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-blue-500/5 to-cyan-500/10 opacity-40 animate-pulse" />
-            <Aperture className="h-4.5 w-4.5 text-cyan-400 group-hover:rotate-90 transition-transform duration-500" aria-hidden />
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-[#0a0d12] shadow-sm transition-colors duration-300 group-hover:border-blue-500/30 group-hover:bg-[#12161f]">
+            <Aperture className="h-4.5 w-4.5 text-blue-400 transition-transform duration-500 group-hover:rotate-90" aria-hidden />
           </span>
-          <span className="font-display text-sm font-semibold uppercase tracking-[0.25em] text-white flex items-center gap-1 group-hover:text-cyan-400 transition-colors">
+          <span className="font-display text-sm font-semibold tracking-[0.1em] text-white transition-colors group-hover:text-blue-400">
             Omnitrix
-            <span className="h-1.5 w-1.5 rounded-full bg-cyan-450 inline-block animate-ping" />
           </span>
         </Link>
 
-        {/* Simplified Premium Desktop Navigation Pill */}
-        <div className="hidden items-center gap-1 xl:flex bg-black/60 border border-white/10 rounded-full px-4 py-1 shadow-2xl backdrop-blur-md">
-          {mainNavItems.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => playCyberClick()}
-                onMouseEnter={() => playCyberHover()}
-                className={`text-[11px] font-bold uppercase tracking-wider rounded-full px-4.5 py-2.5 transition-all duration-300 relative flex items-center gap-1 ${
-                  isActive 
-                    ? "text-cyan-400 bg-white/10 shadow-md border border-white/5 font-extrabold" 
+        {/* Premium Desktop Navigation */}
+        <div className="hidden items-center xl:flex">
+          <div className="flex items-center gap-1 bg-[#0a0d12]/50 border border-white/5 rounded-full px-2 py-1.5 shadow-sm backdrop-blur-md">
+            {mainNavItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-xs font-semibold tracking-wide rounded-full px-4 py-2 transition-all duration-300 flex items-center gap-2 ${
+                    isActive 
+                      ? "text-white bg-white/10 shadow-sm" 
+                      : "text-slate-400 hover:text-white hover:bg-white/5"
+                  }`}
+                >
+                  {item.label === "Pay Online" && <Wallet className="h-3.5 w-3.5" />}
+                  {item.label}
+                </Link>
+              );
+            })}
+
+            {/* Resources Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                className={`text-xs font-semibold tracking-wide rounded-full px-4 py-2 transition-all duration-300 flex items-center gap-1.5 cursor-pointer outline-none ${
+                  isResourceActive
+                    ? "text-white bg-white/10 shadow-sm"
+                    : dropdownOpen
+                    ? "text-white bg-white/10"
                     : "text-slate-400 hover:text-white hover:bg-white/5"
                 }`}
               >
-                {item.label === "Pay Online" && <Wallet className="h-3.5 w-3.5 text-cyan-400" />}
-                {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-transparent via-cyan-455 to-transparent shadow-[0_0_14px_rgba(26,219,245,0.85)]" />
-                )}
-              </Link>
-            );
-          })}
+                Resources
+                <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${dropdownOpen ? "rotate-180" : ""}`} />
+              </button>
 
-          {/* Resources Hover Dropdown Pill */}
-          <div 
-            className="relative"
-            onMouseEnter={() => { handleMouseEnter(); playCyberHover(); }}
-            onMouseLeave={handleMouseLeave}
-          >
-            <button
-              onClick={() => playCyberClick()}
-              className={`text-[11px] font-bold uppercase tracking-wider rounded-full px-4.5 py-2.5 transition-all duration-300 flex items-center gap-1.5 cursor-pointer outline-none relative ${
-                isResourceActive
-                  ? "text-cyan-400 bg-white/10 shadow-md border border-white/5 font-extrabold"
-                  : dropdownOpen
-                  ? "text-white bg-white/10"
-                  : "text-slate-400 hover:text-white hover:bg-white/5"
-              }`}
-            >
-              Resources
-              <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-350 ${dropdownOpen ? "rotate-180 text-cyan-450" : "text-slate-400"}`} />
-              {isResourceActive && (
-                <span className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-gradient-to-r from-transparent via-cyan-455 to-transparent shadow-[0_0_14px_rgba(26,219,245,0.85)]" />
-              )}
-            </button>
-
-            {/* Glowing Dropdown Panel */}
-            {dropdownOpen && (
-              <div 
-                className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-85 rounded-2xl border border-white/10 bg-black/85 shadow-2xl backdrop-blur-2xl p-3 grid gap-1.5 animate-in fade-in slide-in-from-top-2 duration-200"
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-b from-cyan-500/[0.02] to-transparent pointer-events-none" />
-                
-                {resourceDropdownItems.map((subItem) => {
-                  const isSubActive = pathname === subItem.href;
-                  return (
-                    <Link
-                      key={subItem.href}
-                      href={subItem.href}
-                      className={`group/item flex items-start gap-3 rounded-xl p-3 transition-all duration-200 ${
-                        isSubActive
-                          ? "bg-white/5 border border-white/10 shadow-[inset_0_1px_2px_rgba(0,0,0,0.01)]"
-                          : "hover:bg-white/5 border border-transparent"
-                      }`}
-                    >
-                      <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-all duration-300 ${
-                        isSubActive 
-                          ? "bg-cyan-500/10 border-cyan-400 text-cyan-400 shadow-sm" 
-                          : "bg-white/5 border-white/5 text-slate-400 group-hover/item:bg-cyan-500 group-hover/item:border-cyan-400 group-hover/item:text-black group-hover/item:scale-105"
-                      }`}>
-                        <DropdownIcon name={subItem.iconName} className="h-4.5 w-4.5" />
-                      </span>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-1.5">
-                          <span className={`text-[13px] font-bold tracking-tight transition-colors ${
-                            isSubActive ? "text-cyan-450" : "text-slate-200 group-hover/item:text-cyan-400"
-                          }`}>
-                            {subItem.label}
-                          </span>
-                          <ArrowRight className="h-3 w-3 text-cyan-400 opacity-0 -translate-x-1 transition-all duration-200 group-hover/item:opacity-100 group-hover/item:translate-x-0" />
+              {dropdownOpen && (
+                <div 
+                  className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-80 rounded-2xl border border-white/10 bg-[#0a0d12] shadow-2xl p-2 animate-in fade-in slide-in-from-top-2 duration-200"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {resourceDropdownItems.map((subItem) => {
+                    const isSubActive = pathname === subItem.href;
+                    return (
+                      <Link
+                        key={subItem.href}
+                        href={subItem.href}
+                        className={`group/item flex items-start gap-3 rounded-xl p-3 transition-all duration-200 ${
+                          isSubActive
+                            ? "bg-white/5"
+                            : "hover:bg-white/5"
+                        }`}
+                      >
+                        <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition-colors duration-200 ${
+                          isSubActive 
+                            ? "border-blue-500/20 bg-blue-500/10 text-blue-400" 
+                            : "border-white/5 bg-[#12161f] text-slate-400 group-hover/item:border-blue-500/20 group-hover/item:bg-blue-500/10 group-hover/item:text-blue-400"
+                        }`}>
+                          <DropdownIcon name={subItem.iconName} className="h-4.5 w-4.5" />
+                        </span>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-1.5">
+                            <span className={`text-sm font-semibold transition-colors ${
+                              isSubActive ? "text-white" : "text-slate-300 group-hover/item:text-white"
+                            }`}>
+                              {subItem.label}
+                            </span>
+                            <ArrowRight className="h-3 w-3 text-blue-400 opacity-0 -translate-x-1 transition-all duration-200 group-hover/item:opacity-100 group-hover/item:translate-x-0" />
+                          </div>
+                          <p className="mt-1 text-xs text-slate-400 leading-relaxed">
+                            {subItem.desc}
+                          </p>
                         </div>
-                        <p className="mt-0.5 text-xs text-slate-400 leading-normal">
-                          {subItem.desc}
-                        </p>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Action Buttons & Hamburger Menu */}
-        <div className="flex items-center gap-3">
-          {/* Volume Mute Toggle */}
-          <button
-            onClick={toggleSound}
-            onMouseEnter={() => playCyberHover()}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-[#0a0e16]/60 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 cursor-pointer shadow-sm relative group"
-            aria-label={muted ? "Unmute sound effects" : "Mute sound effects"}
-          >
-            {muted ? <VolumeX className="h-4 w-4 text-slate-400" /> : <Volume2 className="h-4 w-4 text-cyan-400" />}
-            
-            {/* Tooltip */}
-            <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 rounded bg-black/90 border border-white/10 px-2 py-1 text-[8px] font-bold text-white uppercase tracking-wider opacity-0 group-hover:opacity-100 transition duration-200 pointer-events-none whitespace-nowrap">
-              {muted ? "Sound Off" : "Sound On"}
-            </span>
-          </button>
-
+        {/* Action Buttons & Hamburger */}
+        <div className="flex items-center gap-4">
           <Link
             href="/contact"
-            onClick={() => playCyberClick()}
-            onMouseEnter={() => playCyberHover()}
-            className="hidden rounded-full border border-cyan-500/20 bg-cyan-500/10 px-5.5 py-2.5 text-xs font-bold uppercase tracking-wider text-cyan-400 transition-all duration-300 hover:bg-cyan-600 hover:text-black hover:shadow-[0_4px_12px_rgba(64,232,255,0.15)] sm:block cursor-pointer"
+            className="hidden items-center justify-center rounded-full bg-white px-5 py-2 text-xs font-bold text-[#050608] shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] sm:flex"
           >
             Start Project
           </Link>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white xl:hidden cursor-pointer transition-colors shadow-sm"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-[#0a0d12] text-slate-400 hover:bg-[#12161f] hover:text-white xl:hidden transition-colors"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileMenuOpen ? <X className="h-4.5 w-4.5" /> : <Menu className="h-4.5 w-4.5" />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="border-t border-white/5 bg-black/95 backdrop-blur-xl xl:hidden animate-in fade-in duration-200">
+        <div className="border-t border-white/5 bg-[#050608]/95 backdrop-blur-xl xl:hidden animate-in fade-in duration-200">
           <div className="container max-h-[calc(100vh-4rem)] overflow-y-auto py-6">
-            <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col gap-2">
               {mainNavItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
@@ -243,56 +194,55 @@ export function Header() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center gap-2.5 rounded-xl px-4.5 py-3.5 text-[13px] font-bold uppercase tracking-wider transition-all duration-200 ${
+                    className={`flex items-center gap-3 rounded-xl px-4 py-3.5 text-sm font-semibold tracking-wide transition-all duration-200 ${
                       isActive
-                        ? "bg-white/5 text-cyan-400 border border-white/10 font-extrabold shadow-sm"
-                        : "text-slate-300 hover:bg-white/5 hover:text-white"
+                        ? "bg-white/10 text-white"
+                        : "text-slate-400 hover:bg-white/5 hover:text-white"
                     }`}
                   >
-                    {item.label === "Pay Online" && <Wallet className="h-4.5 w-4.5 text-cyan-455" />}
+                    {item.label === "Pay Online" && <Wallet className="h-4.5 w-4.5 text-slate-500" />}
                     {item.label}
                   </Link>
                 );
               })}
 
-              {/* Mobile Resources Collapsible Section */}
-              <div className="border-t border-white/5 pt-3.5 mt-1">
-                <button
-                  onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
-                  className="flex w-full items-center justify-between px-4.5 py-3 text-[13px] font-bold uppercase tracking-wider text-slate-400 hover:text-white cursor-pointer"
-                >
-                  Resource Hub
-                  <ChevronDown className={`h-4.5 w-4.5 transition-transform duration-300 ${mobileResourcesOpen ? "rotate-180 text-cyan-400" : ""}`} />
-                </button>
-                
-                {mobileResourcesOpen && (
-                  <div className="mt-2 ml-3 grid gap-2.5 border-l-2 border-white/5 pl-4 animate-in slide-in-from-top-1 duration-200">
-                    {resourceDropdownItems.map((subItem) => {
-                      const isSubActive = pathname === subItem.href;
-                      return (
-                        <Link
-                          key={subItem.href}
-                          href={subItem.href}
-                          onClick={() => setMobileMenuOpen(false)}
-                          className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition ${
-                            isSubActive
-                              ? "text-cyan-400 font-semibold"
-                              : "text-slate-400 hover:text-white"
-                          }`}
-                        >
-                          <DropdownIcon name={subItem.iconName} className={`h-4 w-4 ${isSubActive ? "text-cyan-455" : "text-slate-400"}`} />
-                          <span>{subItem.label}</span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
+              <div className="my-2 h-px w-full bg-white/5" />
+
+              <button
+                onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
+                className="flex w-full items-center justify-between rounded-xl px-4 py-3.5 text-sm font-semibold tracking-wide text-slate-400 hover:bg-white/5 hover:text-white transition-colors"
+              >
+                Resource Hub
+                <ChevronDown className={`h-4.5 w-4.5 transition-transform duration-300 ${mobileResourcesOpen ? "rotate-180" : ""}`} />
+              </button>
+              
+              {mobileResourcesOpen && (
+                <div className="mb-2 grid gap-1 border-l-2 border-white/10 ml-6 pl-4">
+                  {resourceDropdownItems.map((subItem) => {
+                    const isSubActive = pathname === subItem.href;
+                    return (
+                      <Link
+                        key={subItem.href}
+                        href={subItem.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors ${
+                          isSubActive
+                            ? "text-white bg-white/5"
+                            : "text-slate-400 hover:bg-white/5 hover:text-white"
+                        }`}
+                      >
+                        <DropdownIcon name={subItem.iconName} className={`h-4 w-4 ${isSubActive ? "text-blue-400" : "text-slate-500"}`} />
+                        <span>{subItem.label}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
 
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mt-4 rounded-full border border-cyan-500/20 bg-cyan-500/10 px-5.5 py-3.5 text-center text-[12px] font-bold uppercase tracking-wider text-cyan-400 transition hover:bg-cyan-600 hover:text-black"
+                className="mt-6 rounded-full bg-white px-6 py-4 text-center text-sm font-bold text-[#050608] transition-all hover:bg-slate-200"
               >
                 Start Project
               </Link>

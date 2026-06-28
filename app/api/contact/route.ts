@@ -20,7 +20,7 @@ function contactRedirect(request: Request, status: "queued" | "sent") {
 }
 
 export async function POST(request: Request) {
-  const formData = await request.formData();
+  const formData = await request.formData() as unknown as FormData;
   const payload = parseContactForm(formData, request);
   const errors = validateContactSubmission(payload);
 
