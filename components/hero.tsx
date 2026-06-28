@@ -94,7 +94,7 @@ export function Hero() {
               animate={{ y: "0%", opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/5 px-4 py-2 text-sm font-medium text-blue-400">
+              <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-400">
                 Web Solutions Studio
               </span>
             </motion.div>
@@ -105,7 +105,7 @@ export function Hero() {
 
           {/* Supporting paragraph */}
           <motion.p
-            className="mt-8 max-w-lg text-lg leading-relaxed text-slate-400/90"
+            className="mt-8 max-w-lg text-lg leading-relaxed text-slate-500"
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}

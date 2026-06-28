@@ -330,10 +330,10 @@ export function ArchitectureEngine({ compact = false }: { compact?: boolean; act
       <div
         className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         style={{
-          width: "120%",
-          height: "120%",
-          background: "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.06), transparent 65%)",
-          filter: "blur(40px)",
+          width: "140%",
+          height: "140%",
+          background: "radial-gradient(ellipse at center, rgba(59, 130, 246, 0.12), transparent 70%)",
+          filter: "blur(60px)",
         }}
       />
 

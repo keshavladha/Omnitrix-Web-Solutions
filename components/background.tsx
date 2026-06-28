@@ -160,11 +160,11 @@ export function AmbientBackground() {
   // Smooth the scroll progress for lighting transitions
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 40, damping: 20 });
 
-  // Dynamic Volumetric Lighting
-  // As user scrolls, the primary light source shifts its Y position and expands
-  const lightY = useTransform(smoothProgress, [0, 1], ["-10%", "110%"]);
-  const lightScale = useTransform(smoothProgress, [0, 0.5, 1], [1, 1.5, 1]);
-  const lightOpacity = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [0.15, 0.25, 0.25, 0.15]);
+  // Dynamic Volumetric Lighting (Short Film Pacing)
+  // Hero (0): Bright & central. About/Services (0.15-0.3): Dark valley. Projects/Process (0.5-0.8): Intense flare.
+  const lightY = useTransform(smoothProgress, [0, 1], ["-20%", "120%"]);
+  const lightScale = useTransform(smoothProgress, [0, 0.15, 0.5, 1], [1.2, 0.5, 1.5, 0.8]);
+  const lightOpacity = useTransform(smoothProgress, [0, 0.15, 0.3, 0.5, 0.8, 1], [0.35, 0.05, 0.05, 0.25, 0.25, 0.1]);
 
   // Secondary ambient wash that moves in opposition
   const ambientY = useTransform(smoothProgress, [0, 1], ["120%", "-20%"]);

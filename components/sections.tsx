@@ -16,7 +16,7 @@ export function AboutSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0d12]/50 to-transparent" />
       <div className="container relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">About</p>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">About</p>
           <h2 className="font-display text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
             A modern technology agency built around business outcomes.
           </h2>
@@ -54,7 +54,7 @@ export function ServicesSection() {
       <div className="container">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-3xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">Services</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Services</p>
             <h2 className="font-display text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
               Digital solutions built to earn trust and drive revenue.
             </h2>
@@ -168,7 +168,7 @@ export function ProjectsSection() {
       <div className="container relative">
         <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
           <div className="max-w-3xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">Projects</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Projects</p>
             <h2 
               className="font-display text-4xl font-semibold text-white sm:text-5xl lg:text-6xl"
               style={{ textShadow: "0 4px 12px rgba(255,255,255,0.1)" }}
@@ -408,7 +408,7 @@ export function ContactSection() {
     <section id="contact" className="py-40 relative">
       <div className="container relative grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-400">Contact</p>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Contact</p>
           <h2 className="font-display text-4xl font-semibold text-white sm:text-5xl lg:text-6xl">
             Tell us what you want to build.
           </h2>
