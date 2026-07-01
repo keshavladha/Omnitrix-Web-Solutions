@@ -170,7 +170,7 @@ export function AmbientBackground() {
   const ambientY = useTransform(smoothProgress, [0, 1], ["120%", "-20%"]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#020305]">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#030305]">
       
       {/* ── Midground Perspective Grid ── */}
       <div 

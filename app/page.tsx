@@ -2,6 +2,7 @@ import { AmbientBackground } from "@/components/background";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
+import { SectionDivider } from "@/components/section-divider";
 import {
   AboutSection,
   ContactSection,
@@ -23,14 +24,21 @@ export default function Home() {
       <main>
         <Hero />
         <TrustSignalsSection />
+        <SectionDivider />
         <AboutSection />
+        <SectionDivider />
         <ServicesSection />
+        <SectionDivider />
         <WhyOmnitrixSection />
         <TechStackSection />
+        <SectionDivider />
         <ProjectsSection />
+        <SectionDivider />
         <ProcessSection />
+        <SectionDivider />
         <CTASection />
         <WhySection />
+        <SectionDivider />
         <TestimonialsSection />
         <ContactSection />
       </main>

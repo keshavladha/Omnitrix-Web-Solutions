@@ -22,13 +22,13 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 32 }}
+      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 60 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{ 
-        duration: shouldReduceMotion ? 0.3 : 0.8, 
+        duration: shouldReduceMotion ? 0.3 : 1.2, 
         delay: shouldReduceMotion ? 0 : delay, 
-        ease: [0.25, 0.46, 0.45, 0.94] 
+        ease: [0.16, 1, 0.3, 1] 
       }}
     >
       {children}
@@ -177,10 +177,10 @@ export function ThreeDReveal({
     offset: ["start end", "end start"],
   });
 
-  const rotateX = useTransform(scrollYProgress, [0, 0.3], [12, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.3], [0.95, 1]);
-  const y = useTransform(scrollYProgress, [0, 0.3], [40, 0]);
-  const opacity = useTransform(scrollYProgress, [0, 0.22], [0, 1]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.35], [18, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.35], [0.92, 1]);
+  const y = useTransform(scrollYProgress, [0, 0.35], [60, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1]);
 
   const smoothRotateX = useSpring(rotateX, { stiffness: 85, damping: 18 });
   const smoothScale = useSpring(scale, { stiffness: 85, damping: 18 });

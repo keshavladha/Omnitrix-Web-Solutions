@@ -58,12 +58,27 @@ export function Header() {
     }, 150);
   };
 
+  // Scroll-aware header transparency
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const isResourceActive = resourceDropdownItems.some(
     (item) => pathname === item.href
   );
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/5 bg-[#050608]/80 backdrop-blur-xl transition-all duration-300">
+    <header 
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-700 ${
+        scrolled 
+          ? "border-b border-white/5 bg-[#030305]/80 backdrop-blur-xl" 
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
       <nav className="container flex h-16 items-center justify-between">
         
         {/* Brand Logo */}

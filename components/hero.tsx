@@ -2,6 +2,7 @@
 
 import { MagneticButton } from "@/components/motion";
 import { ArchitectureEngine } from "@/components/architecture-engine";
+import { HeroScene } from "@/components/hero-scene";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
@@ -83,6 +84,9 @@ export function Hero() {
 
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden px-0 pb-24 pt-32">
+      {/* ── Immersive 3D Background ── */}
+      <HeroScene />
+      
       <div className="container relative grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] z-10">
         
         {/* ── Left Column: Copy ── */}
